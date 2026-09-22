@@ -1,0 +1,450 @@
+{
+  "moduleNo": 1,
+  "title": "오리엔테이션 & 근무수칙",
+  "subtitle": "신규/재직 운전자 교육 · 회사소개 · 근무시간 규정 · 기초 안전교육(WSIB·WHMIS)",
+  "note": "Green Oil Inc. 직원 안전·업무 교육 자료 (통합본)",
+  "sourceDocuments": [
+    "GOI_운전자_교육_프로토콜.pptx",
+    "GOI_Employee_Manual_2026-V6.pdf (Drive Safe Skills Training Manual)",
+    "드라이버_업무수칙-Rev. May 2024.docx"
+  ],
+  "objectives": [
+    "Green Oil Inc.의 회사 소개와 교육 목적·목표를 설명할 수 있다.",
+    "WSIB·WHMIS 관련 문서 의무와 산업재해 발생 시 보고 절차를 수행할 수 있다.",
+    "출퇴근 기록, 근무 전 준비, 재교육 조치 기준 등 사내 근무수칙을 준수할 수 있다."
+  ],
+  "chapters": [
+    {
+      "chapterTitle": "1. 교육 목적 및 목표",
+      "sections": [
+        {
+          "sectionTitle": "1-1. 교육 목적",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "Green Oil의 모든 운전자가 회사 차량을 안전하고 효율적으로 운행하도록 한다."
+                },
+                {
+                  "text": "연방과 주(온타리오) 운송 규정을 준수한다."
+                },
+                {
+                  "text": "안전 운영에 필요한 지식, 기술, 올바른 태도를 습득한다."
+                }
+              ],
+              "source": "GOI_운전자_교육_프로토콜.pptx (I. 교육 목적 & 목표)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "1-2. 교육 목표",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "안전과 책임, 전문성을 바탕으로 한 기업 문화를 조성한다."
+                },
+                {
+                  "text": "예방 가능한 사고, 법규 위반, 보험 클레임을 감소시킨다."
+                },
+                {
+                  "text": "다음 관련 법규 및 정책을 철저히 준수한다:"
+                },
+                {
+                  "text": "National Safety Code (NSC)"
+                },
+                {
+                  "text": "Commercial Vehicle Operator's Registration (CVOR)"
+                },
+                {
+                  "text": "Ontario Highway Traffic Act"
+                },
+                {
+                  "text": "회사 내부 정책 및 절차"
+                }
+              ],
+              "source": "GOI_운전자_교육_프로토콜.pptx (I. 교육 목적 & 목표)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "2. 교육 구성",
+      "sections": [
+        {
+          "sectionTitle": "2. 교육 구성",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "교육은 크게 ①신규 운전자 오리엔테이션과 ②보수 및 정기 교육(Samsara 활용)으로 구성된다.",
+              "source": "GOI_운전자_교육_프로토콜.pptx (II. 교육 구성)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "2-1. 신규 운전자 오리엔테이션 구성 항목",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "회사 소개 (Green Oil의 개요, 목표)"
+                },
+                {
+                  "text": "운전자 핸드북, 근무시간 규정, 운행일지 안내"
+                },
+                {
+                  "text": "사고, 위반, 정비 문제 보고 절차"
+                },
+                {
+                  "text": "차량 숙지 및 점검 절차 (운영 전/후 점검, 연료 주유, 정비 요청)"
+                },
+                {
+                  "text": "전자기록 장치 및 Samsara 사용법"
+                }
+              ],
+              "source": "GOI_운전자_교육_프로토콜.pptx (신규 오리엔테이션)"
+            },
+            {
+              "type": "subheading",
+              "text": "회사 소개"
+            },
+            {
+              "type": "text",
+              "text": "Green Oil Inc.는 캐나다 온타리오주 노스 요크에 위치한 재활용 식용유 회사로, 식당과 식품 제조업체로부터 폐식용유를 수거하여 재생 가능한 에너지의 원료로 가공한다."
+            },
+            {
+              "type": "text",
+              "text": "목표: GOI는 폐기물 수집 및 1차 가공을 통해 이윤을 창출하는 동시에, 온실가스 배출 감소에 기여하는 것을 목표로 한다.",
+              "source": "GOI_운전자_교육_프로토콜.pptx (신규 오리엔테이션(2)(3))"
+            },
+            {
+              "type": "subheading",
+              "text": "산업 방향성 (참고)"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "캐나다 정부는 석유·가스 부문 온실가스 배출량 상한제, 메탄 배출 감소 규제 등으로 환경오염을 줄이려 노력하고 있다."
+                },
+                {
+                  "text": "캐나다 석유·가스 회사들은 탄소 포집·활용·저장(CCUS) 등 탈탄소화 기술에 투자하고 있다."
+                },
+                {
+                  "text": "일부 석유회사는 재생 가능한 디젤 연료 등 바이오 연료 생산에 참여하고 있다."
+                }
+              ],
+              "source": "GOI_운전자_교육_프로토콜.pptx (신규 오리엔테이션(4))"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "2-2. 보수 및 정기 교육 (변화의 흐름에 맞춘 교육)",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "정부 정책 강화(MTO): Post COVID 이후 교통법 강화, Automated speed camera, MTO의 트럭 검사 강화"
+                },
+                {
+                  "text": "ELD (Electronic Logging Device) 도입"
+                },
+                {
+                  "text": "계절별 위험 요소 대응 (예: 겨울철 운전)"
+                }
+              ],
+              "source": "GOI_운전자_교육_프로토콜.pptx (변화의 흐름에 맞춰가는 교육)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "3. 교육 기록 및 절차",
+      "sections": [
+        {
+          "sectionTitle": "3-1. 자료 문서화",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "모든 교육 이력은 운전자 인사 파일에 보관한다. 보관 서류 목록:"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "교육 완료 확인서"
+                },
+                {
+                  "text": "도로 주행 평가표"
+                },
+                {
+                  "text": "운전면허증, 운전 기록, 기타 자격증 사본"
+                },
+                {
+                  "text": "시정조치 또는 재교육 기록"
+                }
+              ],
+              "source": "GOI_운전자_교육_프로토콜.pptx (자료 문서화)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "3-2. 회사 지원",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "일반 딜리버리 업체와 달리, 2024년부터 GOI는 고용된 드라이버의 DZ 면허증 취득을 지원한다. 트레이너 교육(Train-the-Trainer)도 이수 대상이다.",
+              "source": "GOI_운전자_교육_프로토콜.pptx (회사 지원)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "3-3. 재교육 조치 (안전 규정/교육 기준 위반 시)",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "재교육 또는 멘토링"
+                },
+                {
+                  "text": "서면 경고"
+                },
+                {
+                  "text": "반복 위반 시 정직 또는 해고"
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module1-image1.jpg",
+              "caption": "위반 시 조치 단계: 구두경고 → 서면경고 → 정직 → 해고",
+              "source": "GOI_운전자_교육_프로토콜.pptx (재교육 조치)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "4. 교육 성과 및 검토",
+      "sections": [
+        {
+          "sectionTitle": "4. 교육 성과 및 검토",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "본 교육 프로그램의 효과는 다음 지표를 통해 평가한다:"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "CVOR 위반 건수 감소"
+                },
+                {
+                  "text": "예방할 수 있는 사고 건수 감소"
+                },
+                {
+                  "text": "차량 검사 점수 개선"
+                },
+                {
+                  "text": "관리자 및 운전자 피드백"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "매년 1회 또는 주요 법규 변경 시 검토·개정하여 지속적인 적합성과 효율성을 유지한다.",
+              "source": "GOI_운전자_교육_프로토콜.pptx (성과 및 검토)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "5. 기초 안전교육 — WSIB / WHMIS",
+      "sections": [
+        {
+          "sectionTitle": "5-1. 문서 완료 및 소지 의무 (Documents to complete and carry)",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "WSIB 교육 이수 및 안전규정 숙지"
+                },
+                {
+                  "text": "모든 직원은 WHMIS 심볼을 숙지해야 함"
+                },
+                {
+                  "text": "Insurance paper (보험서류)"
+                },
+                {
+                  "text": "MOE Driver's Training Certification"
+                },
+                {
+                  "text": "CVOR Certification"
+                },
+                {
+                  "text": "Daily Inspection Log 또는 ELD 작성 완료 (160KM 반경 초과 운행 시)"
+                }
+              ],
+              "source": "GOI_Employee_Manual_2026-V6.pdf (A. 문서 완료 및 소지)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "5-2. 신규 운전자 훈련 절차",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "신규 채용 운전자는 중형 트럭 운전을 1주일간 훈련받는다."
+                },
+                {
+                  "text": "지정된 트레이너가 신규 채용자의 수행 능력을 평가하여 채용 지속 여부를 결정한다."
+                },
+                {
+                  "text": "모든 신규 운전자는 트럭의 일반 운영뿐 아니라 비상 프로토콜에도 익숙해져야 한다."
+                },
+                {
+                  "text": "수습기간 이후, 모든 운전자는 다음을 수행할 수 있어야 한다:"
+                },
+                {
+                  "text": "배정된 업무를 지시대로 수행"
+                },
+                {
+                  "text": "일일 배출(daily drain) 수행, 펌프 오일 수위 점검"
+                },
+                {
+                  "text": "새로운 문제를 설명하고 이미 알려진/반복되는 문제를 해결"
+                },
+                {
+                  "text": "제한된 지원 하에서도 비상 상황 시 중요한 결정을 내릴 수 있는 능력 보유"
+                },
+                {
+                  "text": "사고에 대한 포괄적인 보고서를 작성할 수 있는 능력 시연"
+                }
+              ],
+              "source": "GOI_Employee_Manual_2026-V6.pdf (B. 운전자 훈련 절차)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "5-3. WHMIS 및 산업재해(WSIB) 대응 참고자료",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "WHMIS 픽토그램(화염, 해골과 뼈, 부식성, 생물학적 위험, 건강 유해성, 폭발성, 가스 실린더, 산화제, 환경 유해성 등)을 숙지해야 한다. 상세 픽토그램 도표는 원본 매뉴얼(CCOHS 안내)을 참고한다."
+            },
+            {
+              "type": "image",
+              "file": "module1-image2.jpg",
+              "caption": "WHMIS Pictograms (CCOHS 안내표)"
+            },
+            {
+              "type": "subheading",
+              "text": "업무 중 부상 또는 질병 발생 시 절차"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "1. 의료 도움 받기 — 고용주는 응급처치를 제공할 책임이 있으며, 필요시 병원 진료 및 이동을 지원한다."
+                },
+                {
+                  "text": "2. 문서화 — 고용주에게 부상/질병을 알리고, 고용주는 이를 조사·기록한다."
+                },
+                {
+                  "text": "3. WSIB 신고 — 고용주는 부상/질병 발생 3일 이내에 신고해야 하며, Worker's Report of Injury/Illness(Form 6)로 근로자도 직접 신고할 수 있다."
+                },
+                {
+                  "text": "4. 협력 — WSIB는 근로자와 고용주가 적절한 시기에 안전하게 복귀할 수 있도록 협력한다."
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "문의처: 1-800-387-0750 (TTY 1-800-387-0050), wsib.on.ca/reporting"
+            },
+            {
+              "type": "image",
+              "file": "module1-image3.jpg",
+              "caption": "IN CASE OF INJURY OR ILLNESS AT WORK (WSIB 안내)",
+              "source": "GOI_Employee_Manual_2026-V6.pdf (WHMIS and WSIB 페이지)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "6. 근무 수칙 — 출근·퇴근 및 업무 시간",
+      "sections": [
+        {
+          "sectionTitle": "6-1. 출근 및 출발 전 업무",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "출근 시간의 시작은 환복 후 그날의 동선 계획, 차량 정비로부터 시작된다."
+                },
+                {
+                  "text": "출근 시간 기입 요령: 출근 시간은 매 15분 단위로 기록한다. 예) 7시 5분 출근 → 7시 15분으로 기입."
+                },
+                {
+                  "text": "출·퇴근 시간에 포함되지 않는 사항: 근무복으로 환복하는 시간."
+                }
+              ],
+              "source": "드라이버_업무수칙-Rev. May 2024.docx (<출, 퇴근 및 업무 시간> 1)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-2. 워킹 전 준비 업무",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "개인 업무 장비(태블릿, 열쇠, 장갑, 캐쉬) 등 누락 여부 체크"
+                },
+                {
+                  "text": "그날 필요한 모래나 다른 장비를 사전에 체크하고 준비"
+                },
+                {
+                  "text": "위 모든 사항은 30분 이내로 마칠 수 있도록 한다."
+                }
+              ],
+              "source": "드라이버_업무수칙-Rev. May 2024.docx (2. 워킹 전 준비 업무)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-3. 퇴근 절차",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "모든 일이 마무리 되고 옷을 갈아 입은 후 퇴근 신청을 완료한다. 퇴근 복장을 한 후 시간을 보내고 퇴근 신청 하는 것은 인정되지 않는다."
+                },
+                {
+                  "text": "퇴근 시에는 다시 한 번 문단속, 전기 스위치 오프 여부를 확인한 후 알람을 켜고 퇴근한다."
+                }
+              ],
+              "source": "드라이버_업무수칙-Rev. May 2024.docx (4~5)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

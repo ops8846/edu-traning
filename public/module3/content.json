@@ -1,0 +1,573 @@
+{
+  "moduleNo": 3,
+  "title": "오일 수거·언로딩 및 현장업무 대응",
+  "subtitle": "Used Cooking Oil 기본지식 · 계약서류 · 언로딩 절차 · 현장 발생 상황별 대처법",
+  "note": "Green Oil Inc. 직원 안전·업무 교육 자료 (통합본)",
+  "sourceDocuments": [
+    "직원지침_및_참고사항_Guideline.xlsx",
+    "드라이버_업무수칙-Rev. May 2024.docx",
+    "GOI_운전자_교육_프로토콜.pptx (공지 사항 슬라이드)"
+  ],
+  "objectives": [
+    "UCO(폐식용유)의 정의와 컨테이너 종류, 계약에 필요한 서류를 파악할 수 있다.",
+    "언로딩(Unloading) 표준 절차를 순서대로 수행할 수 있다.",
+    "오일 유출, 도난, 고객 불만 등 현장에서 발생 가능한 상황별 대처법을 설명할 수 있다."
+  ],
+  "chapters": [
+    {
+      "chapterTitle": "1. Used Cooking Oil (UCO) 기본 지식",
+      "sections": [
+        {
+          "sectionTitle": "1-1. UCO란?",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Green Oil Inc.에서 Recycle하는 Used Cooking Oil은 레스토랑 및 Commercial Building에서 쓰인 Deep Fryer Machine에서 나온 사용된 Vegetable Oil이다."
+            },
+            {
+              "type": "text",
+              "text": "※ 첨가제나 엔진오일에 대한 문의가 있을 수 있으나, GOI는 이를 취급하지 않는다."
+            },
+            {
+              "type": "image",
+              "file": "module3-image1.jpg",
+              "caption": "Used Cooking Oil (사용된 식용유) 예시",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Used Cooking Oil 이란?)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "1-2. 회사 소속 컨테이너 종류",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "Drum: 가장 많이 쓰이는 컨테이너, 볼륨 200L."
+                },
+                {
+                  "text": "Drum with Wheel (D/W): 바퀴가 달린 드럼. 가끔 고객 요청에 따라 회사에서 제작."
+                },
+                {
+                  "text": "400B: 400L 사이즈 Bin. 드럼 다음으로 많이 사용되며, 회사가 직접 제작."
+                },
+                {
+                  "text": "기타 Bin: 600L(600B), 700L(700B), 800L(800B), 1000L(1000B) 등. 고객의 Deep Fryer 개수 및 오일 체인지 빈도에 따라 마케팅팀에서 판단하여 설치."
+                },
+                {
+                  "text": "Bucket 예외 사항: 레스토랑에 공간이 없을 경우 고객이 Bucket으로 모아두는 경우가 있음. GOI는 Bucket 서비스를 하지 않으나, Bucket 10개가 모이면 무료 픽업 서비스가 가능."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module3-image2.jpg",
+              "caption": "GOI 400B 컨테이너(Bin) 실물"
+            },
+            {
+              "type": "image",
+              "file": "module3-image3.jpg",
+              "caption": "GOI 라벨이 부착된 Drum(200L) 실물 — 가장 많이 쓰이는 컨테이너"
+            },
+            {
+              "type": "image",
+              "file": "module3-image4.jpg",
+              "caption": "Green Oil Inc. 각인 컨테이너 (Cooking Oil Only)",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (회사소속 Container)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "2. 차량 비치서류 및 계약 절차",
+      "sections": [
+        {
+          "sectionTitle": "2-1. 신규 계약 시 필요 서류",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "Agreement Form"
+                },
+                {
+                  "text": "US Declaration Form"
+                },
+                {
+                  "text": "EU Declaration Form"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "세 Form 모두 고객 서명을 받고, Agreement Form의 노란색 종이만 고객 카피로 전달한다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Driver 차량 비치서류)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "2-2. 상황별 추가 서류",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "Container Removal Form: 새로 계약할 가게가 다른 업체를 사용 중이어서 그 회사의 빈 수거를 요청받을 경우 서명 필요."
+                },
+                {
+                  "text": "Switch Form: 타 회사에서 GOI로 전환(switch)할 경우 고객 서명 필요."
+                },
+                {
+                  "text": "Lock 절단 Permission Form: 타 회사의 Locked된 빈 안의 오일을 픽업할 경우 반드시 서명받은 후 진행."
+                },
+                {
+                  "text": "Oil Removal Form: 타 회사 빈 안의 오일을 픽업할 경우 고객으로부터 반드시 서명받은 후 진행."
+                }
+              ],
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Driver 차량 비치서류)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "2-3. 가격 정책",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "신규 계약 시 기본 Price는 $0.15/L를 원칙으로 한다. 고객이 더 높은 금액을 원할 경우 마케팅부서와 상의 후 결정한다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Price)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "2-4. Pay 방법",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "CA (Cash 계정): 드라이버가 현장에서 직접 페이한다. 총 수거 오일량에서 슬러지, 물, Waste Food 양을 제외한 양만 현금 지급한다. 슬러지가 많아 제외 후 페이할 경우 고객에게 반드시 알리고 서명을 받아야 하며, 금액 관련 논쟁 발생 시 오피스로 전화하여 해결한다."
+                },
+                {
+                  "text": "CHQ (Cheque 계정): Accounting Team이 3개월에 한 번씩 고객에게 체크를 발행한다. Driver는 Driver Sheet 용량 기입 시 슬러지, 물, Waste Food양을 제외하고 오일양만 입력해야 ACC팀이 정확히 체크를 발행할 수 있다."
+                }
+              ],
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Pay 방법)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "3. 언로딩(Unloading) 작업 절차",
+      "sections": [
+        {
+          "sectionTitle": "3. 언로딩(Unloading) 작업 절차",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "하루의 오일 픽업을 마치고 회사로 복귀한 후, 차량에서 실어온 기름을 내리는 작업이다."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "공장팀에게 언로딩 탱크 넘버를 확인하고 순서에 따라 언로딩한다."
+                },
+                {
+                  "text": "언로딩 진행 중에는 긴급 상황(모터 코드가 빠짐, 스트레이너 막힘, 배큠 파워로 인한 오일 분출 등)이 발생할 수 있으므로, 완료할 때까지 스트레이너 근처에서 자리를 이탈하지 않는다."
+                },
+                {
+                  "text": "언로딩 양 기록 시, 탱크에 언로딩한 용량을 0.9로 나눈 숫자를 기록한다. (예: 3000kg → 3300L, #10탱크)"
+                },
+                {
+                  "text": "공장팀이 없을 경우, 스트레이너에서 연결된 파이프가 어느 펌프로 연결되는지, 그 펌프가 어느 탱크의 파이프로 연결되는지 직접 확인해야 한다."
+                }
+              ]
+            },
+            {
+              "type": "subheading",
+              "text": "세부 절차 순서"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "① 스트레이너 호스와 트럭 연결하기"
+                },
+                {
+                  "text": "② 트럭 베큠 펌프의 레버 위치가 언로딩 위치인지 확인"
+                },
+                {
+                  "text": "③ 트럭 뒷부분 높이 내리기"
+                },
+                {
+                  "text": "④ 파이프를 따라가 어느 탱크로 연결되어 있는지 확인"
+                },
+                {
+                  "text": "⑤ 해당 펌프 작동 (녹색 스위치)"
+                },
+                {
+                  "text": "⑥ 언로딩 1~2초 작동하여 잘 배출되는지 확인"
+                },
+                {
+                  "text": "⑦ 스트레이너가 넘칠 수 있으므로 옆에서 수위를 조절하며 언로딩"
+                },
+                {
+                  "text": "⑧ 언로딩이 다 되면 석션으로 펌프 레버를 바꾸어 호스에 남은 기름을 다시 석션"
+                },
+                {
+                  "text": "⑨ 탱크 수위 체크 및 사진 촬영"
+                },
+                {
+                  "text": "⑩ 펌프 끄기 (빨간색 버튼)"
+                },
+                {
+                  "text": "⑪ 스트레이너와 트럭 연결된 호스 해제 및 정리"
+                },
+                {
+                  "text": "⑫ 언로딩한 탱크 사진과 언로딩 양 보고"
+                },
+                {
+                  "text": "⑬ 언로딩 호스 정리, 펌프 전원선 분리, 탱크 라인 차단"
+                },
+                {
+                  "text": "⑭ 모든 문을 잠그고 탱크를 비추는 전구의 전원 코드를 분리"
+                },
+                {
+                  "text": "⑮ 문단속 전 확인: 업무 중인 미복귀 직원(인스톨팀, 그리스트랩팀 등)이 있는지 확인 후 문단속"
+                }
+              ],
+              "source": "드라이버_업무수칙-Rev. May 2024.docx (<언로딩 작업 Unloading Work>)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "4. 계정관리 및 업무 공조",
+      "sections": [
+        {
+          "sectionTitle": "4-1. 계정 방문 및 관리",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "하루 방문 계정 수는 20개 이상. 방문 루트에 따라 더 많은 방문을 권장한다."
+                },
+                {
+                  "text": "자신이 관리하는 지역·계정의 특이사항 및 기름 수거 위치 정보를 MIS에 기록하고, 오일 픽업 정확성을 위해 사무실과의 소통이 중요하다."
+                },
+                {
+                  "text": "주어진 업무 시간 내 효율성 제고 노력, 영업 활동, 장기 휴면 계정의 정기 방문도 업무에 포함된다."
+                }
+              ],
+              "source": "드라이버_업무수칙-Rev. May 2024.docx (<계정 관리 및 업무 공조> 계정 방문/계정 관리 및 오일 수거)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "4-2. 영업활동 및 커미션",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "자율적 영업활동을 회사가 권장하나, 방문 업체는 그날 오더장의 동선 안으로 한정한다."
+                },
+                {
+                  "text": "오일 픽업에 관심 있는 업체는 사무실 Marketing team과 연결시켜 많은 시간을 할애하지 않아도 되며, 성사 시 commission pay가 지급된다."
+                },
+                {
+                  "text": "신규 계약: $50 지급 / 오너가 바뀐 곳(재계약): $20 지급. 커미션 및 계약 관련 서류는 완료 후 지급된다."
+                }
+              ],
+              "source": "드라이버_업무수칙-Rev. May 2024.docx (영업활동)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "4-3. 소모품 관리",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "누유 모래, DEF, 드럼, 와셔액 등을 사용할 때는 카카오워크 \"Drum/Bin\" 방에 사항을 올린다.",
+              "source": "드라이버_업무수칙-Rev. May 2024.docx (소모품 관리)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "4-4. 인스톨 지원",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "드라이버가 해당 지역으로 추가 인스톨 지원을 나갈 수 있으므로, 여분의 드럼을 실을 공간과 결착(래칫)을 준비해야 한다. 이름표 부착 요청이 들어올 수 있으니 토치가 차량에 비치되어 있는지, 작동이 잘 되는지 준비해 둔다.",
+              "source": "드라이버_업무수칙-Rev. May 2024.docx (인스톨 지원)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "5. 오일 픽업 시 발생할 수 있는 상황 및 대처법",
+      "sections": [
+        {
+          "sectionTitle": "5-1. Oil Spill (오일 유출)했을 경우",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "레스토랑에서 유출했는지, 우리(GOI)가 유출했는지 여부를 판단한다."
+                },
+                {
+                  "text": "레스토랑 측 유출인 경우: Absorbent(모래)를 사용해 처리하라고 안내한다."
+                },
+                {
+                  "text": "작업 중 본인이 오일을 유출한 경우: 드라이버 트레이닝 지침대로 즉시 청소한다."
+                },
+                {
+                  "text": "우리 측 잘못이 아닌데 레스토랑이 청소를 요구할 경우: 주변 상황 사진을 찍어 카톡에 올리고 사무실에 상의한다."
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "※ 항상 차량에 헌 옷이나 Absorbent를 준비하고, Garbage Bag·삽·청소도구도 항상 지참한다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Oil Spill했을경우)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "5-2. Sludge(찌꺼기)가 너무 많을 경우",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "고객이 Sludge 처리를 요구할 시 사진을 찍어 카톡에 올린 후 사무실에 상의한다."
+                },
+                {
+                  "text": "우수고객은 서비스 차원에서 처리해주는 경우도 있으나, 대부분 Sludge 양만큼 고객에게 금액을 청구한 후 서비스 여부를 판단한다. 이 판단은 마케팅팀이 결정하므로 처리 전 항상 사무실에 알린다."
+                }
+              ],
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Sludge가 너무 많을경우)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "5-3. Owner(업주)가 바뀌었을 경우",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "기존 계정은 삭제되고 새로 계약하는 절차로 진행한다. 새 오너에게 새로 계약서 서명을 받아야 한다."
+                },
+                {
+                  "text": "카톡방에 'Ownership Changed'라고 알린다."
+                },
+                {
+                  "text": "Agreement Form, US Declaration Form, EU Declaration Form 모두 서명받아 부장님 책상에 놓아둔다."
+                }
+              ],
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Owner가 바뀌었을 경우)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "5-4. Oil 및 Drum/Bin 도난",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "가능하면 고객에게 그 자리에서 직접 우리가 가져간 것이 아니라는 사실을 알리고, 사무실에도 연락한다."
+                },
+                {
+                  "text": "현장 사진을 찍어 카톡방에 올린다. Surveillance Camera 유무를 고객에게 확인한다."
+                }
+              ],
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Oil 및 Drum/Bin 도난)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "5-5. 고객 Complain(불만)이 있을 경우",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Marketing 부서에 반드시 report하고 상황을 설명한다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (고객 Complain이 있을경우)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "5-6. 차량 Vacuum Pump 문제 발생 시",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "사무실에 연락하여 사장님이나 부사장님의 지시를 따라 대처한다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (오일픽업시 차량 Vacuum Pump에 문제가 발생할 경우)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "5-7. 차량에 문제가 있어 수리가 필요한 경우",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "미리 차량 담당자와 사무실에 report하여 수리 스케줄을 잡는다."
+                },
+                {
+                  "text": "차량 문제 발생 시, 회사에서 정한 차량 문제 리포트 양식에 따라 기승전결이 명확하게 드러나도록 내용을 충실히 작성하여 보고할 것."
+                },
+                {
+                  "text": "담당 차량이 수리 또는 정비로 인해 대체 차량으로 배치되는 경우, 해당 차량의 청결 상태 및 기타 결함 여부를 반드시 확인하고 보고할 것"
+                },
+                {
+                  "text": "수리 완료 후 재운행 시 그 결과를 차량담당자에게 보고한다."
+                }
+              ],
+              "source": "직원지침_및_참고사항_Guideline.xlsx (차량에 문제가 있어 고쳐야 할 경우)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "6. Install 및 공장 내 상황 대처방법",
+      "sections": [
+        {
+          "sectionTitle": "6-1. Install Team의 Bin 수거 시",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Office 스케줄에 따라 자사 빈 또는 타사 빈을 수거하도록 지시받았으나, 현장에서 고객 설명과 다르게 빈 상태가 엉망이거나 오일·슬러지 외 온갖 쓰레기가 담겨 있는 경우: 즉시 수거하지 않고 오피스에 바로 전화하여 상황을 전달하고 논의한다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Install Team에서 레스토랑에 Bin을 수거할때)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-2. Install Team의 Bin 설치 시",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "새 계정이나 상위계정 중 Bin/드럼 설치·교환 시 현장 설치가 불가능하거나 공간이 없어 곤란한 경우: 고객을 만날 수 있으면 상황을 설명 후 원하는 위치에 설치하고, 고객과 연락이 닿지 않으면 오피스에 전화하여 상황을 전달하고 논의한다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (Install Team에서 레스토랑에 Bin을 설치할때)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-3. 오일 Unloading 시 Hose가 터질 경우",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "주위 작업자 또는 동료가 우선 Hose를 Tote에 유지하도록 하고, 차량 시동을 OFF한 후 Pump를 Stop한다. 즉시 공장장님에게 알린다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (오일 Unloading시 Hose가 터질경우)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-4. 오일 Loading/Unloading 시 Pump가 Shutdown될 경우",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "전원 연결 상태를 우선 확인하고 두꺼비집을 확인한다. 이상이 없으면 Pump를 재가동한다. 막힘이나 문제가 발견되면 공장장님에게 즉시 알린다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (오일 Loading/Unloading 시 Pump가 shutdown될 경우)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-5. Pump Strainer가 망가질 경우",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "작업을 즉시 중지하고 여분의 Strainer로 교체한다. 망가진 Strainer는 공장장님에게 즉시 알린다.",
+              "source": "직원지침_및_참고사항_Guideline.xlsx (오일 Loading/Unloading 시 Pump Strainer가 망가질 경우)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-6. 수산화나트륨(NaOH) 용액 사용",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "NaOH 가루 포대로 공장에서 희석하여 준비한다."
+                },
+                {
+                  "text": "3D ECO액 사용 시에는 드럼 한 개당 1bucket을 희석해서 사용한다."
+                },
+                {
+                  "text": "Driver용 드럼, 공장용 드럼을 따로 만들어 놓았으니 참조한다."
+                },
+                {
+                  "text": "Hose 청소 등은 한꺼번에 드럼에 담가 여러 차량이 사용하며, 이후 공장장님에게 보고하여 처리 협조한다."
+                }
+              ],
+              "source": "직원지침_및_참고사항_Guideline.xlsx (수산화나트륨 용액사용)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "7. 사내 공지사항 — 로딩/언로딩 관련 준수사항",
+      "sections": [
+        {
+          "sectionTitle": "7-1. 폐유 로딩 건 공지 (호스 커넥터)",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Do (해야 할 것)",
+                  "Don't (하지 말아야 할 것)"
+                ],
+                [
+                  "로딩 완료 후 호스 커넥터 분리 상태 확인 → 호스를 로딩 입구 고리에 고정한 후 운전",
+                  "로딩 완료 후 호스 커넥터를 장착한 상태로 트럭 운전 (최근 3회 발생 사례 — 공장 내 사고 위험: 스트레이너 연결 파이프 파손 가능)"
+                ]
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module3-image5.jpg",
+              "caption": "호스 커넥터 Do/Don't 실제 사진",
+              "source": "GOI_운전자_교육_프로토콜.pptx (폐유 로딩 건 공지)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "7-2. 로딩 구간 바닥 청소 건 공지",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Do (해야 할 것)",
+                  "Don't (하지 말아야 할 것)"
+                ],
+                [
+                  "바닥 청소 후 재사용 가능한 모래는 쓰레받기로 수거. 남은 모래는 로딩 독 사이에 배치된 재활용 드럼통에 담기",
+                  "모래 청소 작업 후 바닥에 있는 잔량을 미수거 상태로 방치"
+                ]
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module3-image6.jpg",
+              "caption": "로딩 구간 바닥 청소 Do/Don't 실제 사진",
+              "source": "GOI_운전자_교육_프로토콜.pptx (로딩 구간 바닥 청소 건)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

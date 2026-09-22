@@ -1,0 +1,945 @@
+{
+  "moduleNo": 5,
+  "title": "Samsara 사용법",
+  "subtitle": "앱 로그인·차량선택·DVIR(사전/사후점검)·HOS 근무시간 관리·도로단속 대응·DVIR 법규 준수",
+  "note": "Green Oil Inc. 직원 안전·업무 교육 자료 (통합본)",
+  "sourceDocuments": [
+    "Samsara_드라이버_앱_가이드_251112.pdf (Green Oil Inc.)",
+    "Samsara_앱_매일_기본_절차.pdf",
+    "Samsara_DVIR_준수_요약표.docx (온타리오 – 모든 운전자용)",
+    "Samsara_HOS_운전자_가이드.pdf (운전자용 빠른 참고 문서)",
+    "DVIR.png (Green Oil Inc. Samsara DVIR 점검 화면)"
+  ],
+  "objectives": [
+    "Samsara 앱의 운행 전/중/후 필수 절차(Pre-Trip·Post-Trip)를 수행할 수 있다.",
+    "DVIR 점검표 작성 방법과 HOS(근무시간) 규정을 준수할 수 있다.",
+    "도로 단속 시 대응 화면 사용법과 회사 책임 범위를 설명할 수 있다."
+  ],
+  "chapters": [
+    {
+      "chapterTitle": "1. 매일 지켜야 할 기본 절차 (요약)",
+      "sections": [
+        {
+          "sectionTitle": "1. 매일 지켜야 할 기본 절차 (요약)",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "모든 운전자는 아래 3가지만 매일 지키면 된다."
+            }
+          ]
+        },
+        {
+          "sectionTitle": "1-1. 운행 전 — 차량 선택 + 사전점검(Pre-Trip)",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "① Samsara Driver 앱 실행"
+                },
+                {
+                  "text": "② 오늘 운행할 차량 선택"
+                },
+                {
+                  "text": "③ 사전점검(Pre-Trip) 진행"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sectionTitle": "1-2. 운행 중 — 정상적으로 Trips 자동 기록",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "ELD 면제 운전자라도, 차량은 자동으로 Trip 데이터가 기록된다."
+                },
+                {
+                  "text": "→ 운전자는 따로 할 일이 없다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sectionTitle": "1-3. 운행 후 — 사후점검(Post-Trip) + 차량 로그아웃(차량 Leave 클릭)",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "① 사후점검(Post-Trip) 진행"
+                },
+                {
+                  "text": "② 앱에서 반드시 계정이 아닌 '차량' 로그아웃(Logout)"
+                },
+                {
+                  "text": "③ 다음날 차량 배정 오류 예방"
+                },
+                {
+                  "text": "④ 차량이 계속 본인에게 Assign 되는 문제 방지"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "※ 매번 차량 4방향 사진이 필요하므로 앱으로 촬영해 진행한다."
+            }
+          ]
+        },
+        {
+          "sectionTitle": "1-4. 정리 — 진짜 꼭 필요한 3가지",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "단계",
+                  "내용"
+                ],
+                [
+                  "I. Pre-Trip",
+                  "차량 선택 → 점검"
+                ],
+                [
+                  "II. Post-Trip",
+                  "점검"
+                ],
+                [
+                  "III. Logout",
+                  "하루 끝나면 반드시 차량 로그아웃"
+                ]
+              ],
+              "source": "Samsara_앱_매일_기본_절차.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "2. 앱 로그인",
+      "sections": [
+        {
+          "sectionTitle": "2. 앱 로그인",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "1) 그린오일 Fleet ID(공통) 입력: green-oil-inc"
+                },
+                {
+                  "text": "2) Username 입력 (개인)"
+                },
+                {
+                  "text": "3) PW 입력 (개인)"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "※ 신규 드라이버이거나 Username & Password를 모를 시 Operations 팀에 문의한다."
+            },
+            {
+              "type": "image",
+              "file": "module5-image1.jpg",
+              "caption": "앱 로그인 화면 (Fleet ID / Username / Password)",
+              "source": "Samsara_드라이버_앱_가이드_251112.pdf (앱 로그인)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "3. 차량 선택 (Vehicle Selection)",
+      "sections": [
+        {
+          "sectionTitle": "3. 차량 선택 (Vehicle Selection)",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "1) 로그인 후 Assignments 창에서 Vehicle 클릭"
+                },
+                {
+                  "text": "2) Vehicle 창에서 탑승할 차량 선택 (GPS 기능으로 본인 주변에 있는 차량만 선택 가능)"
+                },
+                {
+                  "text": "3) 차량 선택 후 \"Done\" → \"Confirm\" 클릭"
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module5-image2.jpg",
+              "caption": "차량 선택 화면 (Assignments → Select Vehicle)",
+              "source": "Samsara_드라이버_앱_가이드_251112.pdf (차량 선택)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "4. DVIR — 출발 전 점검 (Pre-Trip Inspection)",
+      "sections": [
+        {
+          "sectionTitle": "4. DVIR — 출발 전 점검 (Pre-Trip Inspection)",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "운행 전 차량 안전 상태를 확인한다."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "1. 홈 화면에서 DVIR을 선택 (단, Vehicle 선택이 먼저 필요)."
+                },
+                {
+                  "text": "2. \"Create DVIR\" → \"Vehicle Only\" 클릭."
+                },
+                {
+                  "text": "3. Pre-Trip 옵션 선택."
+                },
+                {
+                  "text": "4. 차량 Walkaround 사진 첨부 (차량 전면, 양쪽, 후면)."
+                },
+                {
+                  "text": "5. 점검 항목(타이어, 조명, 브레이크 등)을 확인해 \"✓\". 결함이 있으면 \"X\" 표시하고 메모/사진을 추가."
+                },
+                {
+                  "text": "6. 이상이 없으면 운행 가능(\"Safe to drive\") 혹은 이상 있으면 불가능(\"Unsafe\") 선택."
+                },
+                {
+                  "text": "7. 아래 \"Next\" 클릭해 DVIR 제출."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module5-image3.jpg",
+              "caption": "DVIR 사전점검(Pre-Trip Inspection) 진행 화면",
+              "source": "Samsara_드라이버_앱_가이드_251112.pdf (DVIR – 출발 전 점검)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "5. DVIR — 운행 후 점검 (Post-Trip Inspection)",
+      "sections": [
+        {
+          "sectionTitle": "5. DVIR — 운행 후 점검 (Post-Trip Inspection)",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "운행 종료 후 차량 상태를 보고한다."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "1. 홈 화면에서 DVIR을 선택 (단, Vehicle 선택이 먼저 필요)."
+                },
+                {
+                  "text": "2. \"Create DVIR\" → \"Vehicle Only\" 클릭."
+                },
+                {
+                  "text": "3. Post-Trip 옵션 선택."
+                },
+                {
+                  "text": "4. 차량 Walkaround 사진 첨부 (차량 전면, 양쪽, 후면)."
+                },
+                {
+                  "text": "5. 점검 항목(타이어, 조명, 브레이크 등)을 확인해 \"✓\". 결함이 있으면 \"X\" 표시하고 메모/사진을 추가."
+                },
+                {
+                  "text": "6. 이상이 없으면 운행 가능(\"Safe to drive\") 혹은 이상 있으면 불가능(\"Unsafe\") 선택."
+                },
+                {
+                  "text": "7. 아래 \"Next\" 클릭해 DVIR 제출."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module5-image4.jpg",
+              "caption": "DVIR 사후점검(Post-Trip Inspection) 진행 화면",
+              "source": "Samsara_드라이버_앱_가이드_251112.pdf (DVIR – 운행 후 점검)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "6. HOS(근무시간 관리) — 160km 이상만 적용",
+      "sections": [
+        {
+          "sectionTitle": "6. HOS(근무시간 관리) — 160km 이상만 적용",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "운전 및 휴식 시간 기록으로 규정 준수를 유지한다."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "1. 메인 화면에서 HOS를 선택."
+                },
+                {
+                  "text": "2. 현재 근무 상태를 확인."
+                },
+                {
+                  "text": "3. 근무 상태(Status)를 눌러 선택: a) 비근무(Off Duty)  b) 수면 공간(Sleeper Berth, 해당 없음)  c) 운전 중(Driving) [자동 인식됨]  d) 근무 중·비운전(On Duty – Not Driving)"
+                },
+                {
+                  "text": "4. 필요시 비고(Remarks)를 추가."
+                },
+                {
+                  "text": "5. Log 페이지로 들어가 매일 로그 인증(Certify and Submit)하여 정확성을 확인."
+                },
+                {
+                  "text": "6. 남은 운전/근무 시간을 타이머로 확인."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module5-image5.jpg",
+              "caption": "※ 운전자가 사업장(운행 시작지점)으로부터 160km 이외에 운행할 경우 HOS가 적용된다."
+            },
+            {
+              "type": "image",
+              "file": "module5-image6.jpg",
+              "caption": "160km 반경 예시 지도 — 홈 터미널(브램튼 인근) 기준 반경 내에서 운행 후 당일 복귀 시 HOS/ELD 면제",
+              "source": "Samsara_드라이버_앱_가이드_251112.pdf (HOS – 근무시간 관리) / Samsara_DVIR_준수_요약표.docx (면제 이유)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-1. Duty Status(근무 상태) 4가지",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "상태",
+                  "의미 / 사용 시점"
+                ],
+                [
+                  "Off Duty",
+                  "근무와 무관한 휴식 상태 (식사, 개인 용무 등)"
+                ],
+                [
+                  "Sleeper Berth",
+                  "차량 슬리퍼 공간에서 휴식 중일 때"
+                ],
+                [
+                  "Driving",
+                  "운전 중 — 주행이 감지되면 자동 전환됨"
+                ],
+                [
+                  "On Duty (Not Driving)",
+                  "상차/하차, 점검, 대기 등 업무 중이지만 운전은 아닌 상태. 차량 5분 이상 정지 시 자동 전환됨"
+                ]
+              ]
+            },
+            {
+              "type": "text",
+              "text": "상태 변경 방법: 홈 화면 → HoS 탭 → 상단 duty status 바 터치 → 상태 선택 → 저장"
+            },
+            {
+              "type": "text",
+              "text": "※ 차량이 5분 이상 정지하면 자동으로 On Duty(Not Driving)로, 주행이 감지되면 자동으로 Driving으로 전환된다(Auto-Duty). 그 외 상태(Off Duty, Sleeper Berth)는 직접 눌러서 전환해야 한다.",
+              "source": "Samsara_HOS_운전자_가이드.pdf (Duty Status 4가지)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-2. Drive / Shift / Cycle 시간 한도",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "구분",
+                  "한도"
+                ],
+                [
+                  "Drive (운전)",
+                  "13시간"
+                ],
+                [
+                  "Shift (근무)",
+                  "14시간"
+                ],
+                [
+                  "Cycle",
+                  "70시간(7일) 또는 120시간(14일)"
+                ]
+              ]
+            },
+            {
+              "type": "text",
+              "text": "화면 하단 다이얼로 Drive(운전)/Shift(근무)/Cycle 잔여 시간을 수시로 확인해 한도를 넘지 않도록 한다.",
+              "source": "Samsara_HOS_운전자_가이드.pdf (3. 160km 반경 초과 시 주의사항) — 수치는 캐나다 연방/온타리오 HOS 규정(Transport Canada, National Safety Code Standard 9) 기준으로 확인·교정: Drive 한도는 13시간 단일 기준입니다(미국 기준 11시간과 다름)."
+            }
+          ]
+        },
+        {
+          "sectionTitle": "6-3. 160km 반경(홈 터미널 기준) 초과 시 주의사항",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "평소 짧은 거리만 운행해 로그 작성이 면제되던 경우라도, 그날 160km를 넘거나 당일 복귀하지 못하면 반드시 정식 로그를 작성해야 한다."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "Off Duty / Sleeper Berth / Driving / On Duty 상태를 하루 종일 정확히 구분하여 기록"
+                },
+                {
+                  "text": "HoS > Log 화면에서 Add Remark로 '160km 초과로 정식 로그 전환' 등 사유를 남겨두면 검문 시 확인이 빠름"
+                },
+                {
+                  "text": "Drive(운전 13시간) / Shift(근무 14시간) / Cycle(70시간/7일 또는 120시간/14일) 한도를 넘지 않도록 화면 하단 다이얼을 수시로 확인"
+                },
+                {
+                  "text": "근무 종료 시 반드시 Certify and Submit으로 당일 로그 인증 — 미인증 로그는 위반으로 표시됨"
+                }
+              ],
+              "source": "Samsara_HOS_운전자_가이드.pdf (3. 160km 반경 초과 시 주의사항)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "7. 도로 단속 대응 화면 (Roadside Inspection Mode)",
+      "sections": [
+        {
+          "sectionTitle": "7. 도로 단속 대응 화면 (Roadside Inspection Mode)",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "단속 시 운행기록을 검사관에게 제공한다."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "1. HOS를 연다."
+                },
+                {
+                  "text": "2. 우측 상단의 도로변 검사(Roadside Inspection) 선택."
+                },
+                {
+                  "text": "3. PIN 설정 요청 창에서, 로그 스크린 잠금장치를 원하면 번호 4자리 생성, 불필요하면 \"Continue without lock\" 클릭."
+                },
+                {
+                  "text": "4. 단속관에게 기기를 전달 (읽기 전용 모드)."
+                },
+                {
+                  "text": "5. 요청 시 로그 전송(Transfer) → Email 또는 Web services 선택."
+                },
+                {
+                  "text": "6. 검사 종료 후 검사 모드 종료(Exit Inspection Mode)를 누른다."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module5-image7.jpg",
+              "caption": "도로 단속 대응(Roadside Inspection Mode) 화면"
+            },
+            {
+              "type": "text",
+              "text": "※ 당일 로그뿐 아니라 최근 14일치 로그도 함께 요구될 수 있으므로, 평소 로그 인증(Certify and Submit)을 미루지 않는다. (캐나다 연방 ELD 규정: 당일 + 직전 14일, 총 15일치 로그를 즉시 제공할 수 있어야 함)",
+              "source": "Samsara_드라이버_앱_가이드_251112.pdf (도로 단속 대응 화면) — 절차는 Samsara 공식 Help Center(Roadside Inspection, 2025-11-28 갱신) 기준과 대조하여 확인함 / Samsara_HOS_운전자_가이드.pdf (4. 도로검문 대응, 14일치 로그 보충)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "8. 근무시간 관리 — Off Duty(비근무)로 변경 / 로그아웃",
+      "sections": [
+        {
+          "sectionTitle": "8. 근무시간 관리 — Off Duty(비근무)로 변경 / 로그아웃",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "비근무 기록으로 규정 준수를 유지한다."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "1. 메인 화면에서 Duty Status를 선택."
+                },
+                {
+                  "text": "2. 비근무(Off Duty)를 클릭. (단, On Duty 상태에서만 적용)"
+                },
+                {
+                  "text": "3. Save 해 근무 현황 변경."
+                },
+                {
+                  "text": "4. \"Off Duty & Sign Out\" 옵션 선택 후 앱 종료."
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module5-image8.jpg",
+              "caption": "Off Duty 변경 및 로그아웃 화면"
+            },
+            {
+              "type": "text",
+              "text": "※ 모든 근무 종료 시 반드시 로그아웃이 필요하다. 로그인 상태로 남아 있으면, Off Duty 상태라 하더라도 다른 운전자의 주행 기록이 본인 계정으로 기록될 수 있다.",
+              "source": "Samsara_드라이버_앱_가이드_251112.pdf (근무시간 관리 - Off Duty로 변경 / 로그아웃)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "9. 자주 겪는 실수",
+      "sections": [
+        {
+          "sectionTitle": "9. 자주 겪는 실수",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "로그 미인증 상태로 며칠 방치 → 위반 처리됨. 매 근무 종료 시 바로 Certify"
+                },
+                {
+                  "text": "On Duty 상태로 전환해야 할 때(상하차 대기 등) Off Duty로 잘못 표시 → 실제 활동과 반드시 일치시킬 것"
+                },
+                {
+                  "text": "차량 5분 정지 후 자동 전환된 상태를 확인 안 하고 방치 → 실제 상태와 다르면 수동으로 재조정"
+                },
+                {
+                  "text": "관리자가 로그를 수정 제안(Carrier Edit)한 경우, 앱에 뜨는 Review Carrier Edits 알림을 확인 후 직접 수락/거절해야 최종 반영됨"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "문의사항은 Operations 팀에게 연락 바랍니다.",
+              "source": "Samsara_HOS_운전자_가이드.pdf (5. 자주 겪는 실수)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "10. DVIR 준수 요약 (온타리오 — 모든 운전자용)",
+      "sections": [
+        {
+          "sectionTitle": "10. DVIR 준수 요약 (온타리오 — 모든 운전자용)",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "ELD 면제* 및 Samsara HOS 미사용 운전자에게도 아래 규정이 동일하게 적용된다."
+            },
+            {
+              "type": "text",
+              "text": "*면제 이유(160km 반경 운전): 운전자 홈 터미널로부터 160km 반경 내에서 운행하고 하루가 끝나면 해당 홈 위치로 돌아올 경우."
+            }
+          ]
+        },
+        {
+          "sectionTitle": "10-1. 일일 필수 사항",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "온타리오 상업용 차량 운전자는 모두 다음을 수행해야 한다:"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "✔ 사전 점검(Pre-Trip Inspection): 운행 전 Schedule 1*(Ontario Commercial Vehicle Daily Inspection 규정) 항목을 모두 확인하고, 차량이 안전하게 운행 가능한지 확인한다."
+                },
+                {
+                  "text": "✔ 사후 점검(Post-Trip Inspection): 근무 종료 시점에 차량의 결함 여부를 확인한다."
+                },
+                {
+                  "text": "✔ 결함 발견 시 DVIR 제출: 결함이 발견되면 반드시 Samsara 앱에서 DVIR을 작성하여 제출한다. 결함이 Major인 경우, 차량은 수리 완료 전까지 운행할 수 없다."
+                },
+                {
+                  "text": "✔ Samsara DVIR 사용: HOS가 비활성화된 면제 모드에서도 DVIR은 제출 및 공유 가능하다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sectionTitle": "10-2. DVIR 제출이 필요 없는 경우",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "결함이 없는 경우에는 DVIR 제출이 필요 없다."
+                },
+                {
+                  "text": "하지만 검사는 반드시 수행하고, 검사 수행 여부를 설명할 수 있어야 한다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sectionTitle": "10-3. Major 결함 규칙",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "결함 발견 시:"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "즉시 차량 운행 중지"
+                },
+                {
+                  "text": "Samsara에 DVIR 제출"
+                },
+                {
+                  "text": "관리팀/정비팀에 알림"
+                },
+                {
+                  "text": "차량은 수리 후 정비사의 서명(Sign-Off) 확인 전까지 운행 불가"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sectionTitle": "10-4. Samsara에서 DVIR 작성 방법",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "Samsara Driver App 실행"
+                },
+                {
+                  "text": "운행 차량 선택"
+                },
+                {
+                  "text": "DVIR 선택"
+                },
+                {
+                  "text": "사전점검(Pre-Trip) 또는 사후점검(Post-Trip) 선택"
+                },
+                {
+                  "text": "결함 여부 표시"
+                },
+                {
+                  "text": "사진/코멘트 추가"
+                },
+                {
+                  "text": "제출"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Samsara는 자동으로 회사에 DVIR 제출 내역을 전송한다."
+            }
+          ]
+        },
+        {
+          "sectionTitle": "10-5. 도로 검문소 답변 (암기용 스크립트)",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "\"I performed my pre-trip today using Ontario Schedule 1. My company collects DVIRs through Samsara. I will submit a DVIR if I find any defects.\""
+            },
+            {
+              "type": "text",
+              "text": "(한국어 참고) \"저는 160km 면제 운전자로, Schedule 1에 따라 사전점검을 수행했습니다. 결함이 발견되면 Samsara를 통해 DVIR을 제출합니다.\""
+            }
+          ]
+        },
+        {
+          "sectionTitle": "10-6. 회사 책임",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "결함이 있는 DVIR 기록 보관"
+                },
+                {
+                  "text": "수리 기록 및 정비사 서명 보관 (중대 결함)"
+                },
+                {
+                  "text": "최소 6개월 이상 보관"
+                }
+              ],
+              "source": "Samsara_DVIR_준수_요약표.docx (온타리오 – 모든 운전자용)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "11. DVIR 점검표",
+      "sections": [
+        {
+          "sectionTitle": "11. DVIR 점검표",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Pre-Trip(출발 전)과 Post-Trip(운행 후) DVIR 모두 아래와 동일한 점검표를 사용한다. 점검 시 다음 두 가지 사진을 반드시 촬영해야 한다."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "① 차량 4면 사진: Driver Side(운전석 방향), Front(전면), Passenger Side(조수석 방향), Back(후면)"
+                },
+                {
+                  "text": "② 오도미터(계기판 주행거리) 사진: Odometer 항목 점검 시 함께 촬영"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "아래 점검표는 Samsara Driver App의 DVIR 점검 화면 항목이다. 차량이 에어브레이크 장착 차량인지 여부에 따라 'Air Brake System' 항목 적용 여부가 다르므로 유의한다."
+            }
+          ]
+        },
+        {
+          "sectionTitle": "11-1. Exterior — Front",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "점검 항목",
+                  "적용"
+                ],
+                [
+                  "Cab (모든 외관)",
+                  "공통"
+                ],
+                [
+                  "Lights (전구류 모두)",
+                  "공통"
+                ],
+                [
+                  "Mudguard (흙받이)",
+                  "공통"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sectionTitle": "11-2. Exterior — Rear",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "점검 항목",
+                  "적용"
+                ],
+                [
+                  "Exhaust System",
+                  "공통"
+                ],
+                [
+                  "Lights (전구류 모두)",
+                  "공통"
+                ],
+                [
+                  "Mudguard (흙받이)",
+                  "공통"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sectionTitle": "11-3. Exterior — Side and underneath",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "점검 항목",
+                  "적용"
+                ],
+                [
+                  "Air Brake System",
+                  "에어브레이크 차량만"
+                ],
+                [
+                  "Fluid and Leaks (모든 오일류, 냉각수 누수)",
+                  "공통"
+                ],
+                [
+                  "Frame And Cargo Body (차체 프레임 상태)",
+                  "공통"
+                ],
+                [
+                  "Hydraulic Brake System (브레이크 오일 누유, 브레이크 페달 유격/작동감, 브레이크 라인·호스 상태)",
+                  "공통"
+                ],
+                [
+                  "Parking Brake (주차 브레이크 작동 여부)",
+                  "공통"
+                ],
+                [
+                  "Side reflector marker (사이드 반사 마커)",
+                  "공통"
+                ],
+                [
+                  "Suspension",
+                  "공통"
+                ],
+                [
+                  "Tires (타이어 공기압)",
+                  "공통"
+                ],
+                [
+                  "Wheels and Rims (휠/림)",
+                  "공통"
+                ]
+              ]
+            },
+            {
+              "type": "text",
+              "text": "※ Air Brake System은 에어브레이크가 장착된 차량에서만 점검 항목에 포함된다. 에어브레이크가 없는 차량은 위 Hydraulic Brake System 항목으로 브레이크를 점검하며, Air Brake System 항목은 점검표에서 제외된다."
+            }
+          ]
+        },
+        {
+          "sectionTitle": "11-4. Interior — Driver cabin",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "점검 항목",
+                  "적용"
+                ],
+                [
+                  "Driver Controls",
+                  "공통"
+                ],
+                [
+                  "Horn (클락션)",
+                  "공통"
+                ],
+                [
+                  "Odometer (주행거리)",
+                  "공통"
+                ],
+                [
+                  "Steering (조향 조작 성능)",
+                  "공통"
+                ],
+                [
+                  "Windshield and Mirrors (모든 유리류 금·깨짐)",
+                  "공통"
+                ],
+                [
+                  "Windshield Wipers (와이퍼)",
+                  "공통"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sectionTitle": "11-5. Other",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "점검 항목",
+                  "적용"
+                ],
+                [
+                  "Emergency Equipment And Safety Devices (소화기, 안전삼각대/플레어, 예비 퓨즈, 구급함)",
+                  "공통"
+                ],
+                [
+                  "Fuel System (연료캡 체결 상태, 연료탱크·라인 누유 여부)",
+                  "공통"
+                ],
+                [
+                  "General (차량등록증, 보험, 연간점검기록, CVOR, MOE, 번호판)",
+                  "공통"
+                ]
+              ],
+              "source": "DVIR.png (Green Oil Inc. Samsara DVIR 점검 화면)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapterTitle": "12. 요약 체크리스트",
+      "sections": [
+        {
+          "sectionTitle": "12. 요약 체크리스트",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "Fleet ID는 항상 green-oil-inc, Username/PW는 본인 개인 정보로 로그인"
+                },
+                {
+                  "text": "운행 전: 차량 선택 → Pre-Trip DVIR (4방향 사진 + 오도미터 사진 필수)"
+                },
+                {
+                  "text": "운행 중: 자동 기록되므로 별도 조작 불필요"
+                },
+                {
+                  "text": "운행 후: Post-Trip DVIR (4방향 사진 + 오도미터 사진 필수) → 반드시 '차량' 로그아웃까지 완료"
+                },
+                {
+                  "text": "DVIR 점검표는 Pre-Trip/Post-Trip 동일, Air Brake System은 에어브레이크 차량만 해당"
+                },
+                {
+                  "text": "결함 발견 시 반드시 DVIR 제출, Major 결함은 정비 확인 전까지 운행 금지"
+                },
+                {
+                  "text": "Duty Status는 실제 활동과 정확히 일치시키고, 자동전환(Auto-Duty) 여부도 확인"
+                },
+                {
+                  "text": "Drive 13시간 / Shift 14시간 / Cycle 70시간(7일)·120시간(14일) 한도를 다이얼로 수시 확인"
+                },
+                {
+                  "text": "도로 단속 시 Roadside Inspection Mode로 기기를 검사관에게 전달, 당일+14일 로그 요구 가능성 염두"
+                },
+                {
+                  "text": "160km 반경 내 당일 복귀 운행자는 HOS 예외지만, 사전/사후 점검 의무는 동일하게 적용"
+                },
+                {
+                  "text": "문의사항은 항상 Operations 팀으로 통일해 연락"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
