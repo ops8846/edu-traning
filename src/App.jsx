@@ -1,13 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import "./index.css";
 import { db } from "./firebase";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  collection,
-  getDocs,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
 
 /* ============================================================
    모듈 메타데이터 (실제 회사 교육자료 기준, 2026)
@@ -21,7 +15,8 @@ const MODULES = [
     code: "ORIENT",
     folder: "module1",
     title: "오리엔테이션 & 근무수칙",
-    subtitle: "신규/재직 운전자 교육 · 회사소개 · 근무시간 규정 · 기초 안전교육(WSIB·WHMIS)",
+    subtitle:
+      "신규/재직 운전자 교육 · 회사소개 · 근무시간 규정 · 기초 안전교육(WSIB·WHMIS)",
     color: "#C4872E",
     objectives: [
       "Green Oil Inc.의 회사 소개와 교육 목적·목표를 설명할 수 있다.",
@@ -35,7 +30,8 @@ const MODULES = [
     code: "ROAD",
     folder: "module2",
     title: "도로 운행 안전수칙",
-    subtitle: "운전 중 준수사항 · 자전거/보행자와의 도로 공유 · 동절기 안전 · 최근 사고·벌금 사례",
+    subtitle:
+      "운전 중 준수사항 · 자전거/보행자와의 도로 공유 · 동절기 안전 · 최근 사고·벌금 사례",
     color: "#5C7C96",
     objectives: [
       "운전 중 휴대폰 사용 금지 등 기본 준수사항과 Samsara 감지 기준을 이해한다.",
@@ -49,7 +45,8 @@ const MODULES = [
     code: "UCO",
     folder: "module3",
     title: "오일 수거·언로딩 및 현장업무 대응",
-    subtitle: "Used Cooking Oil 기본지식 · 계약서류 · 언로딩 절차 · 현장 발생 상황별 대처법",
+    subtitle:
+      "Used Cooking Oil 기본지식 · 계약서류 · 언로딩 절차 · 현장 발생 상황별 대처법",
     color: "#2C9B68",
     objectives: [
       "UCO(폐식용유)의 정의와 컨테이너 종류, 계약에 필요한 서류를 파악할 수 있다.",
@@ -63,7 +60,8 @@ const MODULES = [
     code: "MAINT",
     folder: "module4",
     title: "차량 점검 및 정비관리",
-    subtitle: "필수 소지서류 · 히노트럭 배출가스 시스템(DPF/DEF/DPR) · 타이어 점검 · 일일점검 체크리스트 · 차량관리",
+    subtitle:
+      "필수 소지서류 · 히노트럭 배출가스 시스템(DPF/DEF/DPR) · 타이어 점검 · 일일점검 체크리스트 · 차량관리",
     color: "#8C689B",
     objectives: [
       "차량 필수 서류와 일일 점검(Truck Daily Inspection) 항목을 빠짐없이 확인할 수 있다.",
@@ -77,7 +75,8 @@ const MODULES = [
     code: "SAMSARA",
     folder: "module5",
     title: "Samsara 사용법",
-    subtitle: "앱 로그인·차량선택·DVIR(사전/사후점검)·HOS 근무시간 관리·도로단속 대응·DVIR 법규 준수",
+    subtitle:
+      "앱 로그인·차량선택·DVIR(사전/사후점검)·HOS 근무시간 관리·도로단속 대응·DVIR 법규 준수",
     color: "#AD4438",
     objectives: [
       "Samsara 앱의 운행 전/중/후 필수 절차(Pre-Trip·Post-Trip)를 수행할 수 있다.",
@@ -91,7 +90,8 @@ const MODULES = [
     code: "INCIDENT",
     folder: "module6",
     title: "사고 및 위험상황 대응",
-    subtitle: "교통사고 초동대응 · 경찰신고/CRC/토잉 절차 · 2년 누적 페널티 정책 · 누유(Oil Spill) 대응",
+    subtitle:
+      "교통사고 초동대응 · 경찰신고/CRC/토잉 절차 · 2년 누적 페널티 정책 · 누유(Oil Spill) 대응",
     color: "#3D5A8C",
     objectives: [
       "교통사고 발생 시 초동 대응 절차와 신고 기준을 수행할 수 있다.",
@@ -131,7 +131,11 @@ function fmtDate(iso) {
 const Icon = {
   Truck: (p) => (
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" {...p}>
-      <path d="M4 30V14a2 2 0 0 1 2-2h20v18" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M4 30V14a2 2 0 0 1 2-2h20v18"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <path d="M26 20h9l7 7v3h-16" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="13" cy="34" r="4" />
       <circle cx="35" cy="34" r="4" />
@@ -378,6 +382,12 @@ export default function App() {
     }
   }
 
+  function prevSection() {
+    if (sectionIdx > 0) {
+      setSectionIdx((i) => i - 1);
+    }
+  }
+
   function selectAnswer(qIdx, optIdx) {
     setAnswers((prev) => {
       const next = [...prev];
@@ -512,6 +522,7 @@ export default function App() {
           answers={answers}
           lastResult={lastResult}
           onNextSection={nextSection}
+          onPrevSection={prevSection}
           onSelectAnswer={selectAnswer}
           onSubmitQuiz={submitQuiz}
           onSkipQuizStub={skipQuizStub}
@@ -610,7 +621,9 @@ function LoginScreen(props) {
         {role === "employee" ? (
           <div className="login-form">
             <h2>임직원 로그인</h2>
-            <p className="form-hint">이름과 접속코드를 입력하면 이어서 학습할 수 있습니다.</p>
+            <p className="form-hint">
+              이름과 접속코드를 입력하면 이어서 학습할 수 있습니다.
+            </p>
             <label>
               이름
               <input
@@ -702,9 +715,7 @@ function EmployeeDashboard({ employee, onStartModule, onLogout }) {
         }
         right={
           <>
-            <span className="user-chip">
-              {employee.name}
-            </span>
+            <span className="user-chip">{employee.name}</span>
             <button className="logout-btn" onClick={onLogout}>
               로그아웃
             </button>
@@ -722,8 +733,8 @@ function EmployeeDashboard({ employee, onStartModule, onLogout }) {
               : `총 ${TOTAL_MODULES}개 모듈 중 ${completedCount}개 모듈을 완료했습니다. 순서대로 학습을 진행해 주세요.`}
           </p>
           <div className="dash-legal-note">
-            본 교육은 산업안전보건법 등 관련 법령 및 Green Oil Inc. 사내 안전관리규정에 근거하여
-            제공되며, 전 과정 이수는 입사 필수 요건입니다.
+            본 교육은 산업안전보건법 등 관련 법령 및 Green Oil Inc. 사내 안전관리규정에
+            근거하여 제공되며, 전 과정 이수는 입사 필수 요건입니다.
           </div>
           <div className="progress-track">
             <div
@@ -765,10 +776,7 @@ function EmployeeDashboard({ employee, onStartModule, onLogout }) {
                   <div className="timeline-main">
                     <div className="timeline-title">
                       {m.title}
-                      <span
-                        className="timeline-code"
-                        style={{ color: m.color }}
-                      >
+                      <span className="timeline-code" style={{ color: m.color }}>
                         {m.code}
                       </span>
                     </div>
@@ -778,7 +786,8 @@ function EmployeeDashboard({ employee, onStartModule, onLogout }) {
                       {isDone && (
                         <>
                           {" "}
-                          · 점수 {result.score}/{result.total} · {fmtDate(result.completedAt)}
+                          · 점수 {result.score}/{result.total} ·{" "}
+                          {fmtDate(result.completedAt)}
                         </>
                       )}
                     </div>
@@ -826,6 +835,7 @@ function ModuleScreen({
   answers,
   lastResult,
   onNextSection,
+  onPrevSection,
   onSelectAnswer,
   onSubmitQuiz,
   onSkipQuizStub,
@@ -833,7 +843,11 @@ function ModuleScreen({
   onBackToDashboard,
 }) {
   const isLastModule = moduleIdx === TOTAL_MODULES - 1;
-  const hasQuiz = !!(moduleContent && moduleContent.questions && moduleContent.questions.length);
+  const hasQuiz = !!(
+    moduleContent &&
+    moduleContent.questions &&
+    moduleContent.questions.length
+  );
   const allAnswered = hasQuiz && answers.every((a) => a !== null && a !== undefined);
 
   const flat = (() => {
@@ -899,10 +913,18 @@ function ModuleScreen({
             )}
             <h2>{current.sectionTitle}</h2>
             <ContentBlocks blocks={current.blocks} folder={mod.folder} />
-            <button className="submit-btn" onClick={onNextSection}>
-              {sectionIdx < flat.length - 1 ? "다음 학습" : "문제 풀기"}
-              <Icon.Arrow className="icon-sm" />
-            </button>
+            <div className="learn-nav">
+              {sectionIdx > 0 && (
+                <button className="submit-btn ghost" onClick={onPrevSection}>
+                  <Icon.Arrow className="icon-sm icon-flip" />
+                  이전 학습
+                </button>
+              )}
+              <button className="submit-btn" onClick={onNextSection}>
+                {sectionIdx < flat.length - 1 ? "다음 학습" : "문제 풀기"}
+                <Icon.Arrow className="icon-sm" />
+              </button>
+            </div>
           </div>
         )}
 
@@ -913,8 +935,8 @@ function ModuleScreen({
             </div>
             <h2>학습을 완료했습니다</h2>
             <p>
-              이 모듈의 확인 문제는 현재 준비 중입니다. 문제가 등록되면 이어서
-              응시하실 수 있습니다.
+              이 모듈의 확인 문제는 현재 준비 중입니다. 문제가 등록되면 이어서 응시하실 수
+              있습니다.
             </p>
             <button className="submit-btn" onClick={onSkipQuizStub}>
               {isLastModule ? "교육 완료 화면으로" : "다음 모듈로 이동"}
@@ -949,11 +971,7 @@ function ModuleScreen({
                 </div>
               </div>
             ))}
-            <button
-              className="submit-btn"
-              disabled={!allAnswered}
-              onClick={onSubmitQuiz}
-            >
+            <button className="submit-btn" disabled={!allAnswered} onClick={onSubmitQuiz}>
               {isLastModule ? "최종 제출하기" : "답안 제출"}
               <Icon.Arrow className="icon-sm" />
             </button>
@@ -1037,12 +1055,7 @@ function ContentBlocks({ blocks, folder }) {
         if (b.type === "video") {
           return (
             <figure className="block-video" key={i}>
-              <video
-                src={`/${folder}/${b.file}`}
-                controls
-                preload="none"
-                playsInline
-              />
+              <video src={`/${folder}/${b.file}`} controls preload="none" playsInline />
               {b.caption && <figcaption>{b.caption}</figcaption>}
             </figure>
           );
@@ -1094,10 +1107,7 @@ function CompleteScreen({ employee, onLogout }) {
           <Icon.Check className="icon-lg" />
         </div>
         <h1>교육을 모두 완료했습니다</h1>
-        <p>
-          {employee.name} 님의 교육 결과가 관리자에게
-          제출되었습니다.
-        </p>
+        <p>{employee.name} 님의 교육 결과가 관리자에게 제출되었습니다.</p>
         <div className="complete-total">
           총점 {totalScore} / {totalMax}
         </div>
@@ -1125,7 +1135,15 @@ function CompleteScreen({ employee, onLogout }) {
 /* ============================================================
    관리자 대시보드
    ============================================================ */
-function AdminDashboard({ list, loading, onRefresh, selected, setSelected, onLogout, allowList }) {
+function AdminDashboard({
+  list,
+  loading,
+  onRefresh,
+  selected,
+  setSelected,
+  onLogout,
+  allowList,
+}) {
   // Firestore 기록(r.id)에 해당하는 최신 접속코드를 allowed-users.json에서 실시간으로 찾아옵니다.
   // (접속코드 자체는 학습 기록에 저장하지 않으므로, 재발급해도 항상 최신 값이 표시됩니다)
   const codeOf = (id) => {
@@ -1223,9 +1241,7 @@ function AdminDashboard({ list, loading, onRefresh, selected, setSelected, onLog
                           />
                         </div>
                       </td>
-                      <td>
-                        {totalMax ? `${totalScore} / ${totalMax}` : "-"}
-                      </td>
+                      <td>{totalMax ? `${totalScore} / ${totalMax}` : "-"}</td>
                       <td>
                         <span
                           className={`status-pill ${
@@ -1255,8 +1271,8 @@ function AdminDashboard({ list, loading, onRefresh, selected, setSelected, onLog
                   {selected.name} <span className="modal-empid">{selected.id}</span>
                 </h2>
                 <div className="modal-sub">
-                  접속코드 {codeOf(selected.id)} · 최초 로그인 {fmtDate(selected.loginAt)} ·
-                  최근 로그인 {fmtDate(selected.lastLoginAt)}
+                  접속코드 {codeOf(selected.id)} · 최초 로그인 {fmtDate(selected.loginAt)}{" "}
+                  · 최근 로그인 {fmtDate(selected.lastLoginAt)}
                 </div>
               </div>
               <button className="modal-close" onClick={() => setSelected(null)}>
