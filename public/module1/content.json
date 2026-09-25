@@ -223,7 +223,8 @@
             },
             {
               "type": "image",
-              "file": "module1-image1.jpg",
+              "file": "module1-image1.png",
+              "size": "medium",
               "caption": "위반 시 조치 단계: 구두경고 → 서면경고 → 정직 → 해고",
               "source": "GOI_운전자_교육_프로토콜.pptx (재교육 조치)"
             }
@@ -347,6 +348,7 @@
             {
               "type": "image",
               "file": "module1-image2.jpg",
+              "size": "medium",
               "caption": "WHMIS Pictograms (CCOHS 안내표)"
             },
             {
@@ -377,6 +379,7 @@
             {
               "type": "image",
               "file": "module1-image3.jpg",
+              "size": "medium",
               "caption": "IN CASE OF INJURY OR ILLNESS AT WORK (WSIB 안내)",
               "source": "GOI_Employee_Manual_2026-V6.pdf (WHMIS and WSIB 페이지)"
             }

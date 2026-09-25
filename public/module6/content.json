@@ -28,6 +28,7 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image1.jpg",
               "caption": "안전 삼각대 설치 실제 사진 — 차량 후면으로부터 일정 거리에 배치",
               "source": "GOI__Driver_Training_03_05_2022.pptx / 사고_대처_요령.pptx (1: 안전한 곳으로 이동) / GOI_Employee_Manual_2026-V6.pdf (C. Stay calm and gather information)"
@@ -71,6 +72,7 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image2.jpg",
               "caption": "경찰 신고가 필요한 사고 현장 예시",
               "source": "GOI_Employee_Manual_2026-V6.pdf (D. When to call the Police) / GOI__Driver_Training_03_05_2022.pptx (경찰이 필요할 시)"
@@ -135,16 +137,19 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image3.jpg",
               "caption": "운전 면허증 (Driver's License) 예시 — 파란색"
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image4.jpg",
               "caption": "자동차 소유증 (Car Ownership) 예시 — 녹색"
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image5.jpg",
               "caption": "자동차 보험증 (Insurance Slip) 예시 — 핑크색",
               "source": "GOI_Employee_Manual_2026-V6.pdf (E. Collision Report Centre) / GOI__Driver_Training_03_05_2022.pptx (사고 신고 센터)"
@@ -188,6 +193,7 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image6.jpg",
               "caption": "ABRAMS towing 차량 — 신용 가능한 유일한 계약 토잉업체",
               "source": "GOI_Employee_Manual_2026-V6.pdf (G.) / 드라이버_업무수칙-Rev. May 2024.docx (토잉이 필요한 경우)"
@@ -277,11 +283,7 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "분류",
-                  "정의",
-                  "대응"
-                ],
+                ["분류", "정의", "대응"],
                 [
                   "① 교통 사고 (대형)",
                   "대형 차량/건물 접촉 사고 — 총 피해금액 $2,000 이상",
@@ -297,21 +299,9 @@
                   "오일 누유, 소액 접촉 사고 — 피해금액 $500 이하",
                   "현장의 사진과 정보를 기록한다."
                 ],
-                [
-                  "④ 교통 티켓",
-                  "$1 ~ $250",
-                  "티켓 사진을 찍어 담당자에게 전송."
-                ],
-                [
-                  "⑤ 교통 티켓",
-                  "$251 ~ $500",
-                  "티켓 사진을 찍어 담당자에게 전송."
-                ],
-                [
-                  "⑥ 교통 티켓",
-                  "$501 이상",
-                  "티켓 사진을 찍어 담당자에게 전송."
-                ]
+                ["④ 교통 티켓", "$1 ~ $250", "티켓 사진을 찍어 담당자에게 전송."],
+                ["⑤ 교통 티켓", "$251 ~ $500", "티켓 사진을 찍어 담당자에게 전송."],
+                ["⑥ 교통 티켓", "$501 이상", "티켓 사진을 찍어 담당자에게 전송."]
               ],
               "source": "차량_사고_및_수리_운영_계획 V3-2023-08-04.docx (가/나. 사고 분류 및 대응 대책) — GOI_Employee_Manual_2026-V6.pdf 내용과 일치"
             }
@@ -345,41 +335,13 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "2년 내 사고 횟수",
-                  "비용 부담 (회사 / 개인)",
-                  "추가 조치"
-                ],
-                [
-                  "1회",
-                  "면책",
-                  "-"
-                ],
-                [
-                  "2회",
-                  "90% / 10%",
-                  "-"
-                ],
-                [
-                  "3회",
-                  "70% / 30%",
-                  "-"
-                ],
-                [
-                  "4회",
-                  "50% / 50%",
-                  "구두 경고"
-                ],
-                [
-                  "5회",
-                  "20% / 80%",
-                  "서면 경고"
-                ],
-                [
-                  "6회",
-                  "20% / 80%",
-                  "개별 면담"
-                ]
+                ["2년 내 사고 횟수", "비용 부담 (회사 / 개인)", "추가 조치"],
+                ["1회", "면책", "-"],
+                ["2회", "90% / 10%", "-"],
+                ["3회", "70% / 30%", "-"],
+                ["4회", "50% / 50%", "구두 경고"],
+                ["5회", "20% / 80%", "서면 경고"],
+                ["6회", "20% / 80%", "개별 면담"]
               ]
             }
           ]
@@ -394,31 +356,11 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "2년 내 사고 횟수",
-                  "비용 부담 (회사 / 개인)",
-                  "추가 조치"
-                ],
-                [
-                  "1~3회",
-                  "면책",
-                  "-"
-                ],
-                [
-                  "4회",
-                  "80% / 20%",
-                  "-"
-                ],
-                [
-                  "5회",
-                  "50% / 50%",
-                  "-"
-                ],
-                [
-                  "6회",
-                  "30% / 70%",
-                  "개별 면담"
-                ]
+                ["2년 내 사고 횟수", "비용 부담 (회사 / 개인)", "추가 조치"],
+                ["1~3회", "면책", "-"],
+                ["4회", "80% / 20%", "-"],
+                ["5회", "50% / 50%", "-"],
+                ["6회", "30% / 70%", "개별 면담"]
               ]
             }
           ]
@@ -467,11 +409,13 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image7.jpg",
               "caption": "오일 누유 대응 프로세스 참고 인포그래픽 (Singapore 사례)"
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image8.jpg",
               "caption": "하수구 주변에 absorbent soil을 살포하는 실제 작업 사진",
               "source": "GOI_Employee_Manual_2026-V6.pdf (H. 누유 대응 메뉴얼) / GOI__Driver_Training_03_05_2022.pptx / 사고_대처_요령.pptx (누유 대응 메뉴얼)"
@@ -497,6 +441,7 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module6-image9.jpg",
               "caption": "하수구(빗물받이 배수구) — 누유 유입 차단이 필요한 지점",
               "source": "드라이버_업무수칙-Rev. May 2024.docx (3. 누유 관리)"

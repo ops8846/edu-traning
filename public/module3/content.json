@@ -62,16 +62,19 @@
             {
               "type": "image",
               "file": "module3-image2.jpg",
+              "size": "medium",
               "caption": "GOI 400B 컨테이너(Bin) 실물"
             },
             {
               "type": "image",
               "file": "module3-image3.jpg",
+              "size": "medium",
               "caption": "GOI 라벨이 부착된 Drum(200L) 실물 — 가장 많이 쓰이는 컨테이너"
             },
             {
               "type": "image",
               "file": "module3-image4.jpg",
+              "size": "medium",
               "caption": "Green Oil Inc. 각인 컨테이너 (Cooking Oil Only)",
               "source": "직원지침_및_참고사항_Guideline.xlsx (회사소속 Container)"
             }
@@ -525,10 +528,7 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "Do (해야 할 것)",
-                  "Don't (하지 말아야 할 것)"
-                ],
+                ["Do (해야 할 것)", "Don't (하지 말아야 할 것)"],
                 [
                   "로딩 완료 후 호스 커넥터 분리 상태 확인 → 호스를 로딩 입구 고리에 고정한 후 운전",
                   "로딩 완료 후 호스 커넥터를 장착한 상태로 트럭 운전 (최근 3회 발생 사례 — 공장 내 사고 위험: 스트레이너 연결 파이프 파손 가능)"
@@ -549,10 +549,7 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "Do (해야 할 것)",
-                  "Don't (하지 말아야 할 것)"
-                ],
+                ["Do (해야 할 것)", "Don't (하지 말아야 할 것)"],
                 [
                   "바닥 청소 후 재사용 가능한 모래는 쓰레받기로 수거. 남은 모래는 로딩 독 사이에 배치된 재활용 드럼통에 담기",
                   "모래 청소 작업 후 바닥에 있는 잔량을 미수거 상태로 방치"

@@ -85,6 +85,7 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image2.jpg"
             },
             {
@@ -93,11 +94,13 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image3.jpg",
               "caption": "HINO SCR UNIT 구성 (DPF + SCR, 19리터 DEF 탱크)"
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image4.jpg"
             },
             {
@@ -126,6 +129,7 @@
             },
             {
               "type": "image",
+              "size": "small",
               "file": "module4-image5.jpg",
               "caption": "DPF 재생(연소) 과정 아이콘",
               "source": "GOI_Employee_Manual_2026-V6.pdf (M. DPR/DPF의 작동 원리)"
@@ -197,6 +201,7 @@
             },
             {
               "type": "image",
+              "size": "small",
               "file": "module4-image7.jpg",
               "caption": "DPR Regen Button 실물 (거북이 아이콘 표시)"
             },
@@ -210,6 +215,7 @@
             },
             {
               "type": "image",
+              "size": "small",
               "file": "module4-image8.jpg",
               "caption": "DPR 게이지 바 (L~H) — 3~4 구간에서 깜빡이면 수동 Regen 필요",
               "source": "GOI_Employee_Manual_2026-V6.pdf (N. DPF/DEF/DPR 시스템 수동 Regen) / GOI__Driver_Training_03_05_2022.pptx (DPF/DEF/DPR 시스템 수동 Regen, DPR 시스템 수동 Regen - 2)"
@@ -251,16 +257,8 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "DEF 잔량",
-                  "경고",
-                  "차량 제한 사항"
-                ],
-                [
-                  "10% 미만",
-                  "10초간 경고음, 10분마다 반복",
-                  "제한 없음"
-                ],
+                ["DEF 잔량", "경고", "차량 제한 사항"],
+                ["10% 미만", "10초간 경고음, 10분마다 반복", "제한 없음"],
                 [
                   "5% 미만",
                   "경고등 깜빡임, 10초간 경고음(10분마다 반복)",
@@ -271,11 +269,7 @@
                   "LOW PWR 표시, 3분간 경고음(3분마다 반복)",
                   "속도 8km/h(5mph)로 제한 (정차 후 재시동, 재급유, 정차 시)"
                 ],
-                [
-                  "0%",
-                  "동일",
-                  "속도 8km/h(5mph)로 제한"
-                ]
+                ["0%", "동일", "속도 8km/h(5mph)로 제한"]
               ]
             },
             {
@@ -339,11 +333,13 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image14.jpg",
               "caption": "퓨즈 박스 내부 배치도 (ARRANGEMENT OF FUSE CONNECTORS)"
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image15.jpg",
               "caption": "정상 퓨즈(Good Fuse) vs 단선 퓨즈(Blown Fuse) 비교",
               "source": "GOI_Employee_Manual_2026-V6.pdf (R. 퓨즈 박스 위치)"
@@ -424,22 +420,17 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "구분",
-                  "내용"
-                ],
+                ["구분", "내용"],
                 [
                   "원인 (Cause)",
                   "일반적으로 과도한 토우와 같은 횡력에 지속적으로 노출된 결과. 구동 차축 정렬 오류를 보상하기 위한 역방향 조향의 결과로도 형성될 수 있음."
                 ],
-                [
-                  "해결 (Fix)",
-                  "Alignment 점검 및 타이어 위치 변경"
-                ]
+                ["해결 (Fix)", "Alignment 점검 및 타이어 위치 변경"]
               ]
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image20.jpg",
               "caption": "Feather wear (페더링 마모) 실제 사진"
             }
@@ -451,22 +442,14 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "구분",
-                  "내용"
-                ],
-                [
-                  "원인 (Cause)",
-                  "Alignment 점검 필요 (캠버, 토우, 액슬 병렬을 벗어남)"
-                ],
-                [
-                  "해결 (Fix)",
-                  "Alignment 점검 및 마모된 부품 확인"
-                ]
+                ["구분", "내용"],
+                ["원인 (Cause)", "Alignment 점검 필요 (캠버, 토우, 액슬 병렬을 벗어남)"],
+                ["해결 (Fix)", "Alignment 점검 및 마모된 부품 확인"]
               ]
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image21.jpg",
               "caption": "One Sided Wear (Thrust/scrub angle wear) 실제 사진"
             }
@@ -478,22 +461,17 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "구분",
-                  "내용"
-                ],
+                ["구분", "내용"],
                 [
                   "원인 (Cause)",
                   "Alignment 변경, 미끄러운 지면에서의 급발진·급제동, 횡방향 런아웃, 심각한 밸런스 불량, 휠 베어링 또는 스티어링 부품 느슨함"
                 ],
-                [
-                  "해결 (Fix)",
-                  "서스펜션 장착 및 마모된 부품 확인, 운전 습관 확인"
-                ]
+                ["해결 (Fix)", "서스펜션 장착 및 마모된 부품 확인, 운전 습관 확인"]
               ]
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image22.jpg",
               "caption": "Diagonal wear (대각 마모) 실제 사진"
             }
@@ -505,22 +483,17 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "구분",
-                  "내용"
-                ],
+                ["구분", "내용"],
                 [
                   "원인 (Cause)",
                   "무게 하중 대비 부족한 공기압, 장시간 한곳에 주차, 쇼바(쇽업소버)의 불균형, 가벼운 로딩에 비해 빠른 운전 속도"
                 ],
-                [
-                  "해결 (Fix)",
-                  "타이어 공기압 체크, 쇼바 체크, 경부하 시 고속 주행 삼가"
-                ]
+                ["해결 (Fix)", "타이어 공기압 체크, 쇼바 체크, 경부하 시 고속 주행 삼가"]
               ]
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image23.jpg",
               "caption": "Depression Wear (Intermediate) 실제 사진"
             }
@@ -532,10 +505,7 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "구분",
-                  "내용"
-                ],
+                ["구분", "내용"],
                 [
                   "원인 (Cause)",
                   "쇼바 결함 및 주기적인 충격, 헐거움/마모된 휠 베어링, 심각한 밸런스 문제, 압력 또는 타이어 직경 불일치, 저압에서의 과도한 고속 주행"
@@ -548,6 +518,7 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image24.jpg",
               "caption": "Flat-spotting (다발성 편평 마모) 실제 사진"
             }
@@ -559,22 +530,17 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "구분",
-                  "내용"
-                ],
+                ["구분", "내용"],
                 [
                   "원인 (Cause)",
                   "Faulty shocks, lateral runout, loose wheel bearings, mismount, severe balance issue."
                 ],
-                [
-                  "해결 (Fix)",
-                  "Check for mechanical problem."
-                ]
+                ["해결 (Fix)", "Check for mechanical problem."]
               ]
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image25.jpg",
               "caption": "Depression Wear (Shoulder) 실제 사진"
             }
@@ -586,10 +552,7 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "구분",
-                  "내용"
-                ],
+                ["구분", "내용"],
                 [
                   "원인 (Cause)",
                   "Contact with vehicle components (mud flap brackets, bumpers), or spinning the tires on ice or loose road surface"
@@ -602,6 +565,7 @@
             },
             {
               "type": "image",
+              "size": "medium",
               "file": "module4-image26.jpg",
               "caption": "Vehicle/Spin Damage 실제 사진",
               "source": "GOI_Employee_Manual_2026-V6.pdf (타이어 점검 및 비정상인 타이어 마모)"
@@ -618,56 +582,28 @@
           "blocks": [
             {
               "type": "text",
-              "text": "VEHICLE CLEANING/MAINTENANCE CHECKLIST — 항목: Date / Name / Vehicle or Unit Number / Odometer Reading (Mileage) 기입 후 아래 시각 점검(Visual check) 항목을 OK/DONE으로 표기한다."
+              "text": "Vehicle Cleaning/Maintenance CheckList — 하기 항목을 체크 후 문제가 있을 경우 SAMSARA에 표기한다."
             },
             {
               "type": "table",
               "rows": [
-                [
-                  "점검 항목 (Visual check)"
-                ],
-                [
-                  "Check engine, brake oil level"
-                ],
-                [
-                  "Check transmission oil level"
-                ],
-                [
-                  "Check power steering oil level"
-                ],
-                [
-                  "Check windshield washer fluid level/top up"
-                ],
-                [
-                  "Check hub seal cap oil level and check for any leakage"
-                ],
-                [
-                  "Check windshield for any chips/cracks"
-                ],
-                [
-                  "Check tire depth, pressure and unusual wear"
-                ],
-                [
-                  "Check body damage and License plate - securely attached"
-                ],
+                ["점검 항목 (Visual check)"],
+                ["Check engine, brake oil level"],
+                ["Check transmission oil level"],
+                ["Check power steering oil level"],
+                ["Check windshield washer fluid level/top up"],
+                ["Check hub seal cap oil level and check for any leakage"],
+                ["Check windshield for any chips/cracks"],
+                ["Check tire depth, pressure and unusual wear"],
+                ["Check body damage and License plate - securely attached"],
                 [
                   "Check vehicle documents (CVOR, insurance, registration, emergency contact etc.)"
                 ],
-                [
-                  "Check emergency equipment - spill kit"
-                ],
-                [
-                  "Check in-cab items secured"
-                ],
-                [
-                  "Pump check"
-                ],
-                [
-                  "Check vacuum pump oil level - more than 1/4"
-                ],
-                [
-                  "Check hydraulic oil level"
-                ]
+                ["Check emergency equipment - spill kit"],
+                ["Check in-cab items secured"],
+                ["Pump check"],
+                ["Check vacuum pump oil level - more than 1/4"],
+                ["Check hydraulic oil level"]
               ]
             }
           ]
@@ -768,6 +704,7 @@
             },
             {
               "type": "video",
+              "size": "medium",
               "file": "booster-jumpstart.mp4",
               "caption": "차량 배터리 방전 시 Booster PAC 점프스타트 방법"
             },

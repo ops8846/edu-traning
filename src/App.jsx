@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import "./index.css";
 import { db } from "./firebase";
-import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
+import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 
 /* ============================================================
    모듈 메타데이터 (실제 회사 교육자료 기준, 2026)
@@ -162,6 +162,16 @@ const Icon = {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...p}>
       <rect x="5" y="4" width="14" height="16" rx="2" />
       <path d="M5 9h14M5 15h14" />
+    </svg>
+  ),
+  Trash: (p) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...p}>
+      <path
+        d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m2 0-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7h14Z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M10 11v6M14 11v6" strokeLinecap="round" />
     </svg>
   ),
 };
@@ -463,15 +473,55 @@ export default function App() {
   async function loadAdminList() {
     setAdminLoading(true);
     try {
-      const snap = await getDocs(collection(db, "employees"));
-      const records = snap.docs.map((d) => d.data());
-      records.sort((a, b) => new Date(b.lastLoginAt) - new Date(a.lastLoginAt));
+      const roster = (allowList && allowList.employees) || [];
+      const records = [];
+      for (const u of roster) {
+        let rec = null;
+        try {
+          const snap = await getDoc(doc(db, "employees", u.id));
+          if (snap.exists()) rec = snap.data();
+        } catch (_) {
+          rec = null; // 아직 한 번도 로그인하지 않음
+        }
+        if (rec) {
+          records.push(rec);
+        } else {
+          records.push({
+            id: u.id,
+            name: u.name,
+            loginAt: null,
+            lastLoginAt: null,
+            currentModuleIdx: 0,
+            moduleResults: [],
+            status: "not_started",
+            submittedAt: null,
+          });
+        }
+      }
+      records.sort((a, b) => {
+        if (!a.lastLoginAt && !b.lastLoginAt) return 0;
+        if (!a.lastLoginAt) return 1;
+        if (!b.lastLoginAt) return -1;
+        return new Date(b.lastLoginAt) - new Date(a.lastLoginAt);
+      });
       setAdminList(records);
     } catch (e) {
       console.error("목록 로드 실패", e);
     } finally {
       setAdminLoading(false);
     }
+  }
+
+  /* 선택한 인원의 학습 기록을 삭제 -> 다음 로그인 시 처음부터 다시 응시 */
+  async function deleteEmployeeRecords(ids) {
+    for (const id of ids) {
+      try {
+        await deleteDoc(doc(db, "employees", id));
+      } catch (e) {
+        console.error("삭제 실패", id, e);
+      }
+    }
+    await loadAdminList();
   }
 
   useEffect(() => {
@@ -544,6 +594,7 @@ export default function App() {
           setSelected={setSelectedEmp}
           onLogout={logout}
           allowList={allowList}
+          onDelete={deleteEmployeeRecords}
         />
       )}
     </div>
@@ -586,8 +637,9 @@ function LoginScreen(props) {
             <span className="hero-title-accent">교육 플랫폼</span>
           </h1>
           <p className="hero-desc">
-            5톤 폐유 수거차량 운행 승무원을 위한 안전·정비·사고대응·현장 근무수칙
-            교육입니다. 이름과 접속코드로 로그인 후 5개 모듈을 순서대로 학습·응시합니다.
+            신규 입사자를 위한 안전·정비·사고대응·현장 근무수칙 교육입니다.
+            <br />
+            6개 모듈을 순서대로 학습·응시합니다.
           </p>
           <ul className="hero-modules">
             {MODULES.map((m) => (
@@ -715,7 +767,7 @@ function EmployeeDashboard({ employee, onStartModule, onLogout }) {
         }
         right={
           <>
-            <span className="user-chip">{employee.name}</span>
+            <span className="user-chip">{employee.name} 님</span>
             <button className="logout-btn" onClick={onLogout}>
               로그아웃
             </button>
@@ -733,8 +785,8 @@ function EmployeeDashboard({ employee, onStartModule, onLogout }) {
               : `총 ${TOTAL_MODULES}개 모듈 중 ${completedCount}개 모듈을 완료했습니다. 순서대로 학습을 진행해 주세요.`}
           </p>
           <div className="dash-legal-note">
-            본 교육은 산업안전보건법 등 관련 법령 및 Green Oil Inc. 사내 안전관리규정에
-            근거하여 제공되며, 전 과정 이수는 입사 필수 요건입니다.
+            본 교육은 Green Oil Inc. 사내 안전관리규정에 근거하여 제공되며, 전 과정 이수는
+            입사 필수 요건입니다.
           </div>
           <div className="progress-track">
             <div
@@ -1046,7 +1098,7 @@ function ContentBlocks({ blocks, folder }) {
         }
         if (b.type === "image") {
           return (
-            <figure className="block-image" key={i}>
+            <figure className={`block-image size-${b.size || "full"}`} key={i}>
               <img src={`/${folder}/${b.file}`} alt={b.caption || ""} loading="lazy" />
               {b.caption && <figcaption>{b.caption}</figcaption>}
             </figure>
@@ -1054,7 +1106,7 @@ function ContentBlocks({ blocks, folder }) {
         }
         if (b.type === "video") {
           return (
-            <figure className="block-video" key={i}>
+            <figure className={`block-video size-${b.size || "full"}`} key={i}>
               <video src={`/${folder}/${b.file}`} controls preload="none" playsInline />
               {b.caption && <figcaption>{b.caption}</figcaption>}
             </figure>
@@ -1143,14 +1195,51 @@ function AdminDashboard({
   setSelected,
   onLogout,
   allowList,
+  onDelete,
 }) {
   // Firestore 기록(r.id)에 해당하는 최신 접속코드를 allowed-users.json에서 실시간으로 찾아옵니다.
-  // (접속코드 자체는 학습 기록에 저장하지 않으므로, 재발급해도 항상 최신 값이 표시됩니다)
   const codeOf = (id) => {
     const entry = (allowList && allowList.employees) || [];
     const found = entry.find((u) => u.id === id);
     return found ? found.code : "-";
   };
+
+  const totalRegistered =
+    (allowList && allowList.employees && allowList.employees.length) || 0;
+  const [checkedIds, setCheckedIds] = useState([]);
+  const [deleting, setDeleting] = useState(false);
+
+  const allChecked = list.length > 0 && checkedIds.length === list.length;
+  const someChecked = checkedIds.length > 0;
+
+  function toggleOne(id) {
+    setCheckedIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  }
+  function toggleAll() {
+    setCheckedIds(allChecked ? [] : list.map((r) => r.id));
+  }
+
+  async function handleDeleteSelected() {
+    if (checkedIds.length === 0) return;
+    const names = list
+      .filter((r) => checkedIds.includes(r.id))
+      .map((r) => r.name)
+      .join(", ");
+    const ok = window.confirm(
+      `선택한 ${checkedIds.length}명(${names})의 학습 기록을 삭제할까요?\n` +
+        `삭제하면 완료/진행중 여부와 관계없이 초기화되어, 다음 로그인 시 처음부터 다시 응시하게 됩니다.`
+    );
+    if (!ok) return;
+    setDeleting(true);
+    try {
+      await onDelete(checkedIds);
+      setCheckedIds([]);
+    } finally {
+      setDeleting(false);
+    }
+  }
 
   return (
     <div className="dash-shell admin">
@@ -1177,36 +1266,55 @@ function AdminDashboard({
 
       <div className="admin-body">
         <div className="admin-stats">
-          <StatCard label="전체 응시자" value={list.length} />
+          <StatCard label="전체 인원" value={totalRegistered} />
           <StatCard
-            label="제출 완료"
+            label="완료"
             value={list.filter((r) => r.status === "submitted").length}
           />
           <StatCard
-            label="진행중"
-            value={list.filter((r) => r.status !== "submitted").length}
+            label="미완료"
+            value={totalRegistered - list.filter((r) => r.status === "submitted").length}
           />
           <StatCard
-            label="평균 완료 모듈"
+            label="완료율"
             value={
-              list.length
-                ? (
-                    list.reduce((a, r) => a + r.moduleResults.length, 0) / list.length
-                  ).toFixed(1)
-                : "0"
+              totalRegistered
+                ? `${Math.round(
+                    (list.filter((r) => r.status === "submitted").length /
+                      totalRegistered) *
+                      100
+                  )}%`
+                : "0%"
             }
           />
+        </div>
+
+        <div className="admin-toolbar">
+          <div className="admin-toolbar-info">
+            {someChecked ? `${checkedIds.length}명 선택됨` : `전체 ${list.length}명`}
+          </div>
+          <button
+            className="danger-btn"
+            disabled={!someChecked || deleting}
+            onClick={handleDeleteSelected}
+          >
+            <Icon.Trash className="icon-sm" />
+            {deleting ? "삭제 중..." : "선택 삭제(초기화)"}
+          </button>
         </div>
 
         {loading ? (
           <div className="admin-loading">불러오는 중...</div>
         ) : list.length === 0 ? (
-          <div className="admin-empty">아직 제출된 교육 기록이 없습니다.</div>
+          <div className="admin-empty">등록된 임직원이 없습니다.</div>
         ) : (
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
+                  <th className="checkbox-col">
+                    <input type="checkbox" checked={allChecked} onChange={toggleAll} />
+                  </th>
                   <th>이름</th>
                   <th>ID</th>
                   <th>접속코드</th>
@@ -1224,8 +1332,32 @@ function AdminDashboard({
                   const done = r.moduleResults.length;
                   const totalScore = r.moduleResults.reduce((a, x) => a + x.score, 0);
                   const totalMax = r.moduleResults.reduce((a, x) => a + x.total, 0);
+                  const isChecked = checkedIds.includes(r.id);
+                  const statusLabel =
+                    r.status === "submitted"
+                      ? "제출완료"
+                      : r.status === "not_started"
+                        ? "미시작"
+                        : "진행중";
+                  const statusClass =
+                    r.status === "submitted"
+                      ? "done"
+                      : r.status === "not_started"
+                        ? "idle"
+                        : "prog";
                   return (
-                    <tr key={r.id} onClick={() => setSelected(r)}>
+                    <tr
+                      key={r.id}
+                      className={isChecked ? "row-checked" : ""}
+                      onClick={() => setSelected(r)}
+                    >
+                      <td className="checkbox-col" onClick={(e) => e.stopPropagation()}>
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => toggleOne(r.id)}
+                        />
+                      </td>
                       <td>{r.name}</td>
                       <td className="id-cell">{r.id}</td>
                       <td className="id-cell">{codeOf(r.id)}</td>
@@ -1243,12 +1375,8 @@ function AdminDashboard({
                       </td>
                       <td>{totalMax ? `${totalScore} / ${totalMax}` : "-"}</td>
                       <td>
-                        <span
-                          className={`status-pill ${
-                            r.status === "submitted" ? "done" : "prog"
-                          }`}
-                        >
-                          {r.status === "submitted" ? "제출완료" : "진행중"}
+                        <span className={`status-pill ${statusClass}`}>
+                          {statusLabel}
                         </span>
                       </td>
                       <td>{r.submittedAt ? fmtDate(r.submittedAt) : "-"}</td>

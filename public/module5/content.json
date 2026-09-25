@@ -95,22 +95,10 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "단계",
-                  "내용"
-                ],
-                [
-                  "I. Pre-Trip",
-                  "차량 선택 → 점검"
-                ],
-                [
-                  "II. Post-Trip",
-                  "점검"
-                ],
-                [
-                  "III. Logout",
-                  "하루 끝나면 반드시 차량 로그아웃"
-                ]
+                ["단계", "내용"],
+                ["I. Pre-Trip", "차량 선택 → 점검"],
+                ["II. Post-Trip", "점검"],
+                ["III. Logout", "하루 끝나면 반드시 차량 로그아웃"]
               ],
               "source": "Samsara_앱_매일_기본_절차.pdf"
             }
@@ -314,6 +302,7 @@
             },
             {
               "type": "image",
+              "size": "Medium",
               "file": "module5-image6.jpg",
               "caption": "160km 반경 예시 지도 — 홈 터미널(브램튼 인근) 기준 반경 내에서 운행 후 당일 복귀 시 HOS/ELD 면제",
               "source": "Samsara_드라이버_앱_가이드_251112.pdf (HOS – 근무시간 관리) / Samsara_DVIR_준수_요약표.docx (면제 이유)"
@@ -326,22 +315,10 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "상태",
-                  "의미 / 사용 시점"
-                ],
-                [
-                  "Off Duty",
-                  "근무와 무관한 휴식 상태 (식사, 개인 용무 등)"
-                ],
-                [
-                  "Sleeper Berth",
-                  "차량 슬리퍼 공간에서 휴식 중일 때"
-                ],
-                [
-                  "Driving",
-                  "운전 중 — 주행이 감지되면 자동 전환됨"
-                ],
+                ["상태", "의미 / 사용 시점"],
+                ["Off Duty", "근무와 무관한 휴식 상태 (식사, 개인 용무 등)"],
+                ["Sleeper Berth", "차량 슬리퍼 공간에서 휴식 중일 때"],
+                ["Driving", "운전 중 — 주행이 감지되면 자동 전환됨"],
                 [
                   "On Duty (Not Driving)",
                   "상차/하차, 점검, 대기 등 업무 중이지만 운전은 아닌 상태. 차량 5분 이상 정지 시 자동 전환됨"
@@ -365,22 +342,10 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "구분",
-                  "한도"
-                ],
-                [
-                  "Drive (운전)",
-                  "13시간"
-                ],
-                [
-                  "Shift (근무)",
-                  "14시간"
-                ],
-                [
-                  "Cycle",
-                  "70시간(7일) 또는 120시간(14일)"
-                ]
+                ["구분", "한도"],
+                ["Drive (운전)", "13시간"],
+                ["Shift (근무)", "14시간"],
+                ["Cycle", "70시간(7일) 또는 120시간(14일)"]
               ]
             },
             {
@@ -726,22 +691,10 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Cab (모든 외관)",
-                  "공통"
-                ],
-                [
-                  "Lights (전구류 모두)",
-                  "공통"
-                ],
-                [
-                  "Mudguard (흙받이)",
-                  "공통"
-                ]
+                ["점검 항목", "적용"],
+                ["Cab (모든 외관)", "공통"],
+                ["Lights (전구류 모두)", "공통"],
+                ["Mudguard (흙받이)", "공통"]
               ]
             }
           ]
@@ -752,22 +705,10 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Exhaust System",
-                  "공통"
-                ],
-                [
-                  "Lights (전구류 모두)",
-                  "공통"
-                ],
-                [
-                  "Mudguard (흙받이)",
-                  "공통"
-                ]
+                ["점검 항목", "적용"],
+                ["Exhaust System", "공통"],
+                ["Lights (전구류 모두)", "공통"],
+                ["Mudguard (흙받이)", "공통"]
               ]
             }
           ]
@@ -778,46 +719,19 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Air Brake System",
-                  "에어브레이크 차량만"
-                ],
-                [
-                  "Fluid and Leaks (모든 오일류, 냉각수 누수)",
-                  "공통"
-                ],
-                [
-                  "Frame And Cargo Body (차체 프레임 상태)",
-                  "공통"
-                ],
+                ["점검 항목", "적용"],
+                ["Air Brake System", "에어브레이크 차량만"],
+                ["Fluid and Leaks (모든 오일류, 냉각수 누수)", "공통"],
+                ["Frame And Cargo Body (차체 프레임 상태)", "공통"],
                 [
                   "Hydraulic Brake System (브레이크 오일 누유, 브레이크 페달 유격/작동감, 브레이크 라인·호스 상태)",
                   "공통"
                 ],
-                [
-                  "Parking Brake (주차 브레이크 작동 여부)",
-                  "공통"
-                ],
-                [
-                  "Side reflector marker (사이드 반사 마커)",
-                  "공통"
-                ],
-                [
-                  "Suspension",
-                  "공통"
-                ],
-                [
-                  "Tires (타이어 공기압)",
-                  "공통"
-                ],
-                [
-                  "Wheels and Rims (휠/림)",
-                  "공통"
-                ]
+                ["Parking Brake (주차 브레이크 작동 여부)", "공통"],
+                ["Side reflector marker (사이드 반사 마커)", "공통"],
+                ["Suspension", "공통"],
+                ["Tires (타이어 공기압)", "공통"],
+                ["Wheels and Rims (휠/림)", "공통"]
               ]
             },
             {
@@ -832,34 +746,13 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Driver Controls",
-                  "공통"
-                ],
-                [
-                  "Horn (클락션)",
-                  "공통"
-                ],
-                [
-                  "Odometer (주행거리)",
-                  "공통"
-                ],
-                [
-                  "Steering (조향 조작 성능)",
-                  "공통"
-                ],
-                [
-                  "Windshield and Mirrors (모든 유리류 금·깨짐)",
-                  "공통"
-                ],
-                [
-                  "Windshield Wipers (와이퍼)",
-                  "공통"
-                ]
+                ["점검 항목", "적용"],
+                ["Driver Controls", "공통"],
+                ["Horn (클락션)", "공통"],
+                ["Odometer (주행거리)", "공통"],
+                ["Steering (조향 조작 성능)", "공통"],
+                ["Windshield and Mirrors (모든 유리류 금·깨짐)", "공통"],
+                ["Windshield Wipers (와이퍼)", "공통"]
               ]
             }
           ]
@@ -870,22 +763,13 @@
             {
               "type": "table",
               "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
+                ["점검 항목", "적용"],
                 [
                   "Emergency Equipment And Safety Devices (소화기, 안전삼각대/플레어, 예비 퓨즈, 구급함)",
                   "공통"
                 ],
-                [
-                  "Fuel System (연료캡 체결 상태, 연료탱크·라인 누유 여부)",
-                  "공통"
-                ],
-                [
-                  "General (차량등록증, 보험, 연간점검기록, CVOR, MOE, 번호판)",
-                  "공통"
-                ]
+                ["Fuel System (연료캡 체결 상태, 연료탱크·라인 누유 여부)", "공통"],
+                ["General (차량등록증, 보험, 연간점검기록, CVOR, MOE, 번호판)", "공통"]
               ],
               "source": "DVIR.png (Green Oil Inc. Samsara DVIR 점검 화면)"
             }
