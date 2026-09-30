@@ -291,18 +291,25 @@ export default function App() {
   const [selectedEmp, setSelectedEmp] = useState(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}data/allowed-users.json`)
+    // BASE_URL 뒤의 슬래시 중복 방지 처리
+    const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+      ? import.meta.env.BASE_URL
+      : `${import.meta.env.BASE_URL}/`;
+
+    fetch(`${baseUrl}data/allowed-users.json`)
       .then((res) => {
-        if (!res.ok) throw new Error("허용목록 파일을 불러올 수 없습니다.");
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
         return res.json();
       })
       .then((data) => {
-        setAllowList(normalizeAllowList(data));
-        setAllowListStatus("ready");
+        const normalized = normalizeAllowList(data);
+        setAllowList(normalized);
       })
       .catch((err) => {
-        console.error("허용목록 로드 실패", err);
-        setAllowListStatus("error");
+        console.error("허용목록 로드 실패:", err);
+        // 필요 시 파일 로드 실패 시 적용할 기본 명단(Fallback) 지정
       });
   }, []);
 
