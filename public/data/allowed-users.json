@@ -1,14 +1,119 @@
 {
-  "_설명": "id는 절대 바꾸지 마세요 (goi001, goi002... 순서로 새 사람 추가 시 이어서 부여). name과 code(접속코드)는 필요시 변경 가능합니다. code를 재발급해도 id가 고정되어 있어 기존 학습 기록이 끊기지 않습니다. 동명이인은 서로 다른 id/code로 각각 등록하면 됩니다.",
+  "_설명": "부서별로 묶은 직원 명단입니다. 새 직원은 해당 부서의 employees 안에 한 줄 추가하고, id는 마지막 번호(goi055) 다음부터 goi056, goi057… 순서로 부여하세요. 새 부서는 departments에 { name, employees } 묶음을 하나 추가하면 관리자 화면의 부서별 현황에 자동으로 나타납니다. id는 절대 바꾸지 마세요(학습 기록이 id 기준으로 저장됩니다). name과 code(접속코드)는 필요시 변경 가능하며, code를 재발급해도 기록은 유지됩니다. 동명이인은 서로 다른 id/code로 등록하면 됩니다. TEST 부서는 관리자 통계에서 제외됩니다.",
 
   "admin": {
     "id": "ADMIN",
     "password": "1"
   },
 
-  "employees": [
-    { "id": "goi001", "name": "123", "code": "12345" },
-    { "id": "goi002", "name": "이종언", "code": "860304" },
-    { "id": "goi003", "name": "박정비", "code": "770512" }
+  "departments": [
+    {
+      "name": "Management",
+      "employees": [
+        { "id": "goi003", "name": "Jason Kim", "code": "456877" },
+        { "id": "goi004", "name": "Moon Lee", "code": "308322" },
+        { "id": "goi005", "name": "Adrian Lee", "code": "325235" }
+      ]
+    },
+    {
+      "name": "Planning",
+      "employees": [
+        { "id": "goi006", "name": "Angela Yeum", "code": "286552" },
+        { "id": "goi007", "name": "이원재", "code": "915071" },
+        { "id": "goi008", "name": "안효진", "code": "846541" },
+        { "id": "goi009", "name": "Charles Hong", "code": "868777" },
+        { "id": "goi010", "name": "이다훈", "code": "636573" },
+        { "id": "goi011", "name": "진형주", "code": "210965" },
+        { "id": "goi012", "name": "조수린", "code": "642788" }
+      ]
+    },
+    {
+      "name": "Accounting",
+      "employees": [
+        { "id": "goi013", "name": "임다은", "code": "801119" },
+        { "id": "goi014", "name": "이강", "code": "871812" },
+        { "id": "goi015", "name": "최은호", "code": "527157" },
+        { "id": "goi016", "name": "김선", "code": "627783" }
+      ]
+    },
+    {
+      "name": "Marketing",
+      "employees": [
+        { "id": "goi017", "name": "김동현", "code": "695650" },
+        { "id": "goi018", "name": "윤희주", "code": "189641" },
+        { "id": "goi019", "name": "하재효", "code": "261231" },
+        { "id": "goi020", "name": "이혁준", "code": "337339" },
+        { "id": "goi021", "name": "YIDONG LIU", "code": "963951" },
+        { "id": "goi022", "name": "김지현", "code": "475659" }
+      ]
+    },
+    {
+      "name": "CS",
+      "employees": [
+        { "id": "goi023", "name": "임혜영", "code": "286917" },
+        { "id": "goi024", "name": "채송희", "code": "813786" },
+        { "id": "goi025", "name": "김희선", "code": "449499" },
+        { "id": "goi026", "name": "이은수", "code": "303406" }
+      ]
+    },
+    {
+      "name": "Operations",
+      "employees": [
+        { "id": "goi027", "name": "Johnny Moon", "code": "695588" },
+        { "id": "goi002", "name": "이종언", "code": "860304" },
+        { "id": "goi028", "name": "이대한", "code": "301720" }
+      ]
+    },
+    {
+      "name": "UCO",
+      "employees": [
+        { "id": "goi029", "name": "오종환", "code": "278089" },
+        { "id": "goi030", "name": "김태근", "code": "910542" },
+        { "id": "goi031", "name": "송재혁", "code": "265949" },
+        { "id": "goi032", "name": "송성민", "code": "551638" },
+        { "id": "goi033", "name": "김민겸", "code": "235602" },
+        { "id": "goi034", "name": "김성민", "code": "315158" },
+        { "id": "goi035", "name": "권호문", "code": "621620" },
+        { "id": "goi036", "name": "이사무엘", "code": "687758" },
+        { "id": "goi037", "name": "허욱", "code": "928718" },
+        { "id": "goi038", "name": "이다윗", "code": "178012" },
+        { "id": "goi039", "name": "유태규", "code": "211559" },
+        { "id": "goi040", "name": "송윤섭", "code": "335405" },
+        { "id": "goi041", "name": "이영욱", "code": "949024" },
+        { "id": "goi044", "name": "천현민", "code": "493752" }
+      ]
+    },
+    {
+      "name": "Install",
+      "employees": [
+        { "id": "goi042", "name": "윤준영", "code": "895017" },
+        { "id": "goi043", "name": "정승열", "code": "324776" }
+      ]
+    },
+    {
+      "name": "Grease Trap",
+      "employees": [
+        { "id": "goi045", "name": "강동일", "code": "614237" },
+        { "id": "goi046", "name": "이우열", "code": "844016" },
+        { "id": "goi047", "name": "홍순주", "code": "146467" },
+        { "id": "goi048", "name": "임원택", "code": "411358" }
+      ]
+    },
+    {
+      "name": "Plant",
+      "employees": [
+        { "id": "goi049", "name": "정진성", "code": "321490" },
+        { "id": "goi050", "name": "윤정호", "code": "838767" },
+        { "id": "goi051", "name": "조정연", "code": "750530" },
+        { "id": "goi052", "name": "Younus Mia", "code": "602829" },
+        { "id": "goi053", "name": "홍준기", "code": "409810" },
+        { "id": "goi054", "name": "이재진", "code": "823627" },
+        { "id": "goi055", "name": "변승훈", "code": "138879" }
+      ]
+    },
+    {
+      "name": "TEST",
+      "employees": [{ "id": "goi001", "name": "123", "code": "12345" }]
+    }
   ]
 }
