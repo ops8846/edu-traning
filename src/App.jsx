@@ -103,7 +103,8 @@ const MODULES = [
 
 // 모듈 본문 파일 경로: 예) module1 폴더의 content_m1.json
 // (모듈마다 파일명이 달라서, 여러 파일을 한꺼번에 올려도 서로 덮어써지지 않습니다)
-const contentUrl = (mod) => `/${mod.folder}/content_${mod.id}.json`;
+const contentUrl = (mod) =>
+  `${import.meta.env.BASE_URL}${mod.folder}/content_${mod.id}.json`;
 
 // 관리자 통계·부서별 현황표에서 제외할 부서 (테스트 계정용). 필요 없으면 [] 로 비우세요.
 const STATS_EXCLUDED_DEPARTMENTS = ["TEST"];
@@ -290,7 +291,7 @@ export default function App() {
   const [selectedEmp, setSelectedEmp] = useState(null);
 
   useEffect(() => {
-    fetch("/data/allowed-users.json")
+    fetch(`${import.meta.env.BASE_URL}data/allowed-users.json`)
       .then((res) => {
         if (!res.ok) throw new Error("허용목록 파일을 불러올 수 없습니다.");
         return res.json();
