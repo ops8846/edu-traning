@@ -501,6 +501,10 @@ export default function App() {
     });
   }
 
+  function scrollToTop() {
+    requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
+  }
+
   async function submitQuiz() {
     const mod = MODULES[moduleIdx];
     const questions = moduleContent.questions;
@@ -516,6 +520,7 @@ export default function App() {
     setLastRoundIndices(roundIndices); // 결과보기 화면에는 "이번에 채점한 문제"만 표시
     setHasSubmitted(true);
     setEditingRetry(false); // 채점 직후에는 항상 "정답+오답 전체 보기" 모드로
+    scrollToTop();
     // 화면 전환 없이 같은 퀴즈 화면에서 그대로 채점 결과(맞음/틀림+힌트)를 보여줍니다.
 
     const isPerfect = updatedLocked.length === total;
@@ -553,6 +558,7 @@ export default function App() {
   // "틀린 문제 다시 풀기" 클릭 -> 정답은 화면에서 사라지고 틀린 문제만 다시 답할 수 있게 전환
   function startRetryEdit() {
     setEditingRetry(true);
+    scrollToTop();
   }
 
   // 문제가 아직 준비되지 않은 모듈 -> 학습 완료로 처리하고 다음 모듈로 진행
@@ -673,7 +679,19 @@ export default function App() {
     } catch (_) {
       /* 저장소 사용 불가 환경은 조용히 무시 */
     }
-  }, [screen, employee, moduleIdx, sectionIdx, phase, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
+  }, [
+    screen,
+    employee,
+    moduleIdx,
+    sectionIdx,
+    phase,
+    answers,
+    lastResult,
+    lockedCorrect,
+    hasSubmitted,
+    editingRetry,
+    lastRoundIndices,
+  ]);
 
   // 교육/문제 화면으로 복원된 경우: 교육 자료를 다시 불러옵니다. (대시보드는 불필요)
   useEffect(() => {
@@ -1227,11 +1245,11 @@ function ModuleScreen({
             {reviewMode && (
               <div className="retry-notice">
                 이번에 채점한 {lastRoundIndices.length}문항 중 정답{" "}
-                {lastRoundIndices.filter((i) => lockedCorrect.includes(i)).length}개,
-                오답 {lastRoundIndices.filter((i) => !lockedCorrect.includes(i)).length}
+                {lastRoundIndices.filter((i) => lockedCorrect.includes(i)).length}개, 오답{" "}
+                {lastRoundIndices.filter((i) => !lockedCorrect.includes(i)).length}
                 개입니다. 정답은 이번 한 번만 표시되고 다음부터는 화면에서 완전히
-                빠집니다. 오답 아래 힌트를 확인하신 뒤 "틀린 문제 다시 풀기" 버튼을
-                눌러 주세요.
+                빠집니다. 오답 아래 힌트를 확인하신 뒤 "틀린 문제 다시 풀기" 버튼을 눌러
+                주세요.
               </div>
             )}
             {editMode && (
@@ -1300,11 +1318,11 @@ function ModuleScreen({
                               <strong>오답입니다.</strong> {q.explain}
                             </div>
                           )}
-                      </>
-                    )}
-                  </div>
-                );
-              })}
+                        </>
+                      )}
+                    </div>
+                  );
+                })}
 
             {isPerfect ? (
               <button className="submit-btn" onClick={onAfterResult}>
@@ -1317,7 +1335,11 @@ function ModuleScreen({
                 <Icon.Arrow className="icon-sm" />
               </button>
             ) : (
-              <button className="submit-btn" disabled={!allAnswered} onClick={onSubmitQuiz}>
+              <button
+                className="submit-btn"
+                disabled={!allAnswered}
+                onClick={onSubmitQuiz}
+              >
                 {editMode ? "다시 제출" : isLastModule ? "최종 제출하기" : "답안 제출"}
                 <Icon.Arrow className="icon-sm" />
               </button>
@@ -1478,7 +1500,9 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
    ============================================================ */
 function CompleteScreen({ employee, onLogout }) {
   const totalModules = employee.moduleResults.length;
-  const sortedResults = [...employee.moduleResults].sort((a, b) => a.moduleNo - b.moduleNo);
+  const sortedResults = [...employee.moduleResults].sort(
+    (a, b) => a.moduleNo - b.moduleNo
+  );
 
   return (
     <div className="cert-shell">
@@ -1508,8 +1532,7 @@ function CompleteScreen({ employee, onLogout }) {
 
           <p className="cert-statement">
             위 사람은 Green Oil Inc.의 안전·근무수칙 교육과정
-            <br />
-            전 {totalModules}개 모듈을 모두 만점으로 이수하였음을 증명합니다.
+            <br />전 {totalModules}개 모듈을 모두 만점으로 이수하였음을 증명합니다.
           </p>
 
           <div className="cert-modules">
