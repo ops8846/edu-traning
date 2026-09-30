@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import "./index.css";
 import { db } from "./firebase";
+import allowedUsersData from "./data/allowed-users.json";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 
 /* ============================================================
@@ -251,7 +252,7 @@ export default function App() {
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 사번/이름 허용목록 & 관리자 계정 (public/data/allowed-users.json)
+  // 사번/이름 허용목록 & 관리자 계정 (src/data/allowed-users.json)
   const [allowList, setAllowList] = useState(null);
   const [allowListStatus, setAllowListStatus] = useState("loading"); // loading | ready | error
 
@@ -290,27 +291,15 @@ export default function App() {
   const [adminLoading, setAdminLoading] = useState(false);
   const [selectedEmp, setSelectedEmp] = useState(null);
 
+  // 허용목록은 src/data/allowed-users.json 을 빌드 시점에 번들에 포함합니다.
   useEffect(() => {
-    // BASE_URL 뒤의 슬래시 중복 방지 처리
-    const baseUrl = import.meta.env.BASE_URL.endsWith("/")
-      ? import.meta.env.BASE_URL
-      : `${import.meta.env.BASE_URL}/`;
-
-    fetch(`${baseUrl}data/allowed-users.json`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        const normalized = normalizeAllowList(data);
-        setAllowList(normalized);
-      })
-      .catch((err) => {
-        console.error("허용목록 로드 실패:", err);
-        // 필요 시 파일 로드 실패 시 적용할 기본 명단(Fallback) 지정
-      });
+    try {
+      setAllowList(normalizeAllowList(allowedUsersData));
+      setAllowListStatus("ready");
+    } catch (err) {
+      console.error("허용목록 로드 실패", err);
+      setAllowListStatus("error");
+    }
   }, []);
 
   const saveEmployee = useCallback(async (rec) => {
@@ -340,7 +329,7 @@ export default function App() {
       return;
     }
 
-    // 0) 이름+접속코드가 허용목록(public/data/allowed-users.json)에 있는지 확인
+    // 0) 이름+접속코드가 허용목록(src/data/allowed-users.json)에 있는지 확인
     const matched = (allowList.employees || []).find(
       (u) => String(u.name).trim() === name && String(u.code).trim() === code
     );
