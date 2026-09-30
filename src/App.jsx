@@ -1432,7 +1432,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
               className={`block-image size-${(b.size || "full").toLowerCase()}`}
               key={i}
             >
-              <img src={`/${folder}/${b.file}`} alt={b.caption || ""} loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}${folder}/${b.file}`} alt={b.caption || ""} loading="lazy" />
               {b.caption && <figcaption>{b.caption}</figcaption>}
             </figure>
           );
@@ -1446,7 +1446,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
               key={i}
             >
               <VideoGuard
-                src={`/${folder}/${b.file}`}
+                src={`${import.meta.env.BASE_URL}${folder}/${b.file}`}
                 watched={isWatched}
                 onComplete={() => onVideoWatched && onVideoWatched(videoKey)}
               />
