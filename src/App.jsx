@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import "./index.css";
 import { db } from "./firebase";
+import certLeaves from "./assets/cert-leaves.svg";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 
 /* ============================================================
@@ -1513,16 +1514,8 @@ function CompleteScreen({ employee, onLogout }) {
           <div className="cert-corner br" />
 
           {/* 모서리 잎사귀 장식 */}
-          <div className="cert-leaves tl" aria-hidden="true">
-            <Icon.Leaf className="leaf l1" />
-            <Icon.Leaf className="leaf l2" />
-            <Icon.Leaf className="leaf l3" />
-          </div>
-          <div className="cert-leaves br" aria-hidden="true">
-            <Icon.Leaf className="leaf l1" />
-            <Icon.Leaf className="leaf l2" />
-            <Icon.Leaf className="leaf l3" />
-          </div>
+          <img className="cert-leaf-art tl" src={certLeaves} alt="" aria-hidden="true" />
+          <img className="cert-leaf-art br" src={certLeaves} alt="" aria-hidden="true" />
 
           <div className="cert-header">
             <img className="cert-logo-img" src={LOGO_WHITE_BG} alt="Green Oil Inc." />
