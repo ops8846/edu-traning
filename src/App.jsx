@@ -257,7 +257,30 @@ const Icon = {
 /* ============================================================
    메인 컴포넌트
    ============================================================ */
+// 개발 서버 전용: 주소 뒤에 ?cert 를 붙이면 로그인 없이 수료증 화면만 미리 볼 수 있습니다.
+// 예) http://localhost:5173/edu-traning/?cert&name=홍길동  (배포 빌드에서는 동작하지 않음)
 export default function App() {
+  if (import.meta.env.DEV) {
+    const q = new URLSearchParams(window.location.search);
+    if (q.has("cert")) {
+      const mock = {
+        name: q.get("name") || "홍길동",
+        submittedAt: new Date().toISOString(),
+        moduleResults: MODULES.map((m) => ({
+          moduleId: m.id,
+          moduleNo: m.no,
+          moduleTitle: m.title,
+          score: 20,
+          total: 20,
+        })),
+      };
+      return <CompleteScreen employee={mock} onLogout={() => {}} />;
+    }
+  }
+  return <AppMain />;
+}
+
+function AppMain() {
   // 대시보드 또는 교육/문제 화면에서 새로고침한 경우에만 값이 있음 (그 외에는 null → 로그인 화면)
   const [saved] = useState(readSavedSession);
 
