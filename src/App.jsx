@@ -280,6 +280,8 @@ export default function App() {
   const [employee, setEmployee] = useState(saved ? saved.employee : null);
   const [moduleIdx, setModuleIdx] = useState(saved ? saved.moduleIdx : 0);
   const [phase, setPhase] = useState(saved ? saved.phase : "learn"); // learn | quiz | result
+  // 복습 모드: 완료한 모듈을 문제 없이 다시 읽어보기만 함 (결과/점수는 변경하지 않음)
+  const [reviewOnly, setReviewOnly] = useState(saved ? !!saved.reviewOnly : false);
   const [sectionIdx, setSectionIdx] = useState(saved ? saved.sectionIdx || 0 : 0);
   const [answers, setAnswers] = useState(
     saved && Array.isArray(saved.answers) ? saved.answers : []
@@ -440,6 +442,7 @@ export default function App() {
     setAdminPwInput("");
     setLoginError("");
     setModuleIdx(0);
+    setReviewOnly(false);
     setPhase("learn");
     setSectionIdx(0);
     setAnswers([]);
@@ -452,7 +455,8 @@ export default function App() {
   }
 
   /* ---------------- 임직원 : 모듈 진행 ---------------- */
-  function startModule(idx) {
+  function startModule(idx, review = false) {
+    setReviewOnly(review === true);
     setModuleIdx(idx);
     setPhase("learn");
     setSectionIdx(0);
@@ -497,6 +501,9 @@ export default function App() {
     const flat = flattenSections(moduleContent);
     if (sectionIdx < flat.length - 1) {
       setSectionIdx((i) => i + 1);
+    } else if (reviewOnly) {
+      // 복습 모드: 문제를 풀지 않고 대시보드로 돌아감
+      setScreen("employee");
     } else {
       setPhase("quiz");
     }
@@ -683,6 +690,7 @@ export default function App() {
             moduleIdx,
             sectionIdx,
             phase,
+            reviewOnly,
             answers,
             lastResult,
             lockedCorrect,
@@ -697,7 +705,7 @@ export default function App() {
     } catch (_) {
       /* 저장소 사용 불가 환경은 조용히 무시 */
     }
-  }, [screen, employee, moduleIdx, sectionIdx, phase, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
+  }, [screen, employee, moduleIdx, sectionIdx, phase, reviewOnly, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
 
   // 교육/문제 화면으로 복원된 경우: 교육 자료를 다시 불러옵니다. (대시보드는 불필요)
   useEffect(() => {
@@ -745,7 +753,8 @@ export default function App() {
       {screen === "employee" && employee && (
         <EmployeeDashboard
           employee={employee}
-          onStartModule={startModule}
+          onStartModule={(idx) => startModule(idx)}
+          onReviewModule={(idx) => startModule(idx, true)}
           onLogout={logout}
         />
       )}
@@ -757,6 +766,7 @@ export default function App() {
           moduleContent={moduleContent}
           contentStatus={contentStatus}
           phase={phase}
+          reviewOnly={reviewOnly}
           sectionIdx={sectionIdx}
           answers={answers}
           lastResult={lastResult}
@@ -778,7 +788,7 @@ export default function App() {
       )}
 
       {screen === "complete" && employee && (
-        <CompleteScreen employee={employee} onLogout={logout} />
+        <CompleteScreen employee={employee} onClose={() => setScreen("employee")} />
       )}
 
       {screen === "admin" && (
@@ -946,7 +956,7 @@ function LoginScreen(props) {
 /* ============================================================
    임직원 대시보드
    ============================================================ */
-function EmployeeDashboard({ employee, onStartModule, onLogout }) {
+function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }) {
   const completedCount = employee.moduleResults.length;
   const isSubmitted = employee.status === "submitted";
 
@@ -1042,7 +1052,12 @@ function EmployeeDashboard({ employee, onStartModule, onLogout }) {
                   </div>
                   <div className="timeline-action">
                     {isDone ? (
-                      <span className="timeline-status done">완료</span>
+                      <>
+                        <span className="timeline-status done">완료</span>
+                        <button className="review-btn" onClick={() => onReviewModule(idx)}>
+                          복습하기
+                        </button>
+                      </>
                     ) : isUnlocked ? (
                       <button className="start-btn" onClick={() => onStartModule(idx)}>
                         학습 시작
@@ -1079,6 +1094,7 @@ function ModuleScreen({
   moduleContent,
   contentStatus,
   phase,
+  reviewOnly,
   sectionIdx,
   answers,
   lastResult,
@@ -1135,7 +1151,7 @@ function ModuleScreen({
   const allVideosWatched = sectionVideoBlocks.every(
     ({ i }) => watchedVideos[`${sectionIdx}_${i}`]
   );
-  const videoLocked = sectionVideoBlocks.length > 0 && !allVideosWatched;
+  const videoLocked = !reviewOnly && sectionVideoBlocks.length > 0 && !allVideosWatched;
 
   return (
     <div className="dash-shell">
@@ -1214,7 +1230,11 @@ function ModuleScreen({
                 disabled={videoLocked}
                 onClick={onNextSection}
               >
-                {sectionIdx < flat.length - 1 ? "다음 학습" : "문제 풀기"}
+                {sectionIdx < flat.length - 1
+                  ? "다음 학습"
+                  : reviewOnly
+                    ? "복습 완료 · 대시보드로"
+                    : "문제 풀기"}
                 <Icon.Arrow className="icon-sm" />
               </button>
             </div>
@@ -1500,7 +1520,8 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
 /* ============================================================
    최종 완료 화면
    ============================================================ */
-function CompleteScreen({ employee, onLogout }) {
+function CompleteScreen({ employee, onClose }) {
+  const [showSent, setShowSent] = useState(false);
   const totalModules = employee.moduleResults.length;
   const sortedResults = [...employee.moduleResults].sort((a, b) => a.moduleNo - b.moduleNo);
 
@@ -1537,9 +1558,23 @@ function CompleteScreen({ employee, onLogout }) {
         </div>
       </div>
 
-      <button className="cert-close-btn" onClick={onLogout}>
-        닫기
+      <button className="cert-close-btn" onClick={() => setShowSent(true)}>
+        제출 후 닫기
       </button>
+
+      {showSent && (
+        <div className="cert-modal-backdrop" role="dialog" aria-modal="true">
+          <div className="cert-modal">
+            <div className="cert-modal-icon">
+              <Icon.Check className="icon-lg" />
+            </div>
+            <p>관리자에게 수료증이 전달되었습니다.</p>
+            <button className="submit-btn" onClick={onClose}>
+              확인
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
