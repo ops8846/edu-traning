@@ -1142,56 +1142,32 @@ input {
   gap: 8px;
   margin-bottom: 18px;
 }
-.cert-logo-badge {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px;
-  box-shadow: var(--shadow-sm);
-}
-.cert-logo-badge img {
-  width: 100%;
-  height: 100%;
+.cert-logo-img {
+  width: 108px;
+  height: auto;
   object-fit: contain;
+  margin-bottom: 4px;
 }
 .cert-org {
   font-family: "Noto Serif KR", serif;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 17px;
   letter-spacing: 2px;
   color: var(--brand-deep);
 }
 .cert-org-sub {
   font-size: 10.5px;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   color: var(--text-dim);
   text-transform: uppercase;
-}
-.cert-seal {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: linear-gradient(160deg, var(--brand-soft), #dcefe2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--brand-deep);
-  margin: 0 auto 18px;
-  box-shadow: 0 10px 24px -8px rgba(44, 155, 104, 0.4);
-  border: 1px solid rgba(31, 115, 80, 0.25);
 }
 .cert-title-kr {
   font-family: "Noto Serif KR", serif;
   font-weight: 900;
-  font-size: 30px;
-  letter-spacing: 10px;
+  font-size: 32px;
+  letter-spacing: 12px;
   color: #1b2a1f;
-  margin-bottom: 4px;
+  margin: 22px 0 6px;
 }
 .cert-title-en {
   font-size: 11px;
@@ -1203,39 +1179,50 @@ input {
 .cert-name {
   font-family: "Noto Serif KR", serif;
   font-weight: 800;
-  font-size: 24px;
+  font-size: 26px;
   color: var(--brand-deep);
   display: inline-block;
   padding: 0 6px 10px;
   border-bottom: 2px solid var(--brand);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 .cert-statement {
   color: var(--text-dim);
   font-size: 13.5px;
   line-height: 1.85;
-  margin: 0 0 26px;
+  margin: 0 0 28px;
 }
 .cert-modules {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 8px;
+  gap: 10px;
   text-align: left;
   margin-bottom: 30px;
 }
 .cert-module-row {
   display: flex;
   align-items: center;
-  gap: 7px;
-  font-size: 12.5px;
-  padding: 9px 11px;
-  background: var(--surface-2);
-  border-radius: 7px;
+  gap: 11px;
+  font-size: 13px;
+  padding: 13px 16px;
+  background: var(--brand-soft);
+  border-radius: 12px;
   color: var(--text);
 }
-.cert-module-row .icon-xs {
-  color: var(--brand-deep);
+.cert-check-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+.cert-check-badge .icon-xs {
+  width: 12px;
+  height: 12px;
 }
 .cert-module-title {
   flex: 1;
@@ -1246,38 +1233,29 @@ input {
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
 }
-.cert-footer {
+.cert-tagline {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-top: 18px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 20px;
   border-top: 1px solid var(--line);
-}
-.cert-footer-label {
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.cert-date {
-  text-align: left;
-}
-.cert-footer-value {
-  font-size: 13px;
-  color: var(--text);
-  font-weight: 600;
-}
-.cert-signature {
-  text-align: right;
-}
-.cert-sign-name {
-  font-family: "Noto Serif KR", serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 16px;
+  font-size: 10.5px;
+  letter-spacing: 2px;
   color: var(--brand-deep);
-  margin-bottom: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.cert-tagline-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--brand);
+  flex-shrink: 0;
+}
+.cert-date-small {
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: var(--text-dim);
 }
 .cert-close-btn {
   background: transparent;
@@ -1296,19 +1274,73 @@ input {
   background: var(--surface);
   color: var(--text);
 }
+
+/* 모서리 잎사귀 장식 */
+.cert-leaves {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+  z-index: 0;
+}
+.cert-leaves.tl {
+  top: -34px;
+  left: -34px;
+}
+.cert-leaves.br {
+  bottom: -34px;
+  right: -34px;
+  transform: rotate(180deg);
+}
+.cert-leaves .leaf {
+  position: absolute;
+}
+.cert-leaves .l1 {
+  width: 58px;
+  height: 58px;
+  top: 14px;
+  left: 6px;
+  color: var(--brand);
+  opacity: 0.6;
+  transform: rotate(-35deg);
+}
+.cert-leaves .l2 {
+  width: 44px;
+  height: 44px;
+  top: 2px;
+  left: 46px;
+  color: var(--brand-deep);
+  opacity: 0.45;
+  transform: rotate(18deg);
+}
+.cert-leaves .l3 {
+  width: 36px;
+  height: 36px;
+  top: 48px;
+  left: 30px;
+  color: var(--brand);
+  opacity: 0.35;
+  transform: rotate(70deg);
+}
 @media (max-width: 520px) {
   .cert-modules {
     grid-template-columns: 1fr;
   }
-  .cert-footer {
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    text-align: center;
+  .cert-leaves {
+    width: 90px;
+    height: 90px;
   }
-  .cert-date,
-  .cert-signature {
-    text-align: center;
+  .cert-leaves .l1 {
+    width: 44px;
+    height: 44px;
+  }
+  .cert-leaves .l2 {
+    width: 32px;
+    height: 32px;
+  }
+  .cert-leaves .l3 {
+    width: 24px;
+    height: 24px;
   }
 }
 

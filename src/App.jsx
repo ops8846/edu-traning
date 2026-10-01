@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import "./index.css";
 import { db } from "./firebase";
-import allowedUsersData from "./data/allowed-users.json";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 
 /* ============================================================
@@ -104,8 +103,17 @@ const MODULES = [
 
 // 모듈 본문 파일 경로: 예) module1 폴더의 content_m1.json
 // (모듈마다 파일명이 달라서, 여러 파일을 한꺼번에 올려도 서로 덮어써지지 않습니다)
-const contentUrl = (mod) =>
-  `${import.meta.env.BASE_URL}${mod.folder}/content_${mod.id}.json`;
+// public 폴더의 파일을 가리키는 경로를 항상 배포 위치에 맞게 만들어줍니다.
+// (로컬 개발 중에는 BASE_URL이 "/"이고, GitHub Pages처럼 하위 폴더에 배포되면
+//  vite.config.js의 base 설정값이 자동으로 앞에 붙어서 404를 방지합니다)
+const withBase = (path) => {
+  const base = import.meta.env.BASE_URL || "/";
+  const cleanBase = base.endsWith("/") ? base : `${base}/`;
+  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
+  return `${cleanBase}${cleanPath}`;
+};
+
+const contentUrl = (mod) => withBase(`${mod.folder}/content_${mod.id}.json`);
 
 // 관리자 통계·부서별 현황표에서 제외할 부서 (테스트 계정용). 필요 없으면 [] 로 비우세요.
 const STATS_EXCLUDED_DEPARTMENTS = ["TEST"];
@@ -187,6 +195,17 @@ const LOGO_GREEN_BG =
   "data:image/png;base64,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";
 
 const Icon = {
+  Leaf: (p) => (
+    <svg viewBox="0 0 100 100" fill="currentColor" {...p}>
+      <path d="M50 2C82 20 98 52 50 98C2 52 18 20 50 2Z" />
+      <path
+        d="M50 8Q40 50 50 92"
+        fill="none"
+        stroke="rgba(255,255,255,0.6)"
+        strokeWidth="3"
+      />
+    </svg>
+  ),
   Truck: (p) => (
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" {...p}>
       <path
@@ -252,7 +271,7 @@ export default function App() {
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 사번/이름 허용목록 & 관리자 계정 (src/data/allowed-users.json)
+  // 사번/이름 허용목록 & 관리자 계정 (public/data/allowed-users.json)
   const [allowList, setAllowList] = useState(null);
   const [allowListStatus, setAllowListStatus] = useState("loading"); // loading | ready | error
 
@@ -291,15 +310,20 @@ export default function App() {
   const [adminLoading, setAdminLoading] = useState(false);
   const [selectedEmp, setSelectedEmp] = useState(null);
 
-  // 허용목록은 src/data/allowed-users.json 을 빌드 시점에 번들에 포함합니다.
   useEffect(() => {
-    try {
-      setAllowList(normalizeAllowList(allowedUsersData));
-      setAllowListStatus("ready");
-    } catch (err) {
-      console.error("허용목록 로드 실패", err);
-      setAllowListStatus("error");
-    }
+    fetch(withBase("data/allowed-users.json"))
+      .then((res) => {
+        if (!res.ok) throw new Error("허용목록 파일을 불러올 수 없습니다.");
+        return res.json();
+      })
+      .then((data) => {
+        setAllowList(normalizeAllowList(data));
+        setAllowListStatus("ready");
+      })
+      .catch((err) => {
+        console.error("허용목록 로드 실패", err);
+        setAllowListStatus("error");
+      });
   }, []);
 
   const saveEmployee = useCallback(async (rec) => {
@@ -329,7 +353,7 @@ export default function App() {
       return;
     }
 
-    // 0) 이름+접속코드가 허용목록(src/data/allowed-users.json)에 있는지 확인
+    // 0) 이름+접속코드가 허용목록(public/data/allowed-users.json)에 있는지 확인
     const matched = (allowList.employees || []).find(
       (u) => String(u.name).trim() === name && String(u.code).trim() === code
     );
@@ -498,11 +522,8 @@ export default function App() {
     });
   }
 
-  function scrollToTop() {
-    requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
-  }
-
   async function submitQuiz() {
+    window.scrollTo(0, 0);
     const mod = MODULES[moduleIdx];
     const questions = moduleContent.questions;
     const total = questions.length;
@@ -517,7 +538,6 @@ export default function App() {
     setLastRoundIndices(roundIndices); // 결과보기 화면에는 "이번에 채점한 문제"만 표시
     setHasSubmitted(true);
     setEditingRetry(false); // 채점 직후에는 항상 "정답+오답 전체 보기" 모드로
-    scrollToTop();
     // 화면 전환 없이 같은 퀴즈 화면에서 그대로 채점 결과(맞음/틀림+힌트)를 보여줍니다.
 
     const isPerfect = updatedLocked.length === total;
@@ -554,8 +574,8 @@ export default function App() {
 
   // "틀린 문제 다시 풀기" 클릭 -> 정답은 화면에서 사라지고 틀린 문제만 다시 답할 수 있게 전환
   function startRetryEdit() {
+    window.scrollTo(0, 0);
     setEditingRetry(true);
-    scrollToTop();
   }
 
   // 문제가 아직 준비되지 않은 모듈 -> 학습 완료로 처리하고 다음 모듈로 진행
@@ -676,19 +696,7 @@ export default function App() {
     } catch (_) {
       /* 저장소 사용 불가 환경은 조용히 무시 */
     }
-  }, [
-    screen,
-    employee,
-    moduleIdx,
-    sectionIdx,
-    phase,
-    answers,
-    lastResult,
-    lockedCorrect,
-    hasSubmitted,
-    editingRetry,
-    lastRoundIndices,
-  ]);
+  }, [screen, employee, moduleIdx, sectionIdx, phase, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
 
   // 교육/문제 화면으로 복원된 경우: 교육 자료를 다시 불러옵니다. (대시보드는 불필요)
   useEffect(() => {
@@ -1242,11 +1250,11 @@ function ModuleScreen({
             {reviewMode && (
               <div className="retry-notice">
                 이번에 채점한 {lastRoundIndices.length}문항 중 정답{" "}
-                {lastRoundIndices.filter((i) => lockedCorrect.includes(i)).length}개, 오답{" "}
-                {lastRoundIndices.filter((i) => !lockedCorrect.includes(i)).length}
+                {lastRoundIndices.filter((i) => lockedCorrect.includes(i)).length}개,
+                오답 {lastRoundIndices.filter((i) => !lockedCorrect.includes(i)).length}
                 개입니다. 정답은 이번 한 번만 표시되고 다음부터는 화면에서 완전히
-                빠집니다. 오답 아래 힌트를 확인하신 뒤 "틀린 문제 다시 풀기" 버튼을 눌러
-                주세요.
+                빠집니다. 오답 아래 힌트를 확인하신 뒤 "틀린 문제 다시 풀기" 버튼을
+                눌러 주세요.
               </div>
             )}
             {editMode && (
@@ -1315,11 +1323,11 @@ function ModuleScreen({
                               <strong>오답입니다.</strong> {q.explain}
                             </div>
                           )}
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
+                      </>
+                    )}
+                  </div>
+                );
+              })}
 
             {isPerfect ? (
               <button className="submit-btn" onClick={onAfterResult}>
@@ -1332,11 +1340,7 @@ function ModuleScreen({
                 <Icon.Arrow className="icon-sm" />
               </button>
             ) : (
-              <button
-                className="submit-btn"
-                disabled={!allAnswered}
-                onClick={onSubmitQuiz}
-              >
+              <button className="submit-btn" disabled={!allAnswered} onClick={onSubmitQuiz}>
                 {editMode ? "다시 제출" : isLastModule ? "최종 제출하기" : "답안 제출"}
                 <Icon.Arrow className="icon-sm" />
               </button>
@@ -1432,7 +1436,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
               className={`block-image size-${(b.size || "full").toLowerCase()}`}
               key={i}
             >
-              <img src={`${import.meta.env.BASE_URL}${folder}/${b.file}`} alt={b.caption || ""} loading="lazy" />
+              <img src={withBase(`${folder}/${b.file}`)} alt={b.caption || ""} loading="lazy" />
               {b.caption && <figcaption>{b.caption}</figcaption>}
             </figure>
           );
@@ -1446,7 +1450,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
               key={i}
             >
               <VideoGuard
-                src={`${import.meta.env.BASE_URL}${folder}/${b.file}`}
+                src={withBase(`${folder}/${b.file}`)}
                 watched={isWatched}
                 onComplete={() => onVideoWatched && onVideoWatched(videoKey)}
               />
@@ -1497,9 +1501,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
    ============================================================ */
 function CompleteScreen({ employee, onLogout }) {
   const totalModules = employee.moduleResults.length;
-  const sortedResults = [...employee.moduleResults].sort(
-    (a, b) => a.moduleNo - b.moduleNo
-  );
+  const sortedResults = [...employee.moduleResults].sort((a, b) => a.moduleNo - b.moduleNo);
 
   return (
     <div className="cert-shell">
@@ -1510,16 +1512,22 @@ function CompleteScreen({ employee, onLogout }) {
           <div className="cert-corner bl" />
           <div className="cert-corner br" />
 
-          <div className="cert-header">
-            <span className="cert-logo-badge">
-              <img src={LOGO_WHITE_BG} alt="Green Oil Inc." />
-            </span>
-            <div className="cert-org">GREEN OIL INC.</div>
-            <div className="cert-org-sub">Fleet Safety Training Program</div>
+          {/* 모서리 잎사귀 장식 */}
+          <div className="cert-leaves tl" aria-hidden="true">
+            <Icon.Leaf className="leaf l1" />
+            <Icon.Leaf className="leaf l2" />
+            <Icon.Leaf className="leaf l3" />
+          </div>
+          <div className="cert-leaves br" aria-hidden="true">
+            <Icon.Leaf className="leaf l1" />
+            <Icon.Leaf className="leaf l2" />
+            <Icon.Leaf className="leaf l3" />
           </div>
 
-          <div className="cert-seal">
-            <Icon.Check className="icon-lg" />
+          <div className="cert-header">
+            <img className="cert-logo-img" src={LOGO_WHITE_BG} alt="Green Oil Inc." />
+            <div className="cert-org">GREEN OIL INCORPORATED</div>
+            <div className="cert-org-sub">CLEANER ENERGY · HEALTHIER PLANET</div>
           </div>
 
           <div className="cert-title-kr">수 료 증</div>
@@ -1529,13 +1537,16 @@ function CompleteScreen({ employee, onLogout }) {
 
           <p className="cert-statement">
             위 사람은 Green Oil Inc.의 안전·근무수칙 교육과정
-            <br />전 {totalModules}개 모듈을 모두 만점으로 이수하였음을 증명합니다.
+            <br />
+            전 {totalModules}개 모듈을 모두 만점으로 이수하였음을 증명합니다.
           </p>
 
           <div className="cert-modules">
             {sortedResults.map((r) => (
               <div className="cert-module-row" key={r.moduleId}>
-                <Icon.Check className="icon-xs" />
+                <span className="cert-check-badge">
+                  <Icon.Check className="icon-xs" />
+                </span>
                 <span className="cert-module-title">
                   모듈 {r.moduleNo}. {r.moduleTitle}
                 </span>
@@ -1546,16 +1557,11 @@ function CompleteScreen({ employee, onLogout }) {
             ))}
           </div>
 
-          <div className="cert-footer">
-            <div className="cert-date">
-              <div className="cert-footer-label">이수일</div>
-              <div className="cert-footer-value">{fmtDate(employee.submittedAt)}</div>
-            </div>
-            <div className="cert-signature">
-              <div className="cert-sign-name">Green Oil Inc.</div>
-              <div className="cert-footer-label">안전관리팀</div>
-            </div>
+          <div className="cert-tagline">
+            <Icon.Leaf className="cert-tagline-icon" />
+            <span>SAFE DRIVING · CLEAN ENERGY · A GREENER TOMORROW</span>
           </div>
+          <div className="cert-date-small">이수일 {fmtDate(employee.submittedAt)}</div>
         </div>
       </div>
 
