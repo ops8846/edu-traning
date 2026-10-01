@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import "./index.css";
 import { db } from "./firebase";
+import certTemplate from "./assets/cert-template.webp";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 
 /* ============================================================
@@ -1505,34 +1506,9 @@ function CompleteScreen({ employee, onLogout }) {
 
   return (
     <div className="cert-shell">
-      <div className="cert-card">
-        <div className="cert-frame">
-          <div className="cert-corner tl" />
-          <div className="cert-corner tr" />
-          <div className="cert-corner bl" />
-          <div className="cert-corner br" />
-
-          {/* 모서리 잎사귀 장식 */}
-          <div className="cert-leaves tl" aria-hidden="true">
-            <Icon.Leaf className="leaf l1" />
-            <Icon.Leaf className="leaf l2" />
-            <Icon.Leaf className="leaf l3" />
-          </div>
-          <div className="cert-leaves br" aria-hidden="true">
-            <Icon.Leaf className="leaf l1" />
-            <Icon.Leaf className="leaf l2" />
-            <Icon.Leaf className="leaf l3" />
-          </div>
-
-          <div className="cert-header">
-            <img className="cert-logo-img" src={LOGO_WHITE_BG} alt="Green Oil Inc." />
-            <div className="cert-org">GREEN OIL INCORPORATED</div>
-            <div className="cert-org-sub">CLEANER ENERGY · HEALTHIER PLANET</div>
-          </div>
-
-          <div className="cert-title-kr">수 료 증</div>
-          <div className="cert-title-en">CERTIFICATE OF COMPLETION</div>
-
+      {/* 배경(로고·제목·잎사귀·테두리)은 템플릿 이미지, 이름/점수/이수일만 코드로 채움 */}
+      <div className="cert-card" style={{ backgroundImage: `url(${certTemplate})` }}>
+        <div className="cert-body">
           <div className="cert-name">{employee.name}</div>
 
           <p className="cert-statement">
@@ -1557,10 +1533,6 @@ function CompleteScreen({ employee, onLogout }) {
             ))}
           </div>
 
-          <div className="cert-tagline">
-            <Icon.Leaf className="cert-tagline-icon" />
-            <span>SAFE DRIVING · CLEAN ENERGY · A GREENER TOMORROW</span>
-          </div>
           <div className="cert-date-small">이수일 {fmtDate(employee.submittedAt)}</div>
         </div>
       </div>

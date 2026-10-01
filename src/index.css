@@ -1089,129 +1089,67 @@ input {
     var(--bg);
 }
 .cert-card {
-  max-width: 640px;
-  width: 100%;
-  background: var(--surface);
-  border-radius: 6px;
-  box-shadow: var(--shadow-lg);
-}
-.cert-frame {
   position: relative;
-  margin: 14px;
-  padding: 42px 40px 34px;
-  text-align: center;
-  box-shadow:
-    0 0 0 1px var(--brand-deep),
-    0 0 0 7px var(--surface),
-    0 0 0 8px var(--brand);
+  container-type: inline-size;
+  width: 100%;
+  max-width: 680px;
+  aspect-ratio: 1052 / 1488;
+  background-color: #fff;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  box-shadow: var(--shadow-lg);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
-.cert-corner {
+/* 템플릿 이미지의 제목 아래 ~ 하단 문구 위 빈 영역 (모든 크기는 카드 폭 기준 cqw) */
+.cert-body {
   position: absolute;
-  width: 22px;
-  height: 22px;
-  border: 3px solid var(--brand-deep);
-}
-.cert-corner.tl {
-  top: 14px;
-  left: 14px;
-  border-right: none;
-  border-bottom: none;
-}
-.cert-corner.tr {
-  top: 14px;
-  right: 14px;
-  border-left: none;
-  border-bottom: none;
-}
-.cert-corner.bl {
-  bottom: 14px;
-  left: 14px;
-  border-right: none;
-  border-top: none;
-}
-.cert-corner.br {
-  bottom: 14px;
-  right: 14px;
-  border-left: none;
-  border-top: none;
-}
-.cert-header {
+  top: 42%;
+  bottom: 16%;
+  left: 12%;
+  right: 12%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-.cert-logo-img {
-  width: 108px;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 4px;
-}
-.cert-org {
-  font-family: "Noto Serif KR", serif;
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 2px;
-  color: var(--brand-deep);
-}
-.cert-org-sub {
-  font-size: 10.5px;
-  letter-spacing: 2px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-}
-.cert-title-kr {
-  font-family: "Noto Serif KR", serif;
-  font-weight: 900;
-  font-size: 32px;
-  letter-spacing: 12px;
-  color: #1b2a1f;
-  margin: 22px 0 6px;
-}
-.cert-title-en {
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-bottom: 26px;
+  justify-content: center;
+  text-align: center;
 }
 .cert-name {
   font-family: "Noto Serif KR", serif;
   font-weight: 800;
-  font-size: 26px;
+  font-size: 5cqw;
   color: var(--brand-deep);
-  display: inline-block;
-  padding: 0 6px 10px;
-  border-bottom: 2px solid var(--brand);
-  margin-bottom: 20px;
+  padding: 0 1.2cqw 1.2cqw;
+  border-bottom: 0.3cqw solid var(--brand);
+  margin-bottom: 2.4cqw;
 }
 .cert-statement {
   color: var(--text-dim);
-  font-size: 13.5px;
-  line-height: 1.85;
-  margin: 0 0 28px;
+  font-size: 2.1cqw;
+  line-height: 1.8;
+  margin: 0 0 2.6cqw;
 }
 .cert-modules {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 1cqw;
+  width: 100%;
   text-align: left;
-  margin-bottom: 30px;
 }
 .cert-module-row {
   display: flex;
   align-items: center;
-  gap: 11px;
-  font-size: 13px;
-  padding: 13px 16px;
+  gap: 1.6cqw;
+  font-size: 1.9cqw;
+  padding: 1cqw 2.2cqw;
   background: var(--brand-soft);
-  border-radius: 12px;
+  border-radius: 1.8cqw;
   color: var(--text);
 }
 .cert-check-badge {
-  width: 22px;
-  height: 22px;
+  width: 3.2cqw;
+  height: 3.2cqw;
   border-radius: 50%;
   background: var(--brand);
   color: #ffffff;
@@ -1221,8 +1159,8 @@ input {
   flex-shrink: 0;
 }
 .cert-check-badge .icon-xs {
-  width: 12px;
-  height: 12px;
+  width: 55%;
+  height: 55%;
 }
 .cert-module-title {
   flex: 1;
@@ -1233,28 +1171,9 @@ input {
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
 }
-.cert-tagline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-  font-size: 10.5px;
-  letter-spacing: 2px;
-  color: var(--brand-deep);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.cert-tagline-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--brand);
-  flex-shrink: 0;
-}
 .cert-date-small {
-  margin-top: 10px;
-  font-size: 10.5px;
+  margin-top: 2.4cqw;
+  font-size: 1.7cqw;
   color: var(--text-dim);
 }
 .cert-close-btn {
@@ -1275,72 +1194,25 @@ input {
   color: var(--text);
 }
 
-/* 모서리 잎사귀 장식 */
-.cert-leaves {
-  position: absolute;
-  width: 140px;
-  height: 140px;
-  pointer-events: none;
-  z-index: 0;
-}
-.cert-leaves.tl {
-  top: -34px;
-  left: -34px;
-}
-.cert-leaves.br {
-  bottom: -34px;
-  right: -34px;
-  transform: rotate(180deg);
-}
-.cert-leaves .leaf {
-  position: absolute;
-}
-.cert-leaves .l1 {
-  width: 58px;
-  height: 58px;
-  top: 14px;
-  left: 6px;
-  color: var(--brand);
-  opacity: 0.6;
-  transform: rotate(-35deg);
-}
-.cert-leaves .l2 {
-  width: 44px;
-  height: 44px;
-  top: 2px;
-  left: 46px;
-  color: var(--brand-deep);
-  opacity: 0.45;
-  transform: rotate(18deg);
-}
-.cert-leaves .l3 {
-  width: 36px;
-  height: 36px;
-  top: 48px;
-  left: 30px;
-  color: var(--brand);
-  opacity: 0.35;
-  transform: rotate(70deg);
-}
-@media (max-width: 520px) {
-  .cert-modules {
-    grid-template-columns: 1fr;
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
   }
-  .cert-leaves {
-    width: 90px;
-    height: 90px;
+  .cert-shell {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    background: none;
   }
-  .cert-leaves .l1 {
-    width: 44px;
-    height: 44px;
+  .cert-card {
+    width: 210mm;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
   }
-  .cert-leaves .l2 {
-    width: 32px;
-    height: 32px;
-  }
-  .cert-leaves .l3 {
-    width: 24px;
-    height: 24px;
+  .cert-close-btn {
+    display: none;
   }
 }
 
