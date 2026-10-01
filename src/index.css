@@ -566,6 +566,9 @@ input {
 }
 .timeline-action {
   flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .timeline-status {
   font-size: 12.5px;
@@ -582,6 +585,20 @@ input {
   font-weight: 600;
 }
 
+.review-btn {
+  background: transparent;
+  color: var(--brand-deep);
+  border: 1px solid var(--brand);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.16s;
+}
+.review-btn:hover {
+  background: var(--brand-soft);
+}
 .start-btn {
   display: inline-flex;
   align-items: center;
@@ -1194,7 +1211,45 @@ input {
   color: var(--text);
 }
 
+.cert-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 30, 24, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+.cert-modal {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+.cert-modal-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--brand-soft);
+  color: var(--brand-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cert-modal p {
+  margin: 0 0 20px;
+  font-weight: 700;
+  color: var(--text);
+}
 @media print {
+  .cert-modal-backdrop {
+    display: none;
+  }
   @page {
     size: A4;
     margin: 0;
