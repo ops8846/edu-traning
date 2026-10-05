@@ -1425,36 +1425,70 @@ function VideoGuard({ src, watched, onComplete }) {
 }
 
 /* ============================================================
-   본문 표시 — 웹 주소(예: wsib.on.ca/reporting)는 자동으로 링크 처리합니다.
-   (강조 표시는 사용하지 않습니다)
+   핵심어 강조
+   - 본문에 **강조할 말** 로 적으면 직접 강조됩니다.
+   - 그 외에는 아래 규칙으로 자동 강조합니다.
+     ① 금지·의무 표현(반드시/절대/금지/즉시/필수/의무/불가) → 빨간 강조
+     ② 숫자+단위($금액, 시간, 분, 회, %, L, km 등)       → 녹색 강조
+     ③ "라벨: 설명" 형태의 앞부분 라벨                     → 굵게
    ============================================================ */
-const URL_RE = new RegExp(
-  "((?:https?:\\/\\/)?(?:www\\.)?[a-z0-9-]+(?:\\.[a-z0-9-]+)*\\.(?:ca|com|org|net|gov)(?:\\/[^\\s,)]*[^\\s,).])?)",
-  "gi"
-);
+const KW_WARN = "반드시|절대|금지|즉시|필수|의무|불가능|불가|하지 마|하지 않는다";
+const KW_AMOUNT = "\\$\\s?\\d[\\d,]*(?:\\.\\d+)?";
+const KW_QTY =
+  "\\d[\\d,]*(?:\\.\\d+)?(?:\\s?[~-]\\s?\\d[\\d,]*(?:\\.\\d+)?)?\\s?(?:%|시간|분|초|회|일|주|개월|개|명|대|건|세|년|달러|(?:km|cm|mm|kg|psi|m|L)(?![A-Za-z]))";
+const KW_NUM = `(?:${KW_AMOUNT}|${KW_QTY})(?:\\s?(?:이상|이하|이내|미만))?`;
+// 웹 주소(예: wsib.on.ca/reporting)는 자동으로 링크 처리
+const KW_URL =
+  "(?:https?:\\/\\/)?(?:www\\.)?[a-z0-9-]+(?:\\.[a-z0-9-]+)*\\.(?:ca|com|org|net|gov)(?:\\/[^\\s,)]*[^\\s,).])?";
+const KW_RE = new RegExp(`(\\*\\*[^*]+\\*\\*)|(${KW_URL})|(${KW_WARN})|(${KW_NUM})`, "g");
 
-function renderText(text) {
+// 웹 주소만 링크 처리하는 "일반 본문"용 정규식 (첫 번째 그룹은 일치하지 않음)
+const PLAIN_RE = new RegExp(`(a^)|(${KW_URL})`, "gi");
+
+// plain=true: 일반 본문(최하위 내용)은 강조 없이 링크만 처리
+function highlightText(text, withLead = false, plain = false) {
   if (typeof text !== "string" || !text) return text;
+  let lead = null;
+  let rest = text;
+  if (withLead) {
+    const m = text.match(/^([^:：\d※\n]{1,30})([:：])\s+(?=\S)/);
+    if (m && !/^\s*$/.test(m[1])) {
+      lead = m[1];
+      rest = text.slice(m[0].length);
+    }
+  }
   const out = [];
   let last = 0;
   let k = 0;
-  for (const m of text.matchAll(URL_RE)) {
-    if (m.index > last) out.push(text.slice(last, m.index));
-    out.push(
-      <a
-        className="text-link"
-        key={k++}
-        href={/^https?:\/\//i.test(m[0]) ? m[0] : `https://${m[0]}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {m[0]}
-      </a>
-    );
+  for (const m of rest.matchAll(plain ? PLAIN_RE : KW_RE)) {
+    if (m.index > last) out.push(rest.slice(last, m.index));
+    if (m[1]) out.push(<strong className="kw kw-key" key={k++}>{m[1].slice(2, -2)}</strong>);
+    else if (m[2])
+      out.push(
+        <a
+          className="kw-link"
+          key={k++}
+          href={/^https?:\/\//i.test(m[2]) ? m[2] : `https://${m[2]}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {m[2]}
+        </a>
+      );
+    else if (m[3]) out.push(<strong className="kw kw-warn" key={k++}>{m[3]}</strong>);
+    else out.push(<strong className="kw kw-num" key={k++}>{m[4]}</strong>);
     last = m.index + m[0].length;
   }
-  if (last < text.length) out.push(text.slice(last));
-  return out;
+  if (last < rest.length) out.push(rest.slice(last));
+  return lead ? (
+    <>
+      <strong className="kw-lead">{lead}</strong>
+      <span className="kw-lead-sep">: </span>
+      {out}
+    </>
+  ) : (
+    out
+  );
 }
 
 function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatched }) {
@@ -1471,7 +1505,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
         if (b.type === "text") {
           return (
             <p className="block-text" key={i}>
-              {renderText(b.text)}
+              {highlightText(b.text, false, true)}
             </p>
           );
         }
@@ -1479,7 +1513,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
           return (
             <ul className="block-bullets" key={i}>
               {b.items.map((it, j) => (
-                <li key={j}>{renderText(it.text)}</li>
+                <li key={j}>{highlightText(it.text, true)}</li>
               ))}
             </ul>
           );
@@ -1523,7 +1557,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
               {b.items.map((it, j) => (
                 <li key={j}>
                   <span className="step-no">{String(j + 1).padStart(2, "0")}</span>
-                  <span className="step-text">{renderText(it.text)}</span>
+                  <span className="step-text">{highlightText(it.text)}</span>
                 </li>
               ))}
             </ol>
@@ -1547,7 +1581,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
                       <div className="flow-title">{nd.title}</div>
                       <ul>
                         {nd.lines.map((ln, k) => (
-                          <li key={k}>{renderText(ln)}</li>
+                          <li key={k}>{highlightText(ln)}</li>
                         ))}
                       </ul>
                     </div>
@@ -1576,7 +1610,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
                   {rows.map((r, ri) => (
                     <tr key={ri}>
                       {r.map((c, ci) => (
-                        <td key={ci}>{renderText(c)}</td>
+                        <td key={ci}>{highlightText(c)}</td>
                       ))}
                     </tr>
                   ))}

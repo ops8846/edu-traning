@@ -803,12 +803,37 @@ input {
 .block-bullets li {
   margin-bottom: 8px;
 }
-/* 웹 주소 링크 */
-.text-link {
+/* 핵심어 강조 */
+.kw {
+  font-weight: 800;
+}
+.kw-key {
+  background: linear-gradient(transparent 55%, #ffe58a 55%);
+  color: var(--text);
+}
+.kw-warn {
+  color: #b3261e;
+}
+.kw-num {
+  color: var(--brand-deep);
+  background: var(--brand-soft);
+  border-radius: 4px;
+  padding: 0 3px;
+}
+.kw-link {
   color: #0b57d0;
+  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
   word-break: break-all;
+}
+.kw-lead {
+  font-weight: 800;
+  color: var(--brand-deep);
+}
+.kw-lead-sep {
+  color: var(--brand-deep);
+  font-weight: 700;
 }
 /* 단계 번호 블록 (언로딩 15단계 등) */
 .block-steps {
