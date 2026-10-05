@@ -18,8 +18,12 @@
       "chapterTitle": "1. 교육 목적 및 목표",
       "sections": [
         {
-          "sectionTitle": "1-1. 교육 목적",
+          "sectionTitle": "1-1. 교육 목적 및 목표",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "교육 목적"
+            },
             {
               "type": "bullets",
               "items": [
@@ -34,12 +38,11 @@
                 }
               ],
               "source": "GOI_운전자_교육_프로토콜.pptx (I. 교육 목적 & 목표)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "1-2. 교육 목표",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "교육 목표"
+            },
             {
               "type": "bullets",
               "items": [
@@ -75,18 +78,13 @@
       "chapterTitle": "2. 교육 구성",
       "sections": [
         {
-          "sectionTitle": "2. 교육 구성",
+          "sectionTitle": "2-1. 신규 운전자 오리엔테이션 구성 항목",
           "blocks": [
             {
               "type": "text",
               "text": "교육은 크게 ①신규 운전자 오리엔테이션과 ②보수 및 정기 교육(Samsara 활용)으로 구성된다.",
               "source": "GOI_운전자_교육_프로토콜.pptx (II. 교육 구성)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "2-1. 신규 운전자 오리엔테이션 구성 항목",
-          "blocks": [
+            },
             {
               "type": "bullets",
               "items": [
