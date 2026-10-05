@@ -216,9 +216,9 @@
             },
             {
               "type": "image",
-              "file": "module1-image1.png",
-              "size": "medium",
-              "caption": "위반 시 조치 단계: 구두경고 → 서면경고 → 정직 → 해고",
+              "file": "module1-image1.webp",
+              "size": "full",
+              "caption": "위반 시 조치 단계: 재교육 또는 멘토링 → 서면 경고 → 정직 또는 해고",
               "source": "GOI_운전자_교육_프로토콜.pptx (재교육 조치)"
             }
           ]
