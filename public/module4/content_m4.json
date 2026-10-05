@@ -16,11 +16,15 @@
   ],
   "chapters": [
     {
-      "chapterTitle": "1. Truck에 꼭 소지하고 다녀야 할 서류",
+      "chapterTitle": "1. 비치 서류 및 차량 점검 개요",
       "sections": [
         {
-          "sectionTitle": "1. Truck에 꼭 소지하고 다녀야 할 서류",
+          "sectionTitle": "1-1. 비치 서류 및 Truck Inspection(차량 점검) 개요",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "Truck에 꼭 소지하고 다녀야 할 서류"
+            },
             {
               "type": "bullets",
               "items": [
@@ -38,17 +42,11 @@
                 }
               ],
               "source": "Truck에_꼭_소지하고_다녀야_할_서류.docx"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "2. Truck Inspection (차량 점검) 개요",
-      "sections": [
-        {
-          "sectionTitle": "2. Truck Inspection (차량 점검) 개요",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Truck Inspection (차량 점검) 개요"
+            },
             {
               "type": "text",
               "text": "교육 커리큘럼 항목: 히노트럭 디젤의 특성, DPF/DEF/DPR 시스템 소개, 배기가스 정화장치의 문제점·진단·해결방법, 요소수 사용 및 DEF 사용의 중요성, 겨울철 주의사항, 오일유 및 소모성 부품 체크방법, 에어 서스펜션 사용방법, 브레이크 에어탱크 관리방법, 현장 실습 등."
@@ -64,10 +62,10 @@
       ]
     },
     {
-      "chapterTitle": "3. 히노트럭 디젤 배출가스 시스템 (SCR / DPF / DPR / DEF)",
+      "chapterTitle": "2. 히노트럭 디젤 배출가스 시스템 (SCR / DPF / DPR / DEF)",
       "sections": [
         {
-          "sectionTitle": "3-1. 기본 구조",
+          "sectionTitle": "2-1. 기본 구조",
           "blocks": [
             {
               "type": "bullets",
@@ -111,8 +109,12 @@
           ]
         },
         {
-          "sectionTitle": "3-2. DPR/DPF 작동 원리",
+          "sectionTitle": "2-2. DPR/DPF 작동 원리 및 자동 Regen",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "DPR/DPF 작동 원리"
+            },
             {
               "type": "bullets",
               "items": [
@@ -133,12 +135,11 @@
               "file": "module4-image5.jpg",
               "caption": "DPF 재생(연소) 과정 아이콘",
               "source": "GOI_Employee_Manual_2026-V6.pdf (M. DPR/DPF의 작동 원리)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "3-3. 자동 Regen (Auto Regeneration)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "자동 Regen (Auto Regeneration)"
+            },
             {
               "type": "text",
               "text": "DPR 자동 regen이 진행되는 경우 운전자가 별도로 할 일은 없다."
@@ -152,7 +153,7 @@
           ]
         },
         {
-          "sectionTitle": "3-4. 수동 Regen (Manual Regeneration)",
+          "sectionTitle": "2-3. 수동 Regen",
           "blocks": [
             {
               "type": "text",
@@ -223,8 +224,12 @@
           ]
         },
         {
-          "sectionTitle": "3-5. 요소수(DEF, Diesel Exhaust Fluid, Urea Fluid) 사용 및 중요성",
+          "sectionTitle": "2-4. 요소수(DEF) 사용 및 관련 경고등",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "요소수(DEF, Diesel Exhaust Fluid, Urea Fluid) 사용 및 중요성"
+            },
             {
               "type": "bullets",
               "items": [
@@ -244,12 +249,11 @@
               "file": "module4-image9.jpg",
               "caption": "SCR 관리방법 계기판 표시 예시 (요소수 잔량/경고 화면)",
               "source": "GOI_Employee_Manual_2026-V6.pdf (O. 요소수 사용 및 DEF 사용의 중요성) / GOI__Driver_Training_03_05_2022.pptx (요소수 사용및 DEF사용의 중요성)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "3-6. 요소수(DEF) 관련 경고등",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "요소수(DEF) 관련 경고등"
+            },
             {
               "type": "text",
               "text": "DEF Icon: DEF 레벨이 낮음을 경고. 아이콘 점등 시 가능한 빨리 5.7L(1.3 Imp. gal.) 이상 DEF를 보충해야 한다."
@@ -302,8 +306,12 @@
           ]
         },
         {
-          "sectionTitle": "3-7. 배기가스(DPR 시스템) 정화장치 문제점 진단 및 차량 자가진단",
+          "sectionTitle": "2-5. 자가진단 및 퓨즈 박스 위치",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "배기가스(DPR 시스템) 정화장치 문제점 진단 및 차량 자가진단"
+            },
             {
               "type": "bullets",
               "items": [
@@ -333,12 +341,11 @@
               "file": "module4-image13.jpg",
               "caption": "조수석 Dash Panel을 내려 퓨즈에 접근하는 모습",
               "source": "GOI_Employee_Manual_2026-V6.pdf (Q. 배기가스(DPR 시스템) 정화장치의 문제점, 진단, 및 차량 자가 진단)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "3-8. 퓨즈 박스 위치",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "퓨즈 박스 위치"
+            },
             {
               "type": "text",
               "text": "퓨즈 박스 뚜껑을 뒤집으면 안쪽에 옆과 유사한 퓨즈 위치 도면이 나온다. 빨간색으로 표기된 퓨즈를 30초간 빼고 다시 끼우며, 만약 퓨즈가 끊어진 것이 확인되면 예비 퓨즈로 교체한다 (SPARE FUSE, AMP 확인 필요)."
@@ -361,10 +368,10 @@
       ]
     },
     {
-      "chapterTitle": "4. 허브 오일 점검",
+      "chapterTitle": "3. 허브 오일 점검 및 타이어 점검",
       "sections": [
         {
-          "sectionTitle": "4. 허브 오일 점검",
+          "sectionTitle": "3-1. 허브 오일 점검",
           "blocks": [
             {
               "type": "bullets",
@@ -420,15 +427,14 @@
               "source": "GOI_Employee_Manual_2026-V6.pdf (S. 차량 점검 및 집중 케어 - 허브 오일)"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "5. 타이어 점검 및 비정상 타이어 마모",
-      "sections": [
+        },
         {
-          "sectionTitle": "5-1. Feathering (페더링, 깃털형 마모)",
+          "sectionTitle": "3-2. 비정상 타이어 마모 ①",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "Feathering (페더링, 깃털형 마모)"
+            },
             {
               "type": "table",
               "rows": [
@@ -451,12 +457,11 @@
               "size": "medium",
               "file": "module4-image20.jpg",
               "caption": "Feather wear (페더링 마모) 실제 사진"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-2. One Sided Wear (편측 마모)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "One Sided Wear (편측 마모)"
+            },
             {
               "type": "table",
               "rows": [
@@ -479,12 +484,11 @@
               "size": "medium",
               "file": "module4-image21.jpg",
               "caption": "One Sided Wear (Thrust/scrub angle wear) 실제 사진"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-3. Diagonal Wear (대각 마모)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Diagonal Wear (대각 마모)"
+            },
             {
               "type": "table",
               "rows": [
@@ -511,8 +515,12 @@
           ]
         },
         {
-          "sectionTitle": "5-4. Depression Wear (Intermediate, 중앙부 마모)",
+          "sectionTitle": "3-3. 비정상 타이어 마모 ②",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "Depression Wear (Intermediate, 중앙부 마모)"
+            },
             {
               "type": "table",
               "rows": [
@@ -535,12 +543,11 @@
               "size": "medium",
               "file": "module4-image23.jpg",
               "caption": "Depression Wear (Intermediate) 실제 사진"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-5. Multiple Flat Spotting Wear (다발성 편평 마모)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Multiple Flat Spotting Wear (다발성 편평 마모)"
+            },
             {
               "type": "table",
               "rows": [
@@ -563,12 +570,11 @@
               "size": "medium",
               "file": "module4-image24.jpg",
               "caption": "Flat-spotting (다발성 편평 마모) 실제 사진"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-6. Depression Wear (Shoulder, 숄더부 마모)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Depression Wear (Shoulder, 숄더부 마모)"
+            },
             {
               "type": "table",
               "rows": [
@@ -578,11 +584,11 @@
                 ],
                 [
                   "원인 (Cause)",
-                  "Faulty shocks, lateral runout, loose wheel bearings, mismount, severe balance issue. (쇼바 결함, 좌우 흔들림, 헐거운 휠 베어링, 잘못된 장착, 심각한 밸런스 불량)"
+                  "쇼바 결함, 좌우 흔들림, 헐거운 휠 베어링, 잘못된 장착, 심각한 밸런스 불량"
                 ],
                 [
                   "해결 (Fix)",
-                  "Check for mechanical problem. (기계적 결함 여부 점검)"
+                  "기계적 결함 여부 점검"
                 ]
               ]
             },
@@ -591,12 +597,11 @@
               "size": "medium",
               "file": "module4-image25.jpg",
               "caption": "Depression Wear (Shoulder) 실제 사진"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-7. Vehicle / Spin Damage (차량 접촉/스핀 손상)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Vehicle / Spin Damage (차량 접촉/스핀 손상)"
+            },
             {
               "type": "table",
               "rows": [
@@ -606,11 +611,11 @@
                 ],
                 [
                   "원인 (Cause)",
-                  "Contact with vehicle components (mud flap brackets, bumpers), or spinning the tires on ice or loose road surface (흙받이 브라켓·범퍼 등 차량 부품과의 접촉, 또는 빙판·미끄러운 노면에서의 타이어 헛돌음)"
+                  "흙받이 브라켓·범퍼 등 차량 부품과의 접촉, 또는 빙판·미끄러운 노면에서의 타이어 헛돌음"
                 ],
                 [
                   "해결 (Fix)",
-                  "Analyze cause. Ensure the tire does not contact vehicle components. Review driver practices. (원인 분석 후 타이어가 차량 부품에 닿지 않도록 조치하고, 운전 습관을 점검한다)"
+                  "원인 분석 후 타이어가 차량 부품에 닿지 않도록 조치하고, 운전 습관을 점검한다"
                 ]
               ]
             },
@@ -626,11 +631,15 @@
       ]
     },
     {
-      "chapterTitle": "6. Truck Daily Inspection (일일 점검) 체크리스트",
+      "chapterTitle": "4. 일일 점검 및 차량 관리",
       "sections": [
         {
-          "sectionTitle": "6. Truck Daily Inspection (일일 점검) 체크리스트",
+          "sectionTitle": "4-1. Truck Daily Inspection(일일 점검) 체크리스트 및 청소",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "Truck Daily Inspection (일일 점검) 체크리스트"
+            },
             {
               "type": "text",
               "text": "Vehicle Cleaning/Maintenance CheckList — 하기 항목을 체크 후 문제가 있을 경우 SAMSARA에 표기한다."
@@ -684,12 +693,11 @@
                   "Check hydraulic oil level"
                 ]
               ]
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-1. Cabin / Interior Cleaning (실내 청소)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Cabin / Interior Cleaning (실내 청소)"
+            },
             {
               "type": "bullets",
               "items": [
@@ -706,12 +714,11 @@
                   "text": "바닥 매트를 제거하여 별도로 진공청소한다."
                 }
               ]
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-2. Windows / Exterior Cleaning (외부 청소)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Windows / Exterior Cleaning (외부 청소)"
+            },
             {
               "type": "bullets",
               "items": [
@@ -728,55 +735,50 @@
               "source": "GOI_Employee_Manual_2026-V6.pdf (T. TRUCK DAILY INSPECTION, VEHICLE CLEANING/MAINTENANCE CHECKLIST)"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "7. 차량 관리 (일상 유지관리)",
-      "sections": [
+        },
         {
-          "sectionTitle": "7-1. 청결 유지 의무",
+          "sectionTitle": "4-2. 차량 관리 및 정비 시청각 자료",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "청결 유지 의무"
+            },
             {
               "type": "text",
               "text": "모든 드라이버는 각자 배정된 차량을 깨끗이 유지해야 할 의무가 있다. 차량 전체 세차는 외부 세차장(All truck lube and wash - 71 Stafford Dr, Brampton)을 이용하되, 호스 등 차량 외부 일부 및 내부는 각 드라이버가 직접 청결을 유지해야 한다.",
               "source": "드라이버_업무수칙-Rev. May 2024.docx (<차량 관리> 차량관리)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "7-2. 타 차량 운전 시 배큠 사용 유의사항",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "타 차량 운전 시 배큠 사용 유의사항"
+            },
             {
               "type": "text",
               "text": "차량 정비를 위해 가끔 다른 차량을 운전해야 할 때가 있다. 본인 주운행 차량의 배큠 사용은 트레이닝받은 대로 하면 되지만, 타 차량의 배큠 등을 사용할 때는 작동 방법이 다르므로 반드시 각 차량의 운전자에게 확인하거나 팀장에게 보고하여 정확한 사용법을 확인 후 사용한다.",
               "source": "드라이버_업무수칙-Rev. May 2024.docx (차량의 배큠)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "7-3. 소모품 관리",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "소모품 관리"
+            },
             {
               "type": "text",
               "text": "면장갑, 오일 장갑, 누유 모래, DEF, 드럼, 와셔액 등을 사용할 때는 관련 카카오워크 방에 사항을 올린다.",
               "source": "드라이버_업무수칙-Rev. May 2024.docx (소모품 관리)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "7-4. 겨울철 견인력 보조 장비",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "겨울철 견인력 보조 장비"
+            },
             {
               "type": "text",
               "text": "Tire Gripper(타이어 그리퍼) 설치 등 동절기 도로안전 관련 내용은 모듈2 <도로 운행 안전수칙>의 '동절기 안전 운행' 항목을 참고한다.",
               "source": "GOI_운전자_교육_프로토콜.pptx (Tire Gripper 설치 방법) — 상세 내용은 모듈2 수록"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "7-5 차량 정비 시청각 자료",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "차량 정비 시청각 자료"
+            },
             {
               "type": "text",
               "text": "※ 차량 배터리 방전 시 점프스타트 사용법"

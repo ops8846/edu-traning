@@ -17,11 +17,15 @@
   ],
   "chapters": [
     {
-      "chapterTitle": "1. 교통사고 발생 시 초동 대응",
+      "chapterTitle": "1. 교통사고 발생 시 대응",
       "sections": [
         {
-          "sectionTitle": "1-1. 안전한 곳으로 이동 (가능할 시)",
+          "sectionTitle": "1-1. 초동 대응 — 안전 이동·신고 대상·신고 전화번호",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "안전한 곳으로 이동 (가능할 시)"
+            },
             {
               "type": "text",
               "text": "본인의 안전과 사고차량 등을 확인한 후, 안전이 확보된 상황에서는 비상등을 켜고 차량 후면으로부터 3m 거리에 안전 삼각대나 안전 콘을 거치한다."
@@ -32,12 +36,11 @@
               "file": "module6-image1.jpg",
               "caption": "안전 삼각대 설치 실제 사진 — 차량 후면으로부터 일정 거리에 배치",
               "source": "GOI__Driver_Training_03_05_2022.pptx / 사고_대처_요령.pptx (1: 안전한 곳으로 이동) / GOI_Employee_Manual_2026-V6.pdf (C. Stay calm and gather information)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "1-2. 경찰이 필요한 상황 (신고 대상)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "경찰이 필요한 상황 (신고 대상)"
+            },
             {
               "type": "bullets",
               "items": [
@@ -76,12 +79,11 @@
               "file": "module6-image2.jpg",
               "caption": "경찰 신고가 필요한 사고 현장 예시",
               "source": "GOI_Employee_Manual_2026-V6.pdf (D. When to call the Police) / GOI__Driver_Training_03_05_2022.pptx (경찰이 필요할 시)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "1-3. 신고 전화번호",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "신고 전화번호"
+            },
             {
               "type": "bullets",
               "items": [
@@ -95,24 +97,22 @@
               "source": "GOI_Employee_Manual_2026-V6.pdf (D.) / GOI__Driver_Training_03_05_2022.pptx (경찰이 필요할 시)"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "2. 사고 신고 센터 (Collision Reporting Centre, CRC)",
-      "sections": [
+        },
         {
-          "sectionTitle": "2. 사고 신고 센터 (Collision Reporting Centre, CRC)",
+          "sectionTitle": "1-2. 사고 신고 센터(CRC) 및 상대방 정보 확보",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "사고 신고 센터 (Collision Reporting Centre, CRC)"
+            },
             {
               "type": "text",
               "text": "경찰 신고 대상이 아니면서 양측 손실이 합계 $1,000 이상으로 추정될 때는, 사고 발생 후 24시간 이내(법령상 '즉시')에 가까운 CRC로 가서 신고해야 한다."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "2-1. 현장에서 확보해야 할 상대방 정보 3가지",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "현장에서 확보해야 할 상대방 정보 3가지"
+            },
             {
               "type": "bullets",
               "items": [
@@ -157,8 +157,12 @@
           ]
         },
         {
-          "sectionTitle": "2-2. 토론토 내 CRC 위치",
+          "sectionTitle": "1-3. CRC 위치·토잉 주의사항·경미한 사고",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "토론토 내 CRC 위치"
+            },
             {
               "type": "bullets",
               "items": [
@@ -173,12 +177,11 @@
                 }
               ],
               "source": "GOI_Employee_Manual_2026-V6.pdf (G. 토잉 및 교통사고 신고센타)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "2-3. 토잉(Towing) 관련 주의사항",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "토잉(Towing) 관련 주의사항"
+            },
             {
               "type": "text",
               "text": "교통 사고 현장에 가장 먼저 오는 사람들은 토잉 회사 차량인 경우가 많다. 이들은 사고 당사자의 혼란한 상태를 악용하여 자신의 거래처 자동차 정비소(Auto body shop)로 차를 예인해 바가지를 씌우는 경우가 있으므로, 사고 현장에 오는 토잉차 드라이버와는 어떠한 사인도 하면 안 된다."
@@ -197,27 +200,25 @@
               "file": "module6-image6.jpg",
               "caption": "ABRAMS towing 차량 — 신용 가능한 유일한 계약 토잉업체",
               "source": "GOI_Employee_Manual_2026-V6.pdf (G.) / 드라이버_업무수칙-Rev. May 2024.docx (토잉이 필요한 경우)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "2-4. 경미한 사고 ($1,000 미만)",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "경미한 사고 ($1,000 미만)"
+            },
             {
               "type": "text",
               "text": "쌍방 피해액 합계가 $1,000 미만의 경미한 사고 시에는 상대방의 신원과 필요한 정보, 증인확보 등의 조치를 한 후 현장을 떠나도 된다.",
               "source": "GOI_Employee_Manual_2026-V6.pdf (G.)"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "3. 사고 시 세부 대처 요령 및 보고",
-      "sections": [
+        },
         {
-          "sectionTitle": "3-1. 증거 수집",
+          "sectionTitle": "1-4. 사고 시 세부 대처 요령 및 보고",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "증거 수집"
+            },
             {
               "type": "bullets",
               "items": [
@@ -235,32 +236,29 @@
                 }
               ],
               "source": "드라이버_업무수칙-Rev. May 2024.docx (4. 사고관리)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "3-2. 문제 보고 체계",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "문제 보고 체계"
+            },
             {
               "type": "text",
               "text": "업무 관련 문제(예: 워킹 장비가 필요한 경우, 워킹 현장에서 문제 발생 시 등)는 각 팀장에게 보고하도록 되어 있다.",
               "source": "드라이버_업무수칙-Rev. May 2024.docx (2. 문제 보고 체계)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "3-3. 그리스트랩 / 냄새나는 음식 찌꺼기가 많을 시",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "그리스트랩 / 냄새나는 음식 찌꺼기가 많을 시"
+            },
             {
               "type": "text",
               "text": "오피스로 전화해서 그리스트랩팀이 처리하도록 한다.",
               "source": "드라이버_업무수칙-Rev. May 2024.docx (1. 그리스트랩 혹은 냄새 나는 음식 찌꺼기가 많을 시)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "3-4. 사고 관련 서류·사진 제출 의무",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "사고 관련 서류·사진 제출 의무"
+            },
             {
               "type": "text",
               "text": "모든 사고 관련 문서/사진은 Operations 팀에게 전달되어야 하며, 누락·분실된 정보의 책임은 차량 운전자가 부담한다.",
@@ -271,10 +269,10 @@
       ]
     },
     {
-      "chapterTitle": "4. 사고 분류 및 대응 대책",
+      "chapterTitle": "2. 사고 분류 및 페널티",
       "sections": [
         {
-          "sectionTitle": "4. 사고 분류 및 대응 대책",
+          "sectionTitle": "2-1. 사고 분류 및 대응 대책",
           "blocks": [
             {
               "type": "text",
@@ -322,14 +320,9 @@
               "source": "차량_사고_및_수리_운영_계획 V3-2023-08-04.docx (가/나. 사고 분류 및 대응 대책) — GOI_Employee_Manual_2026-V6.pdf 내용과 일치"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "5. 사고·티켓 페널티 정책 (2년 누적 기준, GOI 드라이버 과실 시만 적용)",
-      "sections": [
+        },
         {
-          "sectionTitle": "5. 사고·티켓 페널티 정책 (2년 누적 기준, GOI 드라이버 과실 시만 적용)",
+          "sectionTitle": "2-2. 사고·티켓 페널티 정책 (2년 누적 기준, GOI 드라이버 과실 시만 적용)",
           "blocks": [
             {
               "type": "text",
@@ -342,12 +335,11 @@
                   "text": "초대형 사고: 차량 사고 및 건물 접촉 사고로 우리 측 잘못이며 인명피해가 없을 시 — 총 피해금액 $5,001 이상: TBA(추후 결정)"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-1. 일반 지역 기준",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "일반 지역 기준"
+            },
             {
               "type": "table",
               "rows": [
@@ -387,12 +379,11 @@
                   "개별 면담"
                 ]
               ]
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-2. 다운타운 지역 특례",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "다운타운 지역 특례"
+            },
             {
               "type": "text",
               "text": "위치적 특수성을 감안하여 다운타운 지역에 한해 면제 한도를 2년에 3회로 적용한다."
@@ -426,12 +417,11 @@
                   "개별 면담"
                 ]
               ]
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-3. 속도위반·신호위반·주차위반 지원 정책",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "속도위반·신호위반·주차위반 지원 정책"
+            },
             {
               "type": "bullets",
               "items": [
@@ -452,11 +442,15 @@
       ]
     },
     {
-      "chapterTitle": "6. 누유(Oil Spill) 대응 매뉴얼",
+      "chapterTitle": "3. 누유(Oil Spill) 대응",
       "sections": [
         {
-          "sectionTitle": "6. 누유(Oil Spill) 대응 매뉴얼",
+          "sectionTitle": "3-1. 누유 대응 매뉴얼 및 누유 모래 상시 관리 기준",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "누유(Oil Spill) 대응 매뉴얼"
+            },
             {
               "type": "bullets",
               "items": [
@@ -483,12 +477,11 @@
               "file": "module6-image8.jpg",
               "caption": "하수구 주변에 absorbent soil을 살포하는 실제 작업 사진",
               "source": "GOI_Employee_Manual_2026-V6.pdf (H. 누유 대응 메뉴얼) / GOI__Driver_Training_03_05_2022.pptx / 사고_대처_요령.pptx (누유 대응 메뉴얼)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-1. 누유 모래 상시 관리 기준",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "누유 모래 상시 관리 기준"
+            },
             {
               "type": "bullets",
               "items": [

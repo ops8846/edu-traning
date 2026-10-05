@@ -15,11 +15,15 @@
   ],
   "chapters": [
     {
-      "chapterTitle": "1. Used Cooking Oil (UCO) 기본 지식",
+      "chapterTitle": "1. UCO 기본 지식 및 계약",
       "sections": [
         {
-          "sectionTitle": "1-1. UCO란?",
+          "sectionTitle": "1-1. UCO 기본 지식 및 컨테이너 종류",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "UCO란?"
+            },
             {
               "type": "text",
               "text": "Green Oil Inc.에서 Recycle하는 Used Cooking Oil은 레스토랑 및 Commercial Building에서 쓰인 Deep Fryer Machine에서 나온 사용된 Vegetable Oil이다."
@@ -33,12 +37,11 @@
               "file": "module3-image1.jpg",
               "caption": "Used Cooking Oil (사용된 식용유) 예시",
               "source": "직원지침_및_참고사항_Guideline.xlsx (Used Cooking Oil 이란?)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "1-2. 회사 소속 컨테이너 종류",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "회사 소속 컨테이너 종류"
+            },
             {
               "type": "bullets",
               "items": [
@@ -79,15 +82,14 @@
               "source": "직원지침_및_참고사항_Guideline.xlsx (회사소속 Container)"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "2. 차량 비치서류 및 계약 절차",
-      "sections": [
+        },
         {
-          "sectionTitle": "2-1. 신규 계약 시 필요 서류",
+          "sectionTitle": "1-2. 계약 서류",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "신규 계약 시 필요 서류"
+            },
             {
               "type": "bullets",
               "items": [
@@ -106,12 +108,11 @@
               "type": "text",
               "text": "세 Form 모두 고객 서명을 받고, Agreement Form의 노란색 종이만 고객 카피로 전달한다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (Driver 차량 비치서류)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "2-2. 상황별 추가 서류",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "상황별 추가 서류"
+            },
             {
               "type": "bullets",
               "items": [
@@ -133,18 +134,21 @@
           ]
         },
         {
-          "sectionTitle": "2-3. 가격 정책",
+          "sectionTitle": "1-3. 가격 정책 및 Pay 방법",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "가격 정책"
+            },
             {
               "type": "text",
               "text": "신규 계약 시 기본 Price는 $0.15/L를 원칙으로 한다. 고객이 더 높은 금액을 원할 경우 마케팅부서와 상의 후 결정한다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (Price)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "2-4. Pay 방법",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Pay 방법"
+            },
             {
               "type": "bullets",
               "items": [
@@ -162,10 +166,10 @@
       ]
     },
     {
-      "chapterTitle": "3. 언로딩(Unloading) 작업 절차",
+      "chapterTitle": "2. 언로딩 및 계정 관리",
       "sections": [
         {
-          "sectionTitle": "3. 언로딩(Unloading) 작업 절차",
+          "sectionTitle": "2-1. 언로딩(Unloading) 작업 절차",
           "blocks": [
             {
               "type": "text",
@@ -244,15 +248,14 @@
               "source": "드라이버_업무수칙-Rev. May 2024.docx (<언로딩 작업 Unloading Work>)"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "4. 계정관리 및 업무 공조",
-      "sections": [
+        },
         {
-          "sectionTitle": "4-1. 계정 방문 및 관리",
+          "sectionTitle": "2-2. 계정 방문·영업활동·소모품·인스톨 지원",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "계정 방문 및 관리"
+            },
             {
               "type": "bullets",
               "items": [
@@ -267,12 +270,11 @@
                 }
               ],
               "source": "드라이버_업무수칙-Rev. May 2024.docx (<계정 관리 및 업무 공조> 계정 방문/계정 관리 및 오일 수거)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "4-2. 영업활동 및 커미션",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "영업활동 및 커미션"
+            },
             {
               "type": "bullets",
               "items": [
@@ -287,22 +289,20 @@
                 }
               ],
               "source": "드라이버_업무수칙-Rev. May 2024.docx (영업활동)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "4-3. 소모품 관리",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "소모품 관리"
+            },
             {
               "type": "text",
               "text": "누유 모래, DEF, 드럼, 와셔액 등을 사용할 때는 카카오워크 \"Drum/Bin\" 방에 사항을 올린다.",
               "source": "드라이버_업무수칙-Rev. May 2024.docx (소모품 관리)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "4-4. 인스톨 지원",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "인스톨 지원"
+            },
             {
               "type": "text",
               "text": "드라이버가 해당 지역으로 추가 인스톨 지원을 나갈 수 있으므로, 여분의 드럼을 실을 공간과 결착(래칫)을 준비해야 한다. 이름표 부착 요청이 들어올 수 있으니 토치가 차량에 비치되어 있는지, 작동이 잘 되는지 준비해 둔다.",
@@ -313,11 +313,15 @@
       ]
     },
     {
-      "chapterTitle": "5. 오일 픽업 시 발생할 수 있는 상황 및 대처법",
+      "chapterTitle": "3. 현장 상황별 대처",
       "sections": [
         {
-          "sectionTitle": "5-1. Oil Spill (오일 유출)했을 경우",
+          "sectionTitle": "3-1. 오일 유출·Sludge·업주 변경",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "Oil Spill (오일 유출)했을 경우"
+            },
             {
               "type": "bullets",
               "items": [
@@ -339,12 +343,11 @@
               "type": "text",
               "text": "※ 항상 차량에 헌 옷이나 Absorbent를 준비하고, Garbage Bag·삽·청소도구도 항상 지참한다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (Oil Spill했을경우)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-2. Sludge(찌꺼기)가 너무 많을 경우",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Sludge(찌꺼기)가 너무 많을 경우"
+            },
             {
               "type": "bullets",
               "items": [
@@ -356,12 +359,11 @@
                 }
               ],
               "source": "직원지침_및_참고사항_Guideline.xlsx (Sludge가 너무 많을경우)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-3. Owner(업주)가 바뀌었을 경우",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Owner(업주)가 바뀌었을 경우"
+            },
             {
               "type": "bullets",
               "items": [
@@ -380,8 +382,12 @@
           ]
         },
         {
-          "sectionTitle": "5-4. Oil 및 Drum/Bin 도난",
+          "sectionTitle": "3-2. 도난·고객 불만·차량 문제",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "Oil 및 Drum/Bin 도난"
+            },
             {
               "type": "bullets",
               "items": [
@@ -393,32 +399,29 @@
                 }
               ],
               "source": "직원지침_및_참고사항_Guideline.xlsx (Oil 및 Drum/Bin 도난)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-5. 고객 Complain(불만)이 있을 경우",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "고객 Complain(불만)이 있을 경우"
+            },
             {
               "type": "text",
               "text": "Marketing 부서에 반드시 report하고 상황을 설명한다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (고객 Complain이 있을경우)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-6. 차량 Vacuum Pump 문제 발생 시",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "차량 Vacuum Pump 문제 발생 시"
+            },
             {
               "type": "text",
               "text": "사무실에 연락하여 사장님이나 부사장님의 지시를 따라 대처한다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (오일픽업시 차량 Vacuum Pump에 문제가 발생할 경우)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-7. 차량에 문제가 있어 수리가 필요한 경우",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "차량에 문제가 있어 수리가 필요한 경우"
+            },
             {
               "type": "bullets",
               "items": [
@@ -438,25 +441,23 @@
               "source": "직원지침_및_참고사항_Guideline.xlsx (차량에 문제가 있어 고쳐야 할 경우)"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "6. Install 및 공장 내 상황 대처방법",
-      "sections": [
+        },
         {
-          "sectionTitle": "6-1. Install Team의 Bin 수거 시",
+          "sectionTitle": "3-3. Install Team 상황 대처",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "Install Team의 Bin 수거 시"
+            },
             {
               "type": "text",
               "text": "Office 스케줄에 따라 자사 빈 또는 타사 빈을 수거하도록 지시받았으나, 현장에서 고객 설명과 다르게 빈 상태가 엉망이거나 오일·슬러지 외 온갖 쓰레기가 담겨 있는 경우: 즉시 수거하지 않고 오피스에 바로 전화하여 상황을 전달하고 논의한다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (Install Team에서 레스토랑에 Bin을 수거할때)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-2. Install Team의 Bin 설치 시",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Install Team의 Bin 설치 시"
+            },
             {
               "type": "text",
               "text": "새 계정이나 상위계정 중 Bin/드럼 설치·교환 시 현장 설치가 불가능하거나 공간이 없어 곤란한 경우: 고객을 만날 수 있으면 상황을 설명 후 원하는 위치에 설치하고, 고객과 연락이 닿지 않으면 오피스에 전화하여 상황을 전달하고 논의한다.",
@@ -465,38 +466,39 @@
           ]
         },
         {
-          "sectionTitle": "6-3. 오일 Unloading 시 Hose가 터질 경우",
+          "sectionTitle": "3-4. 공장 내 설비 문제 및 NaOH 용액 사용",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "오일 Unloading 시 Hose가 터질 경우"
+            },
             {
               "type": "text",
               "text": "주위 작업자 또는 동료가 우선 Hose를 Tote에 유지하도록 하고, 차량 시동을 OFF한 후 Pump를 Stop한다. 즉시 공장장님에게 알린다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (오일 Unloading시 Hose가 터질경우)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-4. 오일 Loading/Unloading 시 Pump가 Shutdown될 경우",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "오일 Loading/Unloading 시 Pump가 Shutdown될 경우"
+            },
             {
               "type": "text",
               "text": "전원 연결 상태를 우선 확인하고 두꺼비집을 확인한다. 이상이 없으면 Pump를 재가동한다. 막힘이나 문제가 발견되면 공장장님에게 즉시 알린다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (오일 Loading/Unloading 시 Pump가 shutdown될 경우)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-5. Pump Strainer가 망가질 경우",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "Pump Strainer가 망가질 경우"
+            },
             {
               "type": "text",
               "text": "작업을 즉시 중지하고 여분의 Strainer로 교체한다. 망가진 Strainer는 공장장님에게 즉시 알린다.",
               "source": "직원지침_및_참고사항_Guideline.xlsx (오일 Loading/Unloading 시 Pump Strainer가 망가질 경우)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-6. 수산화나트륨(NaOH) 용액 사용",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "수산화나트륨(NaOH) 용액 사용"
+            },
             {
               "type": "bullets",
               "items": [
@@ -520,11 +522,15 @@
       ]
     },
     {
-      "chapterTitle": "7. 사내 공지사항 — 로딩/언로딩 관련 준수사항",
+      "chapterTitle": "4. 사내 공지사항 — 로딩/언로딩 관련 준수사항",
       "sections": [
         {
-          "sectionTitle": "7-1. 폐유 로딩 건 공지 (호스 커넥터)",
+          "sectionTitle": "4-1. 호스 커넥터 및 로딩 구간 바닥 청소",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "폐유 로딩 건 공지 (호스 커넥터)"
+            },
             {
               "type": "table",
               "rows": [
@@ -543,12 +549,11 @@
               "file": "module3-image5.jpg",
               "caption": "호스 커넥터 Do/Don't 실제 사진",
               "source": "GOI_운전자_교육_프로토콜.pptx (폐유 로딩 건 공지)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "7-2. 로딩 구간 바닥 청소 건 공지",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "로딩 구간 바닥 청소 건 공지"
+            },
             {
               "type": "table",
               "rows": [
