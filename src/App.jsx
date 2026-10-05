@@ -1442,7 +1442,11 @@ const KW_URL =
   "(?:https?:\\/\\/)?(?:www\\.)?[a-z0-9-]+(?:\\.[a-z0-9-]+)*\\.(?:ca|com|org|net|gov)(?:\\/[^\\s,)]*[^\\s,).])?";
 const KW_RE = new RegExp(`(\\*\\*[^*]+\\*\\*)|(${KW_URL})|(${KW_WARN})|(${KW_NUM})`, "g");
 
-function highlightText(text, withLead = false) {
+// 웹 주소만 링크 처리하는 "일반 본문"용 정규식 (첫 번째 그룹은 일치하지 않음)
+const PLAIN_RE = new RegExp(`(a^)|(${KW_URL})`, "gi");
+
+// plain=true: 일반 본문(최하위 내용)은 강조 없이 링크만 처리
+function highlightText(text, withLead = false, plain = false) {
   if (typeof text !== "string" || !text) return text;
   let lead = null;
   let rest = text;
@@ -1456,7 +1460,7 @@ function highlightText(text, withLead = false) {
   const out = [];
   let last = 0;
   let k = 0;
-  for (const m of rest.matchAll(KW_RE)) {
+  for (const m of rest.matchAll(plain ? PLAIN_RE : KW_RE)) {
     if (m.index > last) out.push(rest.slice(last, m.index));
     if (m[1]) out.push(<strong className="kw kw-key" key={k++}>{m[1].slice(2, -2)}</strong>);
     else if (m[2])
@@ -1501,7 +1505,7 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
         if (b.type === "text") {
           return (
             <p className="block-text" key={i}>
-              {highlightText(b.text, true)}
+              {highlightText(b.text, false, true)}
             </p>
           );
         }
