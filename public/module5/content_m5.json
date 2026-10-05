@@ -269,6 +269,12 @@
               "type": "text",
               "text": "※ 차량이 5분 이상 정지하면 자동으로 On Duty(Not Driving)로, 주행이 감지되면 자동으로 Driving으로 전환된다(Auto-Duty). 그 외 상태(Off Duty, Sleeper Berth)는 직접 눌러서 전환해야 한다.",
               "source": "Samsara_HOS_운전자_가이드.pdf (Duty Status 4가지)"
+            },
+            {
+              "type": "image",
+              "file": "duty-status-flow.svg",
+              "size": "large",
+              "caption": "근무 상태(Duty Status) 전환도 — 학습 자료의 설명(Auto-Duty 5분 규칙, Off Duty는 On Duty에서만)을 그림으로 정리"
             }
           ]
         },
