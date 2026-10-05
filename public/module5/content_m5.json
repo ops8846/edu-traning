@@ -911,7 +911,11 @@
         "Driving"
       ],
       "correct": 0,
-      "explain": "자료에 \"차량 5분 이상 정지 시 자동 전환됨\" 상태가 On Duty (Not Driving)로 명시되어 있다."
+      "explain": "자료에 \"차량 5분 이상 정지 시 자동 전환됨\" 상태가 On Duty (Not Driving)로 명시되어 있다.",
+      "image": {
+        "file": "duty-status-flow.svg",
+        "alt": "근무 상태(Duty Status) 전환도"
+      }
     },
     {
       "q": "주행이 감지되면 자동으로 전환되는 근무 상태로 명시된 것은?",
@@ -922,7 +926,11 @@
         "Off Duty"
       ],
       "correct": 0,
-      "explain": "자료에 \"Driving — 운전 중 주행이 감지되면 자동 전환됨\"이라고 명시되어 있다."
+      "explain": "자료에 \"Driving — 운전 중 주행이 감지되면 자동 전환됨\"이라고 명시되어 있다.",
+      "image": {
+        "file": "duty-status-flow.svg",
+        "alt": "근무 상태(Duty Status) 전환도"
+      }
     },
     {
       "q": "캐나다 기준 Drive(운전) 시간 한도로 자료에 명시된 것은?",
@@ -999,7 +1007,11 @@
         "Sleeper Berth 상태에서만 적용"
       ],
       "correct": 0,
-      "explain": "자료에 \"비근무(Off Duty)를 클릭. (단, On Duty 상태에서만 적용)\"이라고 명시되어 있다."
+      "explain": "자료에 \"비근무(Off Duty)를 클릭. (단, On Duty 상태에서만 적용)\"이라고 명시되어 있다.",
+      "image": {
+        "file": "duty-status-flow.svg",
+        "alt": "근무 상태(Duty Status) 전환도"
+      }
     },
     {
       "q": "로그인 상태로 남아 있으면 발생할 수 있는 문제로 자료에 명시된 것은?",

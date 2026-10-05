@@ -1077,6 +1077,22 @@ input {
   margin-bottom: 12px;
   color: var(--text);
 }
+.quiz-image {
+  margin: 0 0 12px;
+}
+.quiz-image img {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+}
+.quiz-image figcaption {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
 .quiz-options {
   display: flex;
   flex-direction: column;
