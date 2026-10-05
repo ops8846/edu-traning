@@ -652,7 +652,7 @@ input {
 
 /* ---------- 모듈 학습/퀴즈 ---------- */
 .module-body {
-  max-width: 760px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 44px 24px 90px;
 }
@@ -819,6 +819,13 @@ input {
   background: var(--brand-soft);
   border-radius: 4px;
   padding: 0 3px;
+}
+.kw-link {
+  color: #0b57d0;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  word-break: break-all;
 }
 .kw-lead {
   font-weight: 800;

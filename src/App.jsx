@@ -1437,7 +1437,10 @@ const KW_AMOUNT = "\\$\\s?\\d[\\d,]*(?:\\.\\d+)?";
 const KW_QTY =
   "\\d[\\d,]*(?:\\.\\d+)?\\s?(?:%|시간|분|초|회|일|주|개월|개|명|대|건|세|년|달러|(?:km|cm|mm|kg|psi|m|L)(?![A-Za-z]))";
 const KW_NUM = `(?:${KW_AMOUNT}|${KW_QTY})(?:\\s?(?:이상|이하|이내|미만))?`;
-const KW_RE = new RegExp(`(\\*\\*[^*]+\\*\\*)|(${KW_WARN})|(${KW_NUM})`, "g");
+// 웹 주소(예: wsib.on.ca/reporting)는 자동으로 링크 처리
+const KW_URL =
+  "(?:https?:\\/\\/)?(?:www\\.)?[a-z0-9-]+(?:\\.[a-z0-9-]+)*\\.(?:ca|com|org|net|gov)(?:\\/[^\\s,)]*[^\\s,).])?";
+const KW_RE = new RegExp(`(\\*\\*[^*]+\\*\\*)|(${KW_URL})|(${KW_WARN})|(${KW_NUM})`, "g");
 
 function highlightText(text, withLead = false) {
   if (typeof text !== "string" || !text) return text;
@@ -1456,8 +1459,20 @@ function highlightText(text, withLead = false) {
   for (const m of rest.matchAll(KW_RE)) {
     if (m.index > last) out.push(rest.slice(last, m.index));
     if (m[1]) out.push(<strong className="kw kw-key" key={k++}>{m[1].slice(2, -2)}</strong>);
-    else if (m[2]) out.push(<strong className="kw kw-warn" key={k++}>{m[2]}</strong>);
-    else out.push(<strong className="kw kw-num" key={k++}>{m[3]}</strong>);
+    else if (m[2])
+      out.push(
+        <a
+          className="kw-link"
+          key={k++}
+          href={/^https?:\/\//i.test(m[2]) ? m[2] : `https://${m[2]}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {m[2]}
+        </a>
+      );
+    else if (m[3]) out.push(<strong className="kw kw-warn" key={k++}>{m[3]}</strong>);
+    else out.push(<strong className="kw kw-num" key={k++}>{m[4]}</strong>);
     last = m.index + m[0].length;
   }
   if (last < rest.length) out.push(rest.slice(last));
