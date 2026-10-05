@@ -1317,15 +1317,6 @@ function ModuleScreen({
                         <div className="quiz-locked-answer">{q.options[q.correct]}</div>
                       ) : (
                         <>
-                          {q.image && (
-                            <figure className="quiz-image">
-                              <img
-                                src={withBase(`${mod.folder}/${q.image.file}`)}
-                                alt={q.image.alt || q.image.caption || ""}
-                              />
-                              {q.image.caption && <figcaption>{q.image.caption}</figcaption>}
-                            </figure>
-                          )}
                           <div className={`quiz-options ${isReadOnly ? "readonly" : ""}`}>
                             {q.options.map((opt, oi) => {
                               const isPicked = answers[qi] === oi;
