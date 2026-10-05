@@ -652,7 +652,7 @@ input {
 
 /* ---------- 모듈 학습/퀴즈 ---------- */
 .module-body {
-  max-width: 760px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 44px 24px 90px;
 }
