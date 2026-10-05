@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, Fragment } from "react";
 import "./index.css";
 import { db } from "./firebase";
 import certTemplate from "./assets/cert-template.webp";
@@ -1432,10 +1432,10 @@ function VideoGuard({ src, watched, onComplete }) {
      ② 숫자+단위($금액, 시간, 분, 회, %, L, km 등)       → 녹색 강조
      ③ "라벨: 설명" 형태의 앞부분 라벨                     → 굵게
    ============================================================ */
-const KW_WARN = "반드시|절대|금지|즉시|필수|의무|불가|하지 마|하지 않는다";
+const KW_WARN = "반드시|절대|금지|즉시|필수|의무|불가능|불가|하지 마|하지 않는다";
 const KW_AMOUNT = "\\$\\s?\\d[\\d,]*(?:\\.\\d+)?";
 const KW_QTY =
-  "\\d[\\d,]*(?:\\.\\d+)?\\s?(?:%|시간|분|초|회|일|주|개월|개|명|대|건|세|년|달러|(?:km|cm|mm|kg|psi|m|L)(?![A-Za-z]))";
+  "\\d[\\d,]*(?:\\.\\d+)?(?:\\s?[~-]\\s?\\d[\\d,]*(?:\\.\\d+)?)?\\s?(?:%|시간|분|초|회|일|주|개월|개|명|대|건|세|년|달러|(?:km|cm|mm|kg|psi|m|L)(?![A-Za-z]))";
 const KW_NUM = `(?:${KW_AMOUNT}|${KW_QTY})(?:\\s?(?:이상|이하|이내|미만))?`;
 // 웹 주소(예: wsib.on.ca/reporting)는 자동으로 링크 처리
 const KW_URL =
@@ -1545,6 +1545,47 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
                 </div>
               )}
             </figure>
+          );
+        }
+        if (b.type === "steps") {
+          return (
+            <ol className="block-steps" key={i}>
+              {b.items.map((it, j) => (
+                <li key={j}>
+                  <span className="step-no">{String(j + 1).padStart(2, "0")}</span>
+                  <span className="step-text">{highlightText(it.text)}</span>
+                </li>
+              ))}
+            </ol>
+          );
+        }
+        if (b.type === "flow") {
+          return (
+            <div
+              className={`block-flow ${b.tone === "warn" ? "warn" : ""} ${b.nodes.length > 3 ? "many" : ""}`}
+              key={i}
+            >
+              <div className="flow-row">
+                {b.nodes.map((nd, j) => (
+                  <Fragment key={j}>
+                    {j > 0 && (
+                      <span className="flow-arrow" aria-hidden="true">
+                        →
+                      </span>
+                    )}
+                    <div className="flow-node">
+                      <div className="flow-title">{nd.title}</div>
+                      <ul>
+                        {nd.lines.map((ln, k) => (
+                          <li key={k}>{highlightText(ln)}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Fragment>
+                ))}
+              </div>
+              {b.note && <p className="flow-note">{b.note}</p>}
+            </div>
           );
         }
         if (b.type === "table") {

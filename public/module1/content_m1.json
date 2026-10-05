@@ -15,7 +15,7 @@
   ],
   "chapters": [
     {
-      "chapterTitle": "1. 교육 목적 및 목표",
+      "chapterTitle": "1. 교육 개요",
       "sections": [
         {
           "sectionTitle": "1-1. 교육 목적 및 목표",
@@ -71,15 +71,42 @@
               "source": "GOI_운전자_교육_프로토콜.pptx (I. 교육 목적 & 목표)"
             }
           ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "2. 교육 구성",
-      "sections": [
+        },
         {
-          "sectionTitle": "2-1. 신규 운전자 오리엔테이션 구성 항목",
+          "sectionTitle": "1-2. 회사 소개 및 산업 방향성",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "회사 소개"
+            },
+            {
+              "type": "text",
+              "text": "Green Oil Inc.는 캐나다 온타리오주 노스 요크에 위치한 재활용 식용유 회사로, 식당과 식품 제조업체로부터 폐식용유를 수거하여 재생 가능한 에너지의 원료로 가공한다."
+            },
+            {
+              "type": "text",
+              "text": "목표: GOI는 폐기물 수집 및 1차 가공을 통해 이윤을 창출하는 동시에, 온실가스 배출 감소에 기여하는 것을 목표로 한다.",
+              "source": "GOI_운전자_교육_프로토콜.pptx (신규 오리엔테이션(2)(3))"
+            },
+            {
+              "type": "subheading",
+              "text": "산업 방향성 (참고)"
+            },
+            {
+              "type": "text",
+              "excludeFromQuiz": true,
+              "text": "참고로, 캐나다 정부와 석유·가스 업계는 온실가스 배출 감소, 탄소포집(CCUS), 바이오연료 등 친환경 전환을 함께 추진하고 있으며, GOI의 폐식용유 재활용 사업도 이러한 흐름과 맞닿아 있다.",
+              "source": "GOI_운전자_교육_프로토콜.pptx (신규 오리엔테이션(4))"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "1-3. 교육 구성 및 성과 검토",
+          "blocks": [
+            {
+              "type": "subheading",
+              "text": "신규 운전자 오리엔테이션 구성 항목"
+            },
             {
               "type": "text",
               "text": "교육은 크게 ①신규 운전자 오리엔테이션과 ②보수 및 정기 교육(Samsara 활용)으로 구성된다.",
@@ -105,37 +132,11 @@
                 }
               ],
               "source": "GOI_운전자_교육_프로토콜.pptx (신규 오리엔테이션)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "회사 소개",
-          "blocks": [
-            {
-              "type": "text",
-              "text": "Green Oil Inc.는 캐나다 온타리오주 노스 요크에 위치한 재활용 식용유 회사로, 식당과 식품 제조업체로부터 폐식용유를 수거하여 재생 가능한 에너지의 원료로 가공한다."
             },
             {
-              "type": "text",
-              "text": "목표: GOI는 폐기물 수집 및 1차 가공을 통해 이윤을 창출하는 동시에, 온실가스 배출 감소에 기여하는 것을 목표로 한다.",
-              "source": "GOI_운전자_교육_프로토콜.pptx (신규 오리엔테이션(2)(3))"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "산업 방향성 (참고)",
-          "blocks": [
-            {
-              "type": "text",
-              "excludeFromQuiz": true,
-              "text": "참고로, 캐나다 정부와 석유·가스 업계는 온실가스 배출 감소, 탄소포집(CCUS), 바이오연료 등 친환경 전환을 함께 추진하고 있으며, GOI의 폐식용유 재활용 사업도 이러한 흐름과 맞닿아 있다.",
-              "source": "GOI_운전자_교육_프로토콜.pptx (신규 오리엔테이션(4))"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "2-2. 보수 및 정기 교육 (변화의 흐름에 맞춘 교육)",
-          "blocks": [
+              "type": "subheading",
+              "text": "보수 및 정기 교육 (변화의 흐름에 맞춘 교육)"
+            },
             {
               "type": "bullets",
               "items": [
@@ -150,85 +151,11 @@
                 }
               ],
               "source": "GOI_운전자_교육_프로토콜.pptx (변화의 흐름에 맞춰가는 교육)"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "3. 교육 기록 및 절차",
-      "sections": [
-        {
-          "sectionTitle": "3-1. 자료 문서화",
-          "blocks": [
-            {
-              "type": "text",
-              "text": "모든 교육 이력은 운전자 인사 파일에 보관한다. 보관 서류 목록:"
             },
             {
-              "type": "bullets",
-              "items": [
-                {
-                  "text": "교육 완료 확인서"
-                },
-                {
-                  "text": "도로 주행 평가표"
-                },
-                {
-                  "text": "운전면허증, 운전 기록, 기타 자격증 사본"
-                },
-                {
-                  "text": "시정조치 또는 재교육 기록"
-                }
-              ],
-              "source": "GOI_운전자_교육_프로토콜.pptx (자료 문서화)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "3-2. 회사 지원",
-          "blocks": [
-            {
-              "type": "text",
-              "text": "일반 딜리버리 업체와 달리, 2024년부터 GOI는 고용된 드라이버의 DZ 면허증 취득을 지원한다. 트레이너 교육(Train-the-Trainer)도 이수 대상이다.",
-              "source": "GOI_운전자_교육_프로토콜.pptx (회사 지원)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "3-3. 재교육 조치 (안전 규정/교육 기준 위반 시)",
-          "blocks": [
-            {
-              "type": "bullets",
-              "items": [
-                {
-                  "text": "재교육 또는 멘토링"
-                },
-                {
-                  "text": "서면 경고"
-                },
-                {
-                  "text": "반복 위반 시 정직 또는 해고"
-                }
-              ]
+              "type": "subheading",
+              "text": "교육 성과 및 검토"
             },
-            {
-              "type": "image",
-              "file": "module1-image1.webp",
-              "size": "full",
-              "caption": "위반 시 조치 단계: 재교육 또는 멘토링 → 서면 경고 → 정직 또는 해고",
-              "source": "GOI_운전자_교육_프로토콜.pptx (재교육 조치)"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "chapterTitle": "4. 교육 성과 및 검토",
-      "sections": [
-        {
-          "sectionTitle": "4. 교육 성과 및 검토",
-          "blocks": [
             {
               "type": "text",
               "text": "본 교육 프로그램의 효과는 다음 지표를 통해 평가한다:"
@@ -260,11 +187,80 @@
       ]
     },
     {
-      "chapterTitle": "5. 기초 안전교육 — WSIB / WHMIS",
+      "chapterTitle": "2. 교육 기록 및 기초 안전교육",
       "sections": [
         {
-          "sectionTitle": "5-1. 문서 완료 및 소지 의무 (Documents to complete and carry)",
+          "sectionTitle": "2-1. 교육 기록·회사 지원·재교육 조치",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "자료 문서화"
+            },
+            {
+              "type": "text",
+              "text": "모든 교육 이력은 운전자 인사 파일에 보관한다. 보관 서류 목록:"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "교육 완료 확인서"
+                },
+                {
+                  "text": "도로 주행 평가표"
+                },
+                {
+                  "text": "운전면허증, 운전 기록, 기타 자격증 사본"
+                },
+                {
+                  "text": "시정조치 또는 재교육 기록"
+                }
+              ],
+              "source": "GOI_운전자_교육_프로토콜.pptx (자료 문서화)"
+            },
+            {
+              "type": "subheading",
+              "text": "회사 지원"
+            },
+            {
+              "type": "text",
+              "text": "일반 딜리버리 업체와 달리, 2024년부터 GOI는 고용된 드라이버의 DZ 면허증 취득을 지원한다. 트레이너 교육(Train-the-Trainer)도 이수 대상이다.",
+              "source": "GOI_운전자_교육_프로토콜.pptx (회사 지원)"
+            },
+            {
+              "type": "subheading",
+              "text": "재교육 조치 (안전 규정/교육 기준 위반 시)"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                {
+                  "text": "재교육 또는 멘토링"
+                },
+                {
+                  "text": "서면 경고"
+                },
+                {
+                  "text": "반복 위반 시 정직 또는 해고"
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "file": "module1-image1.webp",
+              "size": "full",
+              "caption": "위반 시 조치 단계: 재교육 또는 멘토링 → 서면 경고 → 정직 또는 해고",
+              "source": "GOI_운전자_교육_프로토콜.pptx (재교육 조치)"
+            }
+          ]
+        },
+        {
+          "sectionTitle": "2-2. 문서 소지 의무 및 신규 운전자 훈련",
+          "blocks": [
+            {
+              "type": "subheading",
+              "text": "문서 완료 및 소지 의무 (Documents to complete and carry)"
+            },
             {
               "type": "bullets",
               "items": [
@@ -288,12 +284,11 @@
                 }
               ],
               "source": "GOI_Employee_Manual_2026-V6.pdf (A. 문서 완료 및 소지)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "5-2. 신규 운전자 훈련 절차",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "신규 운전자 훈련 절차"
+            },
             {
               "type": "bullets",
               "items": [
@@ -330,7 +325,7 @@
           ]
         },
         {
-          "sectionTitle": "5-3. WHMIS 및 산업재해(WSIB) 대응 참고자료",
+          "sectionTitle": "2-3. WHMIS 및 산업재해(WSIB) 대응 참고자료",
           "blocks": [
             {
               "type": "text",
@@ -379,11 +374,47 @@
       ]
     },
     {
-      "chapterTitle": "6. 근무 수칙 — 출근·퇴근 및 업무 시간",
+      "chapterTitle": "3. 근무 수칙 — 출근·퇴근 및 업무 시간",
       "sections": [
         {
-          "sectionTitle": "6-1. 출근 및 출발 전 업무",
+          "sectionTitle": "3-1. 출근·준비·퇴근 절차",
           "blocks": [
+            {
+              "type": "subheading",
+              "text": "근무일 흐름 한눈에 보기"
+            },
+            {
+              "type": "flow",
+              "nodes": [
+                {
+                  "title": "출근 · 출발 전",
+                  "lines": [
+                    "환복 후 그날의 동선 계획, 차량 정비로 시작",
+                    "출근 시간은 매 15분 단위로 기록",
+                    "근무복으로 환복하는 시간은 출·퇴근 시간에 포함되지 않음"
+                  ]
+                },
+                {
+                  "title": "워킹 전 준비",
+                  "lines": [
+                    "개인 업무 장비(태블릿, 열쇠, 장갑, 캐쉬) 등 누락 여부 체크",
+                    "필요한 모래나 다른 장비를 사전에 체크하고 준비",
+                    "위 모든 사항은 30분 이내로 마칠 수 있도록 한다"
+                  ]
+                },
+                {
+                  "title": "퇴근",
+                  "lines": [
+                    "업무 종료 후 옷을 갈아입고 곧바로 퇴근 신청",
+                    "문단속, 전기 스위치 오프 여부를 확인한 후 알람을 켜고 퇴근"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "subheading",
+              "text": "출근 및 출발 전 업무"
+            },
             {
               "type": "bullets",
               "items": [
@@ -398,12 +429,11 @@
                 }
               ],
               "source": "드라이버_업무수칙-Rev. May 2024.docx (<출, 퇴근 및 업무 시간> 1)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-2. 워킹 전 준비 업무",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "워킹 전 준비 업무"
+            },
             {
               "type": "bullets",
               "items": [
@@ -418,12 +448,11 @@
                 }
               ],
               "source": "드라이버_업무수칙-Rev. May 2024.docx (2. 워킹 전 준비 업무)"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "6-3. 퇴근 절차",
-          "blocks": [
+            },
+            {
+              "type": "subheading",
+              "text": "퇴근 절차"
+            },
             {
               "type": "bullets",
               "items": [
@@ -572,7 +601,7 @@
         "MOE Driver's Training Certification"
       ],
       "correct": 0,
-      "explain": "5-1 문서 목록은 WSIB 교육, WHMIS 숙지, 보험서류, MOE Driver's Training Cert, CVOR Cert, Daily Inspection Log/ELD 이며 국제운전면허증은 없다."
+      "explain": "'문서 완료 및 소지 의무' 문서 목록은 WSIB 교육, WHMIS 숙지, 보험서류, MOE Driver's Training Cert, CVOR Cert, Daily Inspection Log/ELD 이며 국제운전면허증은 없다."
     },
     {
       "q": "Daily Inspection Log 또는 ELD 작성이 요구되는 기준으로 명시된 것은?",
@@ -583,7 +612,7 @@
         "신규 운전자만 해당"
       ],
       "correct": 0,
-      "explain": "5-1 항목에 \"Daily Inspection Log 또는 ELD 작성 완료 (160KM 반경 초과 운행 시)\"라고 명시되어 있다."
+      "explain": "'문서 완료 및 소지 의무' 항목에 \"Daily Inspection Log 또는 ELD 작성 완료 (160KM 반경 초과 운행 시)\"라고 명시되어 있다."
     },
     {
       "q": "신규 채용 운전자는 중형 트럭 운전 훈련을 얼마 동안 받는가?",
@@ -616,7 +645,7 @@
         "7일 이내"
       ],
       "correct": 0,
-      "explain": "5-3 절차에 \"고용주는 부상/질병 발생 3일 이내에 신고해야 하며\"라고 명시되어 있다."
+      "explain": "'WHMIS 및 산업재해(WSIB) 대응 참고자료'의 절차에 \"고용주는 부상/질병 발생 3일 이내에 신고해야 하며\"라고 명시되어 있다."
     },
     {
       "q": "근로자가 직접 WSIB에 부상/질병을 신고할 때 사용하는 양식은?",
@@ -638,7 +667,7 @@
         "30분 단위로 기록"
       ],
       "correct": 0,
-      "explain": "6-1에 \"출근 시간은 매 15분 단위로 기록한다. 예) 7시 5분 출근 → 7시 15분으로 기입\"이라고 명시되어 있다."
+      "explain": "'출근 및 출발 전 업무'에 \"출근 시간은 매 15분 단위로 기록한다. 예) 7시 5분 출근 → 7시 15분으로 기입\"이라고 명시되어 있다."
     },
     {
       "q": "다음 중 출·퇴근 시간에 포함되지 않는 것으로 명시된 것은?",
@@ -649,7 +678,7 @@
         "그날의 동선 계획 수립 시간"
       ],
       "correct": 0,
-      "explain": "6-1에 \"출·퇴근 시간에 포함되지 않는 사항: 근무복으로 환복하는 시간\"이라고 명시되어 있다."
+      "explain": "'출근 및 출발 전 업무'에 \"출·퇴근 시간에 포함되지 않는 사항: 근무복으로 환복하는 시간\"이라고 명시되어 있다."
     },
     {
       "q": "워킹 전 준비 업무는 몇 분 이내로 마쳐야 하는가?",
@@ -660,7 +689,7 @@
         "10분 이내"
       ],
       "correct": 0,
-      "explain": "6-2에 \"위 모든 사항은 30분 이내로 마칠 수 있도록 한다\"고 명시되어 있다."
+      "explain": "'워킹 전 준비 업무'에 \"위 모든 사항은 30분 이내로 마칠 수 있도록 한다\"고 명시되어 있다."
     }
   ]
 }
