@@ -820,6 +820,13 @@ input {
   border-radius: 4px;
   padding: 0 3px;
 }
+.kw-link {
+  color: #0b57d0;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  word-break: break-all;
+}
 .kw-lead {
   font-weight: 800;
   color: var(--brand-deep);
