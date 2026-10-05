@@ -27,56 +27,31 @@
               "text": "모든 운전자는 아래 3가지만 매일 지키면 된다."
             },
             {
-              "type": "subheading",
-              "text": "운행 전 — 차량 선택 + 사전점검(Pre-Trip)"
-            },
-            {
-              "type": "bullets",
-              "items": [
+              "type": "flow",
+              "nodes": [
                 {
-                  "text": "① Samsara Driver 앱 실행"
+                  "title": "운행 전 — 차량 선택 + 사전점검(Pre-Trip)",
+                  "lines": [
+                    "① Samsara Driver 앱 실행",
+                    "② 오늘 운행할 차량 선택",
+                    "③ 사전점검(Pre-Trip) 진행"
+                  ]
                 },
                 {
-                  "text": "② 오늘 운행할 차량 선택"
+                  "title": "운행 중 — 정상적으로 Trips 자동 기록",
+                  "lines": [
+                    "ELD 면제 운전자라도, 차량은 자동으로 Trip 데이터가 기록된다.",
+                    "→ 운전자는 따로 할 일이 없다."
+                  ]
                 },
                 {
-                  "text": "③ 사전점검(Pre-Trip) 진행"
-                }
-              ]
-            },
-            {
-              "type": "subheading",
-              "text": "운행 중 — 정상적으로 Trips 자동 기록"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                {
-                  "text": "ELD 면제 운전자라도, 차량은 자동으로 Trip 데이터가 기록된다."
-                },
-                {
-                  "text": "→ 운전자는 따로 할 일이 없다."
-                }
-              ]
-            },
-            {
-              "type": "subheading",
-              "text": "운행 후 — 사후점검(Post-Trip) + 차량 로그아웃(차량 Leave 클릭)"
-            },
-            {
-              "type": "bullets",
-              "items": [
-                {
-                  "text": "① 사후점검(Post-Trip) 진행"
-                },
-                {
-                  "text": "② 앱에서 반드시 계정이 아닌 '차량' 로그아웃(Logout)"
-                },
-                {
-                  "text": "③ 다음날 차량 배정 오류 예방"
-                },
-                {
-                  "text": "④ 차량이 계속 본인에게 Assign 되는 문제 방지"
+                  "title": "운행 후 — 사후점검(Post-Trip) + 차량 로그아웃(차량 Leave 클릭)",
+                  "lines": [
+                    "① 사후점검(Post-Trip) 진행",
+                    "② 앱에서 반드시 계정이 아닌 '차량' 로그아웃(Logout)",
+                    "③ 다음날 차량 배정 오류 예방",
+                    "④ 차량이 계속 본인에게 Assign 되는 문제 방지"
+                  ]
                 }
               ]
             },
@@ -528,21 +503,29 @@
               "text": "결함 발견 시:"
             },
             {
-              "type": "bullets",
-              "items": [
+              "type": "flow",
+              "nodes": [
                 {
-                  "text": "즉시 차량 운행 중지"
+                  "title": "결함 발견",
+                  "lines": [
+                    "즉시 차량 운행 중지"
+                  ]
                 },
                 {
-                  "text": "Samsara에 DVIR 제출"
+                  "title": "보고",
+                  "lines": [
+                    "Samsara에 DVIR 제출",
+                    "관리팀/정비팀에 알림"
+                  ]
                 },
                 {
-                  "text": "관리팀/정비팀에 알림"
-                },
-                {
-                  "text": "차량은 수리 후 정비사의 서명(Sign-Off) 확인 전까지 운행 불가"
+                  "title": "운행 재개",
+                  "lines": [
+                    "차량은 수리 후 정비사의 서명(Sign-Off) 확인 전까지 운행 불가"
+                  ]
                 }
-              ]
+              ],
+              "tone": "warn"
             }
           ]
         },
