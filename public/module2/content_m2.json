@@ -72,7 +72,12 @@
                   "퇴근(복귀)",
                   "언로딩덕 노트북에서 클릭"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:150",
+                null
+              ],
+              "maxWidth": 560
             },
             {
               "type": "subheading",
@@ -115,7 +120,12 @@
                   "SPARE (1호, 8호)",
                   "근무 형태 상관없이 1호, 8호 차량을 탈 경우"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:150",
+                null
+              ],
+              "maxWidth": 560
             },
             {
               "type": "image",
@@ -309,7 +319,12 @@
                   "Speeding ticket (과속)",
                   "$98.25"
                 ]
-              ]
+              ],
+              "colWidths": [
+                null,
+                "110px"
+              ],
+              "maxWidth": 440
             },
             {
               "type": "subheading",

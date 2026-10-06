@@ -1560,29 +1560,76 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
         }
         if (b.type === "table") {
           const [head, ...rows] = b.rows;
+          const cw = b.colWidths || [];
+          const colInfo = (head || rows[0] || []).map((_, ci) => {
+            const w = cw[ci];
+            if (typeof w === "string" && w.startsWith("fit:"))
+              return { fit: true, min: parseInt(w.slice(4), 10) };
+            return { w };
+          });
+          const hasFit = colInfo.some((c) => c.fit);
+          const wrapStyle = {};
+          if (b.maxWidth) wrapStyle.maxWidth = b.maxWidth;
+          if (b.align === "center") wrapStyle.margin = "0 auto 20px";
+          const cards = b.mobile === "cards";
           return (
-            <div className="block-table-wrap" key={i}>
-              <table className="block-table">
-                {head && (
-                  <thead>
-                    <tr>
-                      {head.map((c, j) => (
-                        <th key={j}>{c}</th>
+            <Fragment key={i}>
+              <div
+                className={"block-table-wrap" + (cards ? " has-cards" : "")}
+                style={wrapStyle}
+              >
+                <table className={"block-table" + (hasFit || !b.colWidths ? "" : " fixed")}>
+                  {b.colWidths && (
+                    <colgroup>
+                      {colInfo.map((c, ci) => (
+                        <col
+                          key={ci}
+                          style={
+                            c.fit
+                              ? { width: "1%" }
+                              : c.w == null
+                                ? undefined
+                                : { width: typeof c.w === "number" ? c.w + "%" : c.w }
+                          }
+                        />
                       ))}
-                    </tr>
-                  </thead>
-                )}
-                <tbody>
+                    </colgroup>
+                  )}
+                  {head && (
+                    <thead>
+                      <tr>
+                        {head.map((c, j) => (
+                          <th key={j} className={colInfo[j]?.fit ? "f" : undefined} style={colInfo[j]?.fit ? { minWidth: colInfo[j].min } : undefined}>{c}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                  )}
+                  <tbody>
+                    {rows.map((r, ri) => (
+                      <tr key={ri}>
+                        {r.map((c, ci) => (
+                          <td key={ci} className={colInfo[ci]?.fit ? "f" : undefined} style={colInfo[ci]?.fit ? { minWidth: colInfo[ci].min } : undefined}>{renderText(c)}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {cards && (
+                <div className="table-cards">
                   {rows.map((r, ri) => (
-                    <tr key={ri}>
+                    <div className="table-card" key={ri}>
                       {r.map((c, ci) => (
-                        <td key={ci}>{renderText(c)}</td>
+                        <div className="table-card-line" key={ci}>
+                          <span className="table-card-h">{head?.[ci]}</span>
+                          <span>{renderText(c)}</span>
+                        </div>
                       ))}
-                    </tr>
+                    </div>
                   ))}
-                </tbody>
-              </table>
-            </div>
+                </div>
+              )}
+            </Fragment>
           );
         }
         return null;
