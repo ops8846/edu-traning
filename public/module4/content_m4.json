@@ -286,7 +286,14 @@
                   "동일",
                   "속도 8km/h(5mph)로 제한"
                 ]
-              ]
+              ],
+              "colWidths": [
+                14,
+                38,
+                48
+              ],
+              "maxWidth": 680,
+              "align": "center"
             },
             {
               "type": "image",
@@ -450,7 +457,13 @@
                   "해결 (Fix)",
                   "Alignment 점검 및 타이어 위치 변경"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:100",
+                null
+              ],
+              "maxWidth": 620,
+              "align": "center"
             },
             {
               "type": "image",
@@ -477,7 +490,13 @@
                   "해결 (Fix)",
                   "Alignment 점검 및 마모된 부품 확인"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:100",
+                null
+              ],
+              "maxWidth": 620,
+              "align": "center"
             },
             {
               "type": "image",
@@ -504,7 +523,13 @@
                   "해결 (Fix)",
                   "서스펜션 장착 및 마모된 부품 확인, 운전 습관 확인"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:100",
+                null
+              ],
+              "maxWidth": 620,
+              "align": "center"
             },
             {
               "type": "image",
@@ -536,7 +561,13 @@
                   "해결 (Fix)",
                   "타이어 공기압 체크, 쇼바 체크, 경부하 시 고속 주행 삼가"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:100",
+                null
+              ],
+              "maxWidth": 620,
+              "align": "center"
             },
             {
               "type": "image",
@@ -563,7 +594,13 @@
                   "해결 (Fix)",
                   "쇼바, Air suspension 및 기타 기계적 문제를 점검하고 공기압 점검"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:100",
+                null
+              ],
+              "maxWidth": 620,
+              "align": "center"
             },
             {
               "type": "image",
@@ -590,7 +627,13 @@
                   "해결 (Fix)",
                   "기계적 결함 여부 점검"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:100",
+                null
+              ],
+              "maxWidth": 620,
+              "align": "center"
             },
             {
               "type": "image",
@@ -617,7 +660,13 @@
                   "해결 (Fix)",
                   "원인 분석 후 타이어가 차량 부품에 닿지 않도록 조치하고, 운전 습관을 점검한다"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:100",
+                null
+              ],
+              "maxWidth": 620,
+              "align": "center"
             },
             {
               "type": "image",
@@ -648,50 +697,41 @@
               "type": "table",
               "rows": [
                 [
+                  "점검 항목 (Visual check)",
                   "점검 항목 (Visual check)"
                 ],
                 [
-                  "Check engine, brake oil level"
-                ],
-                [
-                  "Check transmission oil level"
-                ],
-                [
-                  "Check power steering oil level"
-                ],
-                [
-                  "Check windshield washer fluid level/top up"
-                ],
-                [
-                  "Check hub seal cap oil level and check for any leakage"
-                ],
-                [
-                  "Check windshield for any chips/cracks"
-                ],
-                [
-                  "Check tire depth, pressure and unusual wear"
-                ],
-                [
+                  "Check engine, brake oil level",
                   "Check body damage and License plate - securely attached"
                 ],
                 [
+                  "Check transmission oil level",
                   "Check vehicle documents (CVOR, insurance, registration, emergency contact etc.)"
                 ],
                 [
+                  "Check power steering oil level",
                   "Check emergency equipment - spill kit"
                 ],
                 [
+                  "Check windshield washer fluid level/top up",
                   "Check in-cab items secured"
                 ],
                 [
+                  "Check hub seal cap oil level and check for any leakage",
                   "Pump check"
                 ],
                 [
+                  "Check windshield for any chips/cracks",
                   "Check vacuum pump oil level - more than 1/4"
                 ],
                 [
+                  "Check tire depth, pressure and unusual wear",
                   "Check hydraulic oil level"
                 ]
+              ],
+              "colWidths": [
+                50,
+                50
               ]
             },
             {

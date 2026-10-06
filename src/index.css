@@ -1016,6 +1016,59 @@ input {
 .block-table tr:last-child td {
   border-bottom: none;
 }
+.block-table.fixed {
+  table-layout: fixed;
+}
+.block-table .f {
+  white-space: nowrap;
+}
+.block-table td {
+  vertical-align: top;
+}
+.table-cards {
+  display: none;
+}
+@media (max-width: 640px) {
+  .block-table col {
+    width: auto !important;
+  }
+  .block-table.fixed {
+    table-layout: auto;
+  }
+  .block-table th,
+  .block-table td {
+    min-width: 4.2em;
+  }
+  .block-table th {
+    white-space: normal;
+  }
+  .block-table th.f {
+    white-space: nowrap;
+  }
+  .block-table-wrap.has-cards {
+    display: none;
+  }
+  .table-cards {
+    display: block;
+    margin: 0 0 20px;
+  }
+  .table-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+  .table-card-line {
+    padding: 3px 0;
+    line-height: 1.5;
+  }
+  .table-card-h {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--text-dim);
+    margin-right: 8px;
+  }
+}
 
 .quiz-stub {
   text-align: center;

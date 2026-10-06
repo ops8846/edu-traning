@@ -300,7 +300,12 @@
                   "Cycle",
                   "70시간(7일) 또는 120시간(14일)"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:140",
+                null
+              ],
+              "maxWidth": 520
             },
             {
               "type": "text",
@@ -625,7 +630,12 @@
                   "Mudguard (흙받이)",
                   "공통"
                 ]
-              ]
+              ],
+              "colWidths": [
+                null,
+                "210px"
+              ],
+              "maxWidth": 600
             },
             {
               "type": "subheading",
@@ -650,7 +660,12 @@
                   "Mudguard (흙받이)",
                   "공통"
                 ]
-              ]
+              ],
+              "colWidths": [
+                null,
+                "210px"
+              ],
+              "maxWidth": 600
             }
           ]
         },
@@ -704,7 +719,12 @@
                   "Wheels and Rims (휠/림)",
                   "공통"
                 ]
-              ]
+              ],
+              "colWidths": [
+                null,
+                "210px"
+              ],
+              "maxWidth": 600
             },
             {
               "type": "text",
@@ -745,7 +765,12 @@
                   "Windshield Wipers (와이퍼)",
                   "공통"
                 ]
-              ]
+              ],
+              "colWidths": [
+                null,
+                "210px"
+              ],
+              "maxWidth": 600
             },
             {
               "type": "subheading",
@@ -771,7 +796,12 @@
                   "공통"
                 ]
               ],
-              "source": "DVIR.png (Green Oil Inc. Samsara DVIR 점검 화면)"
+              "source": "DVIR.png (Green Oil Inc. Samsara DVIR 점검 화면)",
+              "colWidths": [
+                null,
+                "210px"
+              ],
+              "maxWidth": 600
             }
           ]
         }

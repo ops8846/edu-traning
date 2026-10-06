@@ -245,7 +245,7 @@
             {
               "type": "image",
               "size": "medium",
-              "file": "module6-image6.jpg",
+              "file": "module6-image6.webp",
               "caption": "ABRAMS towing 차량 — 신용 가능한 유일한 계약 토잉업체",
               "source": "GOI_Employee_Manual_2026-V6.pdf (G.) / 드라이버_업무수칙-Rev. May 2024.docx (토잉이 필요한 경우)"
             },
@@ -356,7 +356,13 @@
                   "티켓 사진을 찍어 담당자에게 전송."
                 ]
               ],
-              "source": "차량_사고_및_수리_운영_계획 V3-2023-08-04.docx (가/나. 사고 분류 및 대응 대책) — GOI_Employee_Manual_2026-V6.pdf 내용과 일치"
+              "source": "차량_사고_및_수리_운영_계획 V3-2023-08-04.docx (가/나. 사고 분류 및 대응 대책) — GOI_Employee_Manual_2026-V6.pdf 내용과 일치",
+              "colWidths": [
+                14,
+                24,
+                62
+              ],
+              "mobile": "cards"
             }
           ]
         },
@@ -417,7 +423,13 @@
                   "20% / 80%",
                   "개별 면담"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:170",
+                "fit:230",
+                null
+              ],
+              "maxWidth": 600
             },
             {
               "type": "subheading",
@@ -455,7 +467,13 @@
                   "30% / 70%",
                   "개별 면담"
                 ]
-              ]
+              ],
+              "colWidths": [
+                "fit:170",
+                "fit:230",
+                null
+              ],
+              "maxWidth": 600
             },
             {
               "type": "subheading",
