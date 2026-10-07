@@ -1249,6 +1249,7 @@ function ModuleScreen({
               watchedVideos={watchedVideos}
               onVideoWatched={onVideoWatched}
               openAll={returnQ !== null}
+              autoPlayFirst={returnQ === null}
             />
             {videoLocked && (
               <div className="video-lock-notice">
@@ -1439,8 +1440,15 @@ function ModuleScreen({
 
 /* 학습 섹션의 본문 블록(text/bullets/subheading/image/video/table)을 순서대로 렌더링 */
 /* 영상을 끝까지 봐야 완료 처리되고, 이미 본 지점보다 앞으로는 이동할 수 없는 재생 컴포넌트 */
-function VideoGuard({ src, watched, onComplete }) {
+function VideoGuard({ src, watched, onComplete, autoPlay, registerRef, playFn, onEndedNext }) {
   const maxTimeRef = useRef(watched ? Infinity : 0);
+  const vref = useRef(null);
+
+  // 영상 요소를 부모에 등록하고, 첫 영상이면 열리자마자 재생합니다
+  useEffect(() => {
+    if (registerRef) registerRef(vref.current);
+    if (autoPlay && playFn && vref.current) playFn(vref.current);
+  }, [src]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // 다른 영상으로 바뀌거나(=src 변경), 이미 완료 처리된 영상이면 잠금을 풉니다
   useEffect(() => {
@@ -1470,11 +1478,13 @@ function VideoGuard({ src, watched, onComplete }) {
   function handleEnded() {
     maxTimeRef.current = Infinity;
     onComplete();
+    if (onEndedNext) onEndedNext(); // 다음 영상이 있으면 이어서 재생
   }
 
   return (
     <video
       key={src}
+      ref={vref}
       src={src}
       controls
       controlsList="nodownload noplaybackrate"
@@ -1521,9 +1531,46 @@ function renderText(text) {
   return out;
 }
 
-function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatched, openAll }) {
+function ContentBlocks({
+  blocks,
+  folder,
+  sectionIdx,
+  watchedVideos,
+  onVideoWatched,
+  openAll,
+  autoPlayFirst,
+}) {
+  // 이 페이지의 영상 목록(순서대로): 첫 영상은 바로 재생, 끝나면 다음 영상을 이어서 재생
+  const videoIdxs = blocks.map((b, i) => (b.type === "video" ? i : -1)).filter((i) => i >= 0);
+  const videoEls = useRef([]);
+  const mutedRef = useRef(false);
+  const [autoMuted, setAutoMuted] = useState(false);
+
+  function playVideo(el) {
+    if (!el) return;
+    el.muted = mutedRef.current;
+    const p = el.play();
+    if (p && p.catch) {
+      p.catch((err) => {
+        // 브라우저가 소리 있는 자동재생을 막은 경우(NotAllowedError)에만,
+        // 소리를 끈 채로라도 시작합니다
+        if (mutedRef.current || !err || err.name !== "NotAllowedError") return;
+        mutedRef.current = true;
+        el.muted = true;
+        setAutoMuted(true);
+        const p2 = el.play();
+        if (p2 && p2.catch) p2.catch(() => {});
+      });
+    }
+  }
+
   return (
     <div className="content-blocks">
+      {autoMuted && (
+        <div className="video-guard-tag">
+          브라우저 설정으로 소리가 꺼진 채 시작되었습니다. 영상의 스피커 버튼을 눌러 소리를 켜세요.
+        </div>
+      )}
       {blocks.map((b, i) => {
         if (b.type === "subheading") {
           return (
@@ -1590,6 +1637,18 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
                 src={withBase(`${folder}/${b.file}`)}
                 watched={isWatched}
                 onComplete={() => onVideoWatched && onVideoWatched(videoKey)}
+                autoPlay={!!autoPlayFirst && videoIdxs.indexOf(i) === 0}
+                registerRef={(el) => {
+                  videoEls.current[videoIdxs.indexOf(i)] = el;
+                }}
+                playFn={playVideo}
+                onEndedNext={() => {
+                  const next = videoEls.current[videoIdxs.indexOf(i) + 1];
+                  if (next) {
+                    next.scrollIntoView({ block: "center", behavior: "smooth" });
+                    playVideo(next);
+                  }
+                }}
               />
               {b.caption && <figcaption>{b.caption}</figcaption>}
               {!isWatched && (
