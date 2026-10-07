@@ -311,6 +311,8 @@ export default function App() {
   ); // idle | loading | ready | error
   // 영상을 끝까지 본 블록만 기록 (key: "섹션인덱스_블록인덱스")
   const [watchedVideos, setWatchedVideos] = useState({});
+  // "자세한 설명 보기"를 열어 본 기록 (키: "섹션인덱스_d블록인덱스")
+  const [openedDetails, setOpenedDetails] = useState({});
 
   // 관리자 상태
   const [adminList, setAdminList] = useState([]);
@@ -474,6 +476,7 @@ export default function App() {
     setModuleContent(null);
     setContentStatus("loading");
     setWatchedVideos({});
+    setOpenedDetails({});
 
     fetch(contentUrl(MODULES[idx]))
       .then((res) => {
@@ -544,6 +547,10 @@ export default function App() {
   // 영상을 끝까지 재생했을 때 호출 (key: "섹션인덱스_블록인덱스")
   function markVideoWatched(key) {
     setWatchedVideos((prev) => ({ ...prev, [key]: true }));
+  }
+
+  function markDetailOpened(key) {
+    setOpenedDetails((prev) => (prev[key] ? prev : { ...prev, [key]: true }));
   }
 
   function selectAnswer(qIdx, optIdx) {
@@ -805,6 +812,8 @@ export default function App() {
           onStartRetryEdit={startRetryEdit}
           watchedVideos={watchedVideos}
           onVideoWatched={markVideoWatched}
+          openedDetails={openedDetails}
+          onDetailOpened={markDetailOpened}
           onNextSection={nextSection}
           onPrevSection={prevSection}
           onSelectAnswer={selectAnswer}
@@ -1135,6 +1144,8 @@ function ModuleScreen({
   lastRoundIndices,
   watchedVideos,
   onVideoWatched,
+  openedDetails,
+  onDetailOpened,
   onNextSection,
   onPrevSection,
   onSelectAnswer,
@@ -1183,6 +1194,16 @@ function ModuleScreen({
     ({ i }) => watchedVideos[`${sectionIdx}_${i}`]
   );
   const videoLocked = !reviewOnly && sectionVideoBlocks.length > 0 && !allVideosWatched;
+
+  // 현재 섹션의 "자세한 설명 보기"를 모두 열어 봐야 다음으로 넘어갈 수 있음
+  const sectionDetailKeys = current
+    ? current.blocks
+        .map((b, i) => (b.type === "details" ? `${sectionIdx}_d${i}` : null))
+        .filter(Boolean)
+    : [];
+  const unopenedDetails = sectionDetailKeys.filter((k) => !(openedDetails && openedDetails[k]));
+  const detailsLocked = !reviewOnly && unopenedDetails.length > 0;
+  const navLocked = videoLocked || detailsLocked;
 
   return (
     <div className="dash-shell">
@@ -1248,6 +1269,7 @@ function ModuleScreen({
               sectionIdx={sectionIdx}
               watchedVideos={watchedVideos}
               onVideoWatched={onVideoWatched}
+              onDetailOpened={onDetailOpened}
               openAll={returnQ !== null}
               autoPlayFirst={returnQ === null}
             />
@@ -1255,6 +1277,12 @@ function ModuleScreen({
               <div className="video-lock-notice">
                 이 섹션의 영상을 끝까지 시청해야 다음으로 넘어갈 수 있습니다. (구간
                 이동/빨리감기는 되지 않습니다)
+              </div>
+            )}
+            {detailsLocked && returnQ === null && (
+              <div className="video-lock-notice">
+                이 페이지의 '자세한 설명 보기'를 모두 열어서 확인해야 다음으로 넘어갈 수
+                있습니다. (아직 열지 않은 항목 {unopenedDetails.length}개)
               </div>
             )}
             {returnQ !== null ? (
@@ -1274,7 +1302,7 @@ function ModuleScreen({
               )}
               <button
                 className="submit-btn"
-                disabled={videoLocked}
+                disabled={navLocked}
                 onClick={onNextSection}
               >
                 {sectionIdx < flat.length - 1
@@ -1537,6 +1565,7 @@ function ContentBlocks({
   sectionIdx,
   watchedVideos,
   onVideoWatched,
+  onDetailOpened,
   openAll,
   autoPlayFirst,
 }) {
@@ -1585,6 +1614,10 @@ function ContentBlocks({
               className="block-details"
               key={`${i}-${openAll ? "o" : "c"}`}
               open={!!openAll}
+              onToggle={(e) => {
+                if (e.currentTarget.open && !openAll && onDetailOpened)
+                  onDetailOpened(`${sectionIdx}_d${i}`);
+              }}
             >
               <summary>{b.title || "자세히 보기"}</summary>
               <ContentBlocks
