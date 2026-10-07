@@ -180,14 +180,14 @@
       ]
     },
     {
-      "chapterTitle": "2. HOS(근무시간 관리) — 160km 이상만 적용",
+      "chapterTitle": "2. HOS(근무시간 관리) — 160km 초과 시 적용",
       "sections": [
         {
           "sectionTitle": "2-1. HOS 개요 및 근무 상태(Duty Status) 4가지",
           "blocks": [
             {
               "type": "subheading",
-              "text": "HOS(근무시간 관리) — 160km 이상만 적용"
+              "text": "HOS(근무시간 관리) — 160km 초과 시 적용"
             },
             {
               "type": "text",
@@ -219,7 +219,7 @@
             {
               "type": "image",
               "file": "module5-image5.jpg",
-              "caption": "※ 운전자가 사업장(운행 시작지점)으로부터 160km 이외에 운행할 경우 HOS가 적용된다."
+              "caption": "※ 운전자가 사업장(운행 시작지점)으로부터 160km를 초과해 운행할 경우 HOS가 적용된다."
             },
             {
               "type": "image",
@@ -473,7 +473,7 @@
               "type": "bullets",
               "items": [
                 {
-                  "text": "✔ 사전 점검(Pre-Trip Inspection): 운행 전 Schedule 1*(Ontario Commercial Vehicle Daily Inspection 규정) 항목을 모두 확인하고, 차량이 안전하게 운행 가능한지 확인한다."
+                  "text": "✔ 사전 점검(Pre-Trip Inspection): 운행 전 Schedule 1(온타리오 상용차 검사 규정 O. Reg. 199/07의 일일 점검 기준표) 항목을 모두 확인하고, 차량이 안전하게 운행 가능한지 확인한다."
                 },
                 {
                   "text": "✔ 사후 점검(Post-Trip Inspection): 근무 종료 시점에 차량의 결함 여부를 확인한다."
@@ -488,16 +488,19 @@
             },
             {
               "type": "subheading",
-              "text": "DVIR 제출이 필요 없는 경우"
+              "text": "DVIR 제출 기준"
             },
             {
               "type": "bullets",
               "items": [
                 {
-                  "text": "결함이 없는 경우에는 DVIR 제출이 필요 없다."
+                  "text": "점검(Schedule 1)은 온타리오 법규상 매일 해야 하는 필수 사항이다."
                 },
                 {
-                  "text": "하지만 검사는 반드시 수행하고, 검사 수행 여부를 설명할 수 있어야 한다."
+                  "text": "회사 내규에 따라 결함 유무와 관계없이 매번 Pre-Trip과 Post-Trip DVIR을 작성하여 제출한다."
+                },
+                {
+                  "text": "검사는 반드시 수행하고, 검사 수행 여부를 설명할 수 있어야 한다."
                 }
               ]
             },
@@ -553,11 +556,11 @@
             },
             {
               "type": "text",
-              "text": "\"I performed my pre-trip today using Ontario Schedule 1. My company collects DVIRs through Samsara. I will submit a DVIR if I find any defects.\""
+              "text": "\"I did my pre-trip today per Ontario Schedule 1. I submit a DVIR in Samsara for every pre-trip and post-trip.\""
             },
             {
               "type": "text",
-              "text": "(한국어 참고) \"저는 160km 면제 운전자로, Schedule 1에 따라 사전점검을 수행했습니다. 결함이 발견되면 Samsara를 통해 DVIR을 제출합니다.\""
+              "text": "(한국어 참고) \"Schedule 1에 따라 오늘 사전점검을 했습니다. Samsara로 매 Pre-Trip/Post-Trip마다 DVIR을 제출합니다.\""
             },
             {
               "type": "subheading",
@@ -608,64 +611,70 @@
               "text": "아래 점검표는 Samsara Driver App의 DVIR 점검 화면 항목이다. 차량이 에어브레이크 장착 차량인지 여부에 따라 'Air Brake System' 항목 적용 여부가 다르므로 유의한다."
             },
             {
-              "type": "subheading",
-              "text": "Exterior — Front"
-            },
-            {
-              "type": "table",
-              "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Cab (모든 외관)",
-                  "공통"
-                ],
-                [
-                  "Lights (전구류 모두)",
-                  "공통"
-                ],
-                [
-                  "Mudguard (흙받이)",
-                  "공통"
-                ]
-              ],
-              "colWidths": [
-                null,
-                "210px"
-              ],
-              "maxWidth": 600
-            },
-            {
-              "type": "subheading",
-              "text": "Exterior — Rear"
-            },
-            {
-              "type": "table",
-              "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Exhaust System",
-                  "공통"
-                ],
-                [
-                  "Lights (전구류 모두)",
-                  "공통"
-                ],
-                [
-                  "Mudguard (흙받이)",
-                  "공통"
-                ]
-              ],
-              "colWidths": [
-                null,
-                "210px"
-              ],
-              "maxWidth": 600
+              "type": "details",
+              "title": "점검표 전체 보기 (Exterior — Front / Rear)",
+              "blocks": [
+                {
+                  "type": "subheading",
+                  "text": "Exterior — Front"
+                },
+                {
+                  "type": "table",
+                  "rows": [
+                    [
+                      "점검 항목",
+                      "적용"
+                    ],
+                    [
+                      "Cab (모든 외관)",
+                      "공통"
+                    ],
+                    [
+                      "Lights (전구류 모두)",
+                      "공통"
+                    ],
+                    [
+                      "Mudguard (흙받이)",
+                      "공통"
+                    ]
+                  ],
+                  "colWidths": [
+                    null,
+                    "210px"
+                  ],
+                  "maxWidth": 600
+                },
+                {
+                  "type": "subheading",
+                  "text": "Exterior — Rear"
+                },
+                {
+                  "type": "table",
+                  "rows": [
+                    [
+                      "점검 항목",
+                      "적용"
+                    ],
+                    [
+                      "Exhaust System",
+                      "공통"
+                    ],
+                    [
+                      "Lights (전구류 모두)",
+                      "공통"
+                    ],
+                    [
+                      "Mudguard (흙받이)",
+                      "공통"
+                    ]
+                  ],
+                  "colWidths": [
+                    null,
+                    "210px"
+                  ],
+                  "maxWidth": 600
+                }
+              ]
             }
           ]
         },
@@ -673,135 +682,141 @@
           "sectionTitle": "4-2. 외관(측면·하부)·운전석·기타 점검표",
           "blocks": [
             {
-              "type": "subheading",
-              "text": "Exterior — Side and underneath"
-            },
-            {
-              "type": "table",
-              "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Air Brake System",
-                  "에어브레이크 차량만"
-                ],
-                [
-                  "Fluid and Leaks (모든 오일류, 냉각수 누수)",
-                  "공통"
-                ],
-                [
-                  "Frame And Cargo Body (차체 프레임 상태)",
-                  "공통"
-                ],
-                [
-                  "Hydraulic Brake System (브레이크 오일 누유, 브레이크 페달 유격/작동감, 브레이크 라인·호스 상태)",
-                  "공통"
-                ],
-                [
-                  "Parking Brake (주차 브레이크 작동 여부)",
-                  "공통"
-                ],
-                [
-                  "Side reflector marker (사이드 반사 마커)",
-                  "공통"
-                ],
-                [
-                  "Suspension",
-                  "공통"
-                ],
-                [
-                  "Tires (타이어 공기압)",
-                  "공통"
-                ],
-                [
-                  "Wheels and Rims (휠/림)",
-                  "공통"
-                ]
-              ],
-              "colWidths": [
-                null,
-                "210px"
-              ],
-              "maxWidth": 600
-            },
-            {
               "type": "text",
               "text": "※ Air Brake System은 에어브레이크가 장착된 차량에서만 점검 항목에 포함된다. 에어브레이크가 없는 차량은 위 Hydraulic Brake System 항목으로 브레이크를 점검하며, Air Brake System 항목은 점검표에서 제외된다."
             },
             {
-              "type": "subheading",
-              "text": "Interior — Driver cabin"
-            },
-            {
-              "type": "table",
-              "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Driver Controls",
-                  "공통"
-                ],
-                [
-                  "Horn (클락션)",
-                  "공통"
-                ],
-                [
-                  "Odometer (주행거리)",
-                  "공통"
-                ],
-                [
-                  "Steering (조향 조작 성능)",
-                  "공통"
-                ],
-                [
-                  "Windshield and Mirrors (모든 유리류 금·깨짐)",
-                  "공통"
-                ],
-                [
-                  "Windshield Wipers (와이퍼)",
-                  "공통"
-                ]
-              ],
-              "colWidths": [
-                null,
-                "210px"
-              ],
-              "maxWidth": 600
-            },
-            {
-              "type": "subheading",
-              "text": "Other"
-            },
-            {
-              "type": "table",
-              "rows": [
-                [
-                  "점검 항목",
-                  "적용"
-                ],
-                [
-                  "Emergency Equipment And Safety Devices (소화기, 안전삼각대/플레어, 예비 퓨즈, 구급함)",
-                  "공통"
-                ],
-                [
-                  "Fuel System (연료캡 체결 상태, 연료탱크·라인 누유 여부)",
-                  "공통"
-                ],
-                [
-                  "General (차량등록증, 보험, 연간점검기록, CVOR, MOE, 번호판)",
-                  "공통"
-                ]
-              ],
-              "source": "DVIR.png (Green Oil Inc. Samsara DVIR 점검 화면)",
-              "colWidths": [
-                null,
-                "210px"
-              ],
-              "maxWidth": 600
+              "type": "details",
+              "title": "점검표 전체 보기 (측면·하부 / 운전석 / 기타)",
+              "blocks": [
+                {
+                  "type": "subheading",
+                  "text": "Exterior — Side and underneath"
+                },
+                {
+                  "type": "table",
+                  "rows": [
+                    [
+                      "점검 항목",
+                      "적용"
+                    ],
+                    [
+                      "Air Brake System",
+                      "에어브레이크 차량만"
+                    ],
+                    [
+                      "Fluid and Leaks (모든 오일류, 냉각수 누수)",
+                      "공통"
+                    ],
+                    [
+                      "Frame And Cargo Body (차체 프레임 상태)",
+                      "공통"
+                    ],
+                    [
+                      "Hydraulic Brake System (브레이크 오일 누유, 브레이크 페달 유격/작동감, 브레이크 라인·호스 상태)",
+                      "공통"
+                    ],
+                    [
+                      "Parking Brake (주차 브레이크 작동 여부)",
+                      "공통"
+                    ],
+                    [
+                      "Side reflector marker (사이드 반사 마커)",
+                      "공통"
+                    ],
+                    [
+                      "Suspension",
+                      "공통"
+                    ],
+                    [
+                      "Tires (타이어 공기압)",
+                      "공통"
+                    ],
+                    [
+                      "Wheels and Rims (휠/림)",
+                      "공통"
+                    ]
+                  ],
+                  "colWidths": [
+                    null,
+                    "210px"
+                  ],
+                  "maxWidth": 600
+                },
+                {
+                  "type": "subheading",
+                  "text": "Interior — Driver cabin"
+                },
+                {
+                  "type": "table",
+                  "rows": [
+                    [
+                      "점검 항목",
+                      "적용"
+                    ],
+                    [
+                      "Driver Controls",
+                      "공통"
+                    ],
+                    [
+                      "Horn (클락션)",
+                      "공통"
+                    ],
+                    [
+                      "Odometer (주행거리)",
+                      "공통"
+                    ],
+                    [
+                      "Steering (조향 조작 성능)",
+                      "공통"
+                    ],
+                    [
+                      "Windshield and Mirrors (모든 유리류 금·깨짐)",
+                      "공통"
+                    ],
+                    [
+                      "Windshield Wipers (와이퍼)",
+                      "공통"
+                    ]
+                  ],
+                  "colWidths": [
+                    null,
+                    "210px"
+                  ],
+                  "maxWidth": 600
+                },
+                {
+                  "type": "subheading",
+                  "text": "Other"
+                },
+                {
+                  "type": "table",
+                  "rows": [
+                    [
+                      "점검 항목",
+                      "적용"
+                    ],
+                    [
+                      "Emergency Equipment And Safety Devices (소화기, 안전삼각대/플레어, 예비 퓨즈, 구급함)",
+                      "공통"
+                    ],
+                    [
+                      "Fuel System (연료캡 체결 상태, 연료탱크·라인 누유 여부)",
+                      "공통"
+                    ],
+                    [
+                      "General (차량등록증, 보험, 연간점검기록, CVOR, MOE, 번호판)",
+                      "공통"
+                    ]
+                  ],
+                  "source": "DVIR.png (Green Oil Inc. Samsara DVIR 점검 화면)",
+                  "colWidths": [
+                    null,
+                    "210px"
+                  ],
+                  "maxWidth": 600
+                }
+              ]
             }
           ]
         }
@@ -866,7 +881,8 @@
         "Fleet ID"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 1-1. 매일 지켜야 할 기본 절차 (요약) — '운행 후' 단계의 ②번 항목을 확인하세요."
+      "explain": "모듈 5 · 1-1. 매일 지켜야 할 기본 절차 (요약) — '운행 후' 단계의 ②번 항목을 확인하세요.",
+      "ref": "1-1"
     },
     {
       "q": "그린오일의 공통 Fleet ID로 명시된 것은?",
@@ -877,7 +893,8 @@
         "goi-fleet"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 1-2. 앱 로그인 및 차량 선택 — '앱 로그인'의 첫 항목을 확인하세요."
+      "explain": "모듈 5 · 1-2. 앱 로그인 및 차량 선택 — '앱 로그인'의 첫 항목을 확인하세요.",
+      "ref": "1-2"
     },
     {
       "q": "DVIR 사전점검(Pre-Trip)에서 첨부하는 차량 Walkaround 사진은?",
@@ -888,7 +905,8 @@
         "차량 전면, 지붕, 후면"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 1-3. DVIR — 출발 전·운행 후 점검 — '점검 순서'의 4번 항목을 확인하세요."
+      "explain": "모듈 5 · 1-3. DVIR — 출발 전·운행 후 점검 — '점검 순서'의 4번 항목을 확인하세요.",
+      "ref": "1-3"
     },
     {
       "q": "DVIR 점검에서 이상 유무에 따라 선택하는 두 가지 상태로 명시된 것은?",
@@ -899,29 +917,20 @@
         "\"Go\" 또는 \"Stop\""
       ],
       "correct": 0,
-      "explain": "모듈 5 · 1-3. DVIR — 출발 전·운행 후 점검 — '점검 순서'의 6번 항목을 확인하세요."
+      "explain": "모듈 5 · 1-3. DVIR — 출발 전·운행 후 점검 — '점검 순서'의 6번 항목을 확인하세요.",
+      "ref": "1-3"
     },
     {
       "q": "HOS(근무시간 관리)가 적용되는 기준으로 명시된 것은?",
       "options": [
-        "사업장(운행 시작지점)으로부터 160km 이외에 운행할 경우",
+        "사업장(운행 시작지점)으로부터 160km를 초과해 운행할 경우",
         "월 1회 이상 장거리 운행 시",
         "모든 운행에 항상 적용",
         "신규 운전자에게만 적용"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 2-1. HOS 개요 및 근무 상태(Duty Status) 4가지 — 'HOS(근무시간 관리)' 제목과 아래 안내 문구에서 적용 기준을 확인하세요."
-    },
-    {
-      "q": "차량이 5분 이상 정지하면 자동으로 전환되는 근무 상태로 명시된 것은?",
-      "options": [
-        "On Duty (Not Driving)",
-        "Off Duty",
-        "Sleeper Berth",
-        "Driving"
-      ],
-      "correct": 0,
-      "explain": "모듈 5 · 2-1. HOS 개요 및 근무 상태(Duty Status) 4가지 — 'Duty Status 4가지' 표의 '의미 / 사용 시점' 열을 확인하세요."
+      "explain": "모듈 5 · 2-1. HOS 개요 및 근무 상태(Duty Status) 4가지 — 'HOS(근무시간 관리)' 제목과 아래 안내 문구에서 적용 기준을 확인하세요.",
+      "ref": "2-1"
     },
     {
       "q": "주행이 감지되면 자동으로 전환되는 근무 상태로 명시된 것은?",
@@ -932,40 +941,20 @@
         "Off Duty"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 2-1. HOS 개요 및 근무 상태(Duty Status) 4가지 — 'Duty Status 4가지' 표의 '의미 / 사용 시점' 열을 확인하세요."
+      "explain": "모듈 5 · 2-1. HOS 개요 및 근무 상태(Duty Status) 4가지 — 'Duty Status 4가지' 표의 '의미 / 사용 시점' 열을 확인하세요.",
+      "ref": "2-1"
     },
     {
-      "q": "캐나다 기준 Drive(운전) 시간 한도로 자료에 명시된 것은?",
+      "q": "자료의 시간 한도 표 기준 Drive / Shift / Cycle 한도로 맞는 것은?",
       "options": [
-        "13시간",
-        "14시간",
-        "11시간",
-        "10시간"
+        "Drive 13시간 / Shift 14시간 / Cycle 70시간(7일) 또는 120시간(14일)",
+        "Drive 11시간 / Shift 14시간 / Cycle 70시간(7일) 또는 120시간(14일)",
+        "Drive 13시간 / Shift 16시간 / Cycle 70시간(7일) 또는 120시간(14일)",
+        "Drive 13시간 / Shift 14시간 / Cycle 50시간(7일) 또는 110시간(14일)"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 2-2. Drive / Shift / Cycle 시간 한도 및 160km 초과 시 주의사항 — 'Drive / Shift / Cycle 시간 한도' 표의 Drive 행을 확인하세요."
-    },
-    {
-      "q": "Shift(근무) 시간 한도로 자료에 명시된 것은?",
-      "options": [
-        "14시간",
-        "16시간",
-        "12시간",
-        "13시간"
-      ],
-      "correct": 0,
-      "explain": "모듈 5 · 2-2. Drive / Shift / Cycle 시간 한도 및 160km 초과 시 주의사항 — 같은 표의 Shift 행을 확인하세요."
-    },
-    {
-      "q": "Cycle 시간 한도로 자료에 명시된 것은?",
-      "options": [
-        "70시간(7일) 또는 120시간(14일)",
-        "50시간(7일) 또는 110시간(14일)",
-        "80시간(7일) 또는 140시간(14일)",
-        "60시간(7일) 또는 100시간(14일)"
-      ],
-      "correct": 0,
-      "explain": "모듈 5 · 2-2. Drive / Shift / Cycle 시간 한도 및 160km 초과 시 주의사항 — 같은 표의 Cycle 행을 확인하세요."
+      "explain": "모듈 5 · 2-2. Drive / Shift / Cycle 시간 한도 및 160km 초과 시 주의사항 — 'Drive / Shift / Cycle 시간 한도' 표 전체를 확인하세요.",
+      "ref": "2-2"
     },
     {
       "q": "160km 반경을 초과했을 때 해야 할 일로 자료에 나온 것은?",
@@ -976,7 +965,8 @@
         "Off Duty만 표시하고 나머지는 기록하지 않는다"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 2-2. Drive / Shift / Cycle 시간 한도 및 160km 초과 시 주의사항 — '160km 반경 초과 시 주의사항'의 세 가지 항목을 확인하세요."
+      "explain": "모듈 5 · 2-2. Drive / Shift / Cycle 시간 한도 및 160km 초과 시 주의사항 — '160km 반경 초과 시 주의사항'의 세 가지 항목을 확인하세요.",
+      "ref": "2-2"
     },
     {
       "q": "도로 단속 대응 화면에서, 검사관에게 기기를 전달할 때의 모드로 명시된 것은?",
@@ -987,7 +977,8 @@
         "관리자 모드"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 2-3. 도로 단속 대응 화면 (Roadside Inspection Mode) — 도로 단속 절차의 4번 항목을 확인하세요."
+      "explain": "모듈 5 · 2-3. 도로 단속 대응 화면 (Roadside Inspection Mode) — 도로 단속 절차의 4번 항목을 확인하세요.",
+      "ref": "2-3"
     },
     {
       "q": "도로 단속 시 요구될 수 있는 로그 기간으로 자료에 명시된 것은?",
@@ -998,7 +989,8 @@
         "최근 30일치"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 2-3. 도로 단속 대응 화면 (Roadside Inspection Mode) — 절차 아래의 ※ 안내문을 확인하세요."
+      "explain": "모듈 5 · 2-3. 도로 단속 대응 화면 (Roadside Inspection Mode) — 절차 아래의 ※ 안내문을 확인하세요.",
+      "ref": "2-3"
     },
     {
       "q": "Off Duty로 전환이 가능한 조건으로 자료에 명시된 것은?",
@@ -1009,7 +1001,8 @@
         "Sleeper Berth 상태에서만 적용"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 2-4. Off Duty(비근무) 변경·로그아웃 및 자주 겪는 실수 — 'Off Duty(비근무)로 변경 / 로그아웃'의 2번 항목 괄호를 확인하세요."
+      "explain": "모듈 5 · 2-4. Off Duty(비근무) 변경·로그아웃 및 자주 겪는 실수 — 'Off Duty(비근무)로 변경 / 로그아웃'의 2번 항목 괄호를 확인하세요.",
+      "ref": "2-4"
     },
     {
       "q": "로그인 상태로 남아 있으면 발생할 수 있는 문제로 자료에 명시된 것은?",
@@ -1020,7 +1013,8 @@
         "앱이 자동으로 삭제된다"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 2-4. Off Duty(비근무) 변경·로그아웃 및 자주 겪는 실수 — '※ 모든 근무 종료 시 반드시 로그아웃' 안내문을 확인하세요."
+      "explain": "모듈 5 · 2-4. Off Duty(비근무) 변경·로그아웃 및 자주 겪는 실수 — '※ 모든 근무 종료 시 반드시 로그아웃' 안내문을 확인하세요.",
+      "ref": "2-4"
     },
     {
       "q": "결함이 Major(중대)인 경우 차량 운행 가능 여부로 자료에 명시된 것은?",
@@ -1031,7 +1025,8 @@
         "다음 근무일까지는 운행 가능"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 3-1. 준수 요약·일일 필수 사항·Major 결함 규칙 — '일일 필수 사항'과 'Major 결함 규칙'을 확인하세요."
+      "explain": "모듈 5 · 3-1. 준수 요약·일일 필수 사항·Major 결함 규칙 — '일일 필수 사항'과 'Major 결함 규칙'을 확인하세요.",
+      "ref": "3-1"
     },
     {
       "q": "DVIR 점검 시 반드시 촬영해야 하는 두 가지 사진으로 명시된 것은?",
@@ -1042,7 +1037,8 @@
         "엔진룸 사진과 타이어 사진"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 4-1. 점검 방법 및 외관(앞·뒤) 점검표 — 점검표 위쪽 설명에서 반드시 촬영해야 하는 사진을 확인하세요."
+      "explain": "모듈 5 · 4-1. 점검 방법 및 외관(앞·뒤) 점검표 — 점검표 위쪽 설명에서 반드시 촬영해야 하는 사진을 확인하세요.",
+      "ref": "4-1"
     },
     {
       "q": "Air Brake System 점검 항목이 적용되는 경우로 자료에 명시된 것은?",
@@ -1053,7 +1049,8 @@
         "모든 차량 공통"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 4-2. 외관(측면·하부)·운전석·기타 점검표 — 'Exterior — Side and underneath' 표 아래의 ※ 안내문을 확인하세요."
+      "explain": "모듈 5 · 4-2. 외관(측면·하부)·운전석·기타 점검표 — 페이지 맨 위의 ※ 안내문을 확인하세요.",
+      "ref": "4-2"
     },
     {
       "q": "Username과 Password를 모를 때 문의해야 할 곳으로 명시된 것은?",
@@ -1064,7 +1061,20 @@
         "Marketing 팀"
       ],
       "correct": 0,
-      "explain": "모듈 5 · 1-2. 앱 로그인 및 차량 선택 — '앱 로그인' 아래의 ※ 안내문을 확인하세요."
+      "explain": "모듈 5 · 1-2. 앱 로그인 및 차량 선택 — '앱 로그인' 아래의 ※ 안내문을 확인하세요.",
+      "ref": "1-2"
+    },
+    {
+      "q": "회사 내규에 따른 DVIR 작성·제출 기준으로 맞는 것은?",
+      "options": [
+        "결함 유무와 관계없이 매일 Pre-Trip과 Post-Trip DVIR을 작성하여 제출한다",
+        "결함이 없으면 DVIR 제출은 필요 없다",
+        "Pre-Trip만 제출하고 Post-Trip은 생략한다",
+        "결함이 발견된 날에만 제출한다"
+      ],
+      "correct": 0,
+      "explain": "모듈 5 · 3-1. 준수 요약·일일 필수 사항·Major 결함 규칙 — 'DVIR 제출 기준'의 두 번째 항목을 확인하세요.",
+      "ref": "3-1"
     }
   ]
 }
