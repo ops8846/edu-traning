@@ -1273,8 +1273,7 @@ function ModuleScreen({
                 이번에 채점한 {lastRoundIndices.length}문항 중 정답{" "}
                 {lastRoundIndices.filter((i) => lockedCorrect.includes(i)).length}개,
                 오답 {lastRoundIndices.filter((i) => !lockedCorrect.includes(i)).length}
-                개입니다. 정답은 이번 한 번만 표시되고 다음부터는 화면에서 완전히
-                빠집니다. 오답 아래 힌트를 확인하신 뒤 "틀린 문제 다시 풀기" 버튼을
+                개입니다. 오답 아래 힌트를 확인하신 뒤 "틀린 문제 다시 풀기" 버튼을
                 눌러 주세요.
               </div>
             )}
