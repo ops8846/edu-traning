@@ -1872,3 +1872,74 @@ input {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* 힌트 → 학습 페이지 이동 / 문제로 돌아가기 */
+.hint-go-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 2px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brand-deep);
+  background: transparent;
+  border: 1.5px solid currentColor;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.hint-go-btn:hover {
+  background: var(--brand-soft);
+}
+.hint-go-btn:focus-visible,
+.return-quiz-btn:focus-visible,
+.block-details summary:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+.return-quiz-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 14px;
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--brand-deep);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 펼쳐서 보는 자세한 설명 / 참고 표 */
+.block-details {
+  margin: 4px 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface, transparent);
+}
+.block-details > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 700;
+  font-size: 16px;
+  list-style: none;
+}
+.block-details > summary::-webkit-details-marker {
+  display: none;
+}
+.block-details > summary::before {
+  content: "▸ ";
+}
+.block-details[open] > summary::before {
+  content: "▾ ";
+}
+.block-details[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+.block-details > .content-blocks {
+  padding: 12px 14px 4px;
+}

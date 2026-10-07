@@ -20,9 +20,9 @@ const MODULES = [
       "신규/재직 운전자 교육 · 회사소개 · 근무시간 규정 · 기초 안전교육(WSIB·WHMIS)",
     color: "#C4872E",
     objectives: [
-      "Green Oil Inc.의 회사 소개와 교육 목적·목표를 설명할 수 있다.",
-      "WSIB·WHMIS 관련 문서 의무와 산업재해 발생 시 보고 절차를 수행할 수 있다.",
-      "출퇴근 기록, 근무 전 준비, 재교육 조치 기준 등 사내 근무수칙을 준수할 수 있다.",
+      "Green Oil Inc.의 교육 목적·목표와 교육 구성을 설명할 수 있다.",
+      "운전자가 완료·소지해야 하는 문서, 신규 운전자 훈련 절차, 업무 중 부상 시 보고 절차를 알 수 있다.",
+      "출·퇴근 시간 기록, 근무 전 준비, 재교육 조치 기준 등 근무수칙을 지킬 수 있다.",
     ],
   },
   {
@@ -35,9 +35,9 @@ const MODULES = [
       "운전 중 준수사항 · 자전거/보행자와의 도로 공유 · 동절기 안전 · 최근 사고·벌금 사례",
     color: "#5C7C96",
     objectives: [
-      "운전 중 휴대폰 사용 금지 등 기본 준수사항과 Samsara 감지 기준을 이해한다.",
-      "동절기 Tire Gripper 설치 등 계절별 안전 운행 절차를 수행할 수 있다.",
-      "자전거·보행자 등 도로 위 취약 이용자에 대한 법적 예측 의무를 설명할 수 있다.",
+      "운전 중 휴대폰·태블릿 사용 금지와 407 하이웨이 이용 기준을 지킬 수 있다.",
+      "출근현황판 사용법과 동절기 Tire Gripper 설치 등 안전 운행 절차를 수행할 수 있다.",
+      "자전거의 법규상 움직임을 예측하고 안전거리를 지켜 방어운전을 할 수 있다.",
     ],
   },
   {
@@ -50,9 +50,9 @@ const MODULES = [
       "Used Cooking Oil 기본지식 · 계약서류 · 언로딩 절차 · 현장 발생 상황별 대처법",
     color: "#2C9B68",
     objectives: [
-      "UCO(폐식용유)의 정의와 컨테이너 종류, 계약에 필요한 서류를 파악할 수 있다.",
-      "언로딩(Unloading) 표준 절차를 순서대로 수행할 수 있다.",
-      "오일 유출, 도난, 고객 불만 등 현장에서 발생 가능한 상황별 대처법을 설명할 수 있다.",
+      "UCO와 컨테이너 종류, 계약 서류, 가격·Pay 방법을 설명할 수 있다.",
+      "언로딩(Unloading) 작업 절차를 순서대로 수행할 수 있다.",
+      "오일 유출, Sludge, 도난, 고객 불만, 설비 문제 등 현장 상황별 첫 행동을 알고 실행할 수 있다.",
     ],
   },
   {
@@ -65,9 +65,9 @@ const MODULES = [
       "필수 소지서류 · 히노트럭 배출가스 시스템(DPF/DEF/DPR) · 타이어 점검 · 일일점검 체크리스트 · 차량관리",
     color: "#8C689B",
     objectives: [
-      "차량 필수 서류와 일일 점검(Truck Daily Inspection) 항목을 빠짐없이 확인할 수 있다.",
-      "배출가스 시스템(DPR/DEF)과 타이어 이상 마모 유형을 식별할 수 있다.",
-      "차량 청결 유지 등 일상 유지관리 의무를 준수할 수 있다.",
+      "차량에 비치할 서류와 DPF·DPR·SCR(DEF) 배출가스 장치의 역할을 설명할 수 있다.",
+      "자동·수동 Regen과 DEF 경고등에 맞게 대응할 수 있다.",
+      "허브 오일, 타이어 이상 마모, 일일 점검 체크리스트로 차량 상태를 점검하고 청결을 유지할 수 있다.",
     ],
   },
   {
@@ -80,9 +80,9 @@ const MODULES = [
       "앱 로그인·차량선택·DVIR(사전/사후점검)·HOS 근무시간 관리·도로단속 대응·DVIR 법규 준수",
     color: "#AD4438",
     objectives: [
-      "Samsara 앱의 운행 전/중/후 필수 절차(Pre-Trip·Post-Trip)를 수행할 수 있다.",
-      "DVIR 점검표 작성 방법과 HOS(근무시간) 규정을 준수할 수 있다.",
-      "도로 단속 시 대응 화면 사용법과 회사 책임 범위를 설명할 수 있다.",
+      "Samsara 앱에 로그인해 차량을 선택하고 운행 전·후 DVIR 점검을 할 수 있다.",
+      "HOS 근무 상태와 Drive·Shift·Cycle 시간 한도, 도로 단속 대응 방법을 알고 지킬 수 있다.",
+      "결함 발견 시 DVIR 제출과 Major 결함 규칙을 지킬 수 있다.",
     ],
   },
   {
@@ -95,9 +95,9 @@ const MODULES = [
       "교통사고 초동대응 · 경찰신고/CRC/토잉 절차 · 2년 누적 페널티 정책 · 누유(Oil Spill) 대응",
     color: "#3D5A8C",
     objectives: [
-      "교통사고 발생 시 초동 대응 절차와 신고 기준을 수행할 수 있다.",
-      "사고 신고 센터(CRC) 이용 절차와 필요 서류를 파악할 수 있다.",
-      "사고·티켓 페널티 정책과 누유(Oil Spill) 대응 매뉴얼을 설명할 수 있다.",
+      "사고 직후 안전 확보, 신고 대상 판단, 상대방 정보 확보를 순서대로 할 수 있다.",
+      "사고 분류와 2년 누적 페널티 정책, 토잉·CRC 이용 절차를 이해한다.",
+      "오일 누유 시 대응 방법을 알고 실행할 수 있다.",
     ],
   },
 ];
@@ -283,6 +283,10 @@ export default function App() {
   // 복습 모드: 완료한 모듈을 문제 없이 다시 읽어보기만 함 (결과/점수는 변경하지 않음)
   const [reviewOnly, setReviewOnly] = useState(saved ? !!saved.reviewOnly : false);
   const [sectionIdx, setSectionIdx] = useState(saved ? saved.sectionIdx || 0 : 0);
+  // 문제 힌트에서 학습 페이지로 이동했을 때, 돌아갈 문제 번호(없으면 null)
+  const [returnQ, setReturnQ] = useState(
+    saved && Number.isInteger(saved.returnQ) ? saved.returnQ : null
+  );
   const [answers, setAnswers] = useState(
     saved && Array.isArray(saved.answers) ? saved.answers : []
   );
@@ -460,6 +464,7 @@ export default function App() {
     setModuleIdx(idx);
     setPhase("learn");
     setSectionIdx(0);
+    setReturnQ(null);
     setAnswers([]);
     setLockedCorrect([]);
     setHasSubmitted(false);
@@ -508,6 +513,25 @@ export default function App() {
       setPhase("quiz");
     }
     window.scrollTo(0, 0);
+  }
+
+  // 문제 힌트 → 해당 학습 페이지로 이동 (풀던 답은 그대로 유지)
+  function goStudy(qIdx, secIdx) {
+    setReturnQ(qIdx);
+    setSectionIdx(secIdx);
+    setPhase("learn");
+    window.scrollTo(0, 0);
+  }
+
+  // 학습 페이지 → 풀던 문제로 복귀
+  function backToQuiz() {
+    const q = returnQ;
+    setReturnQ(null);
+    setPhase("quiz");
+    setTimeout(() => {
+      const el = document.getElementById(`q-${q}`);
+      if (el) el.scrollIntoView({ block: "center" });
+    }, 60);
   }
 
   function prevSection() {
@@ -689,6 +713,7 @@ export default function App() {
             employee,
             moduleIdx,
             sectionIdx,
+            returnQ,
             phase,
             reviewOnly,
             answers,
@@ -705,7 +730,7 @@ export default function App() {
     } catch (_) {
       /* 저장소 사용 불가 환경은 조용히 무시 */
     }
-  }, [screen, employee, moduleIdx, sectionIdx, phase, reviewOnly, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
+  }, [screen, employee, moduleIdx, sectionIdx, returnQ, phase, reviewOnly, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
 
   // 교육/문제 화면으로 복원된 경우: 교육 자료를 다시 불러옵니다. (대시보드는 불필요)
   useEffect(() => {
@@ -768,6 +793,9 @@ export default function App() {
           phase={phase}
           reviewOnly={reviewOnly}
           sectionIdx={sectionIdx}
+          returnQ={returnQ}
+          onGoStudy={goStudy}
+          onBackToQuiz={backToQuiz}
           answers={answers}
           lastResult={lastResult}
           lockedCorrect={lockedCorrect}
@@ -1096,6 +1124,9 @@ function ModuleScreen({
   phase,
   reviewOnly,
   sectionIdx,
+  returnQ,
+  onGoStudy,
+  onBackToQuiz,
   answers,
   lastResult,
   lockedCorrect,
@@ -1204,6 +1235,12 @@ function ModuleScreen({
                 </ul>
               </div>
             )}
+            {returnQ !== null && (
+              <button className="return-quiz-btn" onClick={onBackToQuiz}>
+                <Icon.Arrow className="icon-sm icon-flip" />
+                문제 {returnQ + 1}번으로 돌아가기
+              </button>
+            )}
             <h2>{current.sectionTitle}</h2>
             <ContentBlocks
               blocks={current.blocks}
@@ -1211,6 +1248,7 @@ function ModuleScreen({
               sectionIdx={sectionIdx}
               watchedVideos={watchedVideos}
               onVideoWatched={onVideoWatched}
+              openAll={returnQ !== null}
             />
             {videoLocked && (
               <div className="video-lock-notice">
@@ -1218,6 +1256,14 @@ function ModuleScreen({
                 이동/빨리감기는 되지 않습니다)
               </div>
             )}
+            {returnQ !== null ? (
+              <div className="learn-nav">
+                <button className="submit-btn" onClick={onBackToQuiz}>
+                  <Icon.Arrow className="icon-sm icon-flip" />
+                  문제 {returnQ + 1}번으로 돌아가기
+                </button>
+              </div>
+            ) : (
             <div className="learn-nav">
               {sectionIdx > 0 && (
                 <button className="submit-btn ghost" onClick={onPrevSection}>
@@ -1238,6 +1284,7 @@ function ModuleScreen({
                 <Icon.Arrow className="icon-sm" />
               </button>
             </div>
+            )}
           </div>
         )}
 
@@ -1306,6 +1353,7 @@ function ModuleScreen({
                         isWrong ? "graded-wrong" : ""
                       }`}
                       key={qi}
+                      id={`q-${qi}`}
                     >
                       <div className="quiz-q-title">
                         Q{qi + 1}. {q.q}
@@ -1341,6 +1389,23 @@ function ModuleScreen({
                           {isWrong && (
                             <div className="quiz-hint">
                               <strong>오답입니다.</strong> {q.explain}
+                              {(() => {
+                                const target = q.ref
+                                  ? flat.findIndex((f) =>
+                                      (f.sectionTitle || "").startsWith(q.ref + ".")
+                                    )
+                                  : -1;
+                                return target >= 0 ? (
+                                  <button
+                                    type="button"
+                                    className="hint-go-btn"
+                                    onClick={() => onGoStudy(qi, target)}
+                                  >
+                                    학습 페이지에서 확인하기
+                                    <Icon.Arrow className="icon-sm" />
+                                  </button>
+                                ) : null;
+                              })()}
                             </div>
                           )}
                       </>
@@ -1456,7 +1521,7 @@ function renderText(text) {
   return out;
 }
 
-function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatched }) {
+function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatched, openAll }) {
   return (
     <div className="content-blocks">
       {blocks.map((b, i) => {
@@ -1465,6 +1530,25 @@ function ContentBlocks({ blocks, folder, sectionIdx, watchedVideos, onVideoWatch
             <div className="block-subheading" key={i}>
               {b.text}
             </div>
+          );
+        }
+        if (b.type === "details") {
+          return (
+            <details
+              className="block-details"
+              key={`${i}-${openAll ? "o" : "c"}`}
+              open={!!openAll}
+            >
+              <summary>{b.title || "자세히 보기"}</summary>
+              <ContentBlocks
+                blocks={b.blocks}
+                folder={folder}
+                sectionIdx={sectionIdx}
+                watchedVideos={watchedVideos}
+                onVideoWatched={onVideoWatched}
+                openAll={openAll}
+              />
+            </details>
           );
         }
         if (b.type === "text") {
