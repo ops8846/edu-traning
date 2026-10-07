@@ -283,7 +283,7 @@
                   "text": "Daily Inspection Log 작성 완료 (모든 운전자, 매일)"
                 },
                 {
-                  "text": "ELD 작성 완료 (160km 이상 운행하는 드라이버는 필수)"
+                  "text": "ELD 작성 완료 (160km를 초과해 운행하는 드라이버는 필수)"
                 }
               ],
               "source": "GOI_Employee_Manual_2026-V6.pdf (A. 문서 완료 및 소지)"
@@ -609,9 +609,9 @@
     {
       "q": "Daily Inspection Log와 ELD 작성 기준으로 맞는 것은?",
       "options": [
-        "Daily Inspection Log는 모든 운전자가 매일 작성하고, ELD는 160km 이상 운행하는 드라이버가 필수로 작성한다",
-        "Daily Inspection Log와 ELD 모두 160km 이상 운행하는 드라이버만 작성한다",
-        "Daily Inspection Log는 160km 이상 운행하는 드라이버만, ELD는 모든 운전자가 작성한다",
+        "Daily Inspection Log는 모든 운전자가 매일 작성하고, ELD는 160km를 초과해 운행하는 드라이버가 필수로 작성한다",
+        "Daily Inspection Log와 ELD 모두 160km를 초과해 운행하는 드라이버만 작성한다",
+        "Daily Inspection Log는 160km를 초과해 운행하는 드라이버만, ELD는 모든 운전자가 작성한다",
         "Daily Inspection Log와 ELD 모두 신규 운전자만 작성한다"
       ],
       "correct": 0,
