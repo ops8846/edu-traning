@@ -985,18 +985,6 @@
       "correct": 0,
       "explain": "모듈 3 · 3-1. 오일 유출·Sludge·GT·업주 변경 — 'Oil Spill(오일 유출)했을 경우'의 두 번째 항목을 확인하세요.",
       "ref": "3-1"
-    },
-    {
-      "q": "오일 Loading/Unloading 중 Pump가 Shutdown되었다. 가장 먼저 할 일은?",
-      "options": [
-        "전원 연결 상태를 확인하고 두꺼비집을 확인한다",
-        "즉시 공장 직원에게 알리고 작업을 중단한다",
-        "바로 Pump를 다시 켠다",
-        "Hose를 분리하고 현장을 벗어난다"
-      ],
-      "correct": 0,
-      "explain": "모듈 3 · 3-4. 공장 내 설비 문제 및 NaOH 용액 사용 — 'Pump가 Shutdown될 경우'의 첫 번째 항목을 확인하세요.",
-      "ref": "3-4"
     }
   ]
 }
