@@ -38,10 +38,14 @@
                   "text": "Driver Training Certificate (운전자 교육 수료증)"
                 },
                 {
-                  "text": "Proof of 1 million dollar liability insurance (1백만 달러 배상책임보험 증빙)"
+                  "text": "Proof of 1 million dollar liability insurance (1백만 달러 배상책임보험 증빙 — 회사 기준)"
                 }
               ],
               "source": "Truck에_꼭_소지하고_다녀야_할_서류.docx"
+            },
+            {
+              "type": "text",
+              "text": "※ 배상책임보험 금액은 법으로 정해진 최소 한도가 아니라 회사(계약) 기준 금액이며, 보험 조건에 따라 변동될 수 있다."
             },
             {
               "type": "subheading",
@@ -865,7 +869,7 @@
       "ref": "1-1"
     },
     {
-      "q": "Truck 소지 서류 중 하나로, 얼마의 배상책임보험 증빙이 필요한가?",
+      "q": "Truck 소지 서류 중 하나로, 자료 기준 얼마의 배상책임보험 증빙이 필요한가?",
       "options": [
         "1백만 달러",
         "50만 달러",
