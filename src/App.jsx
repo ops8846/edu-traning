@@ -301,6 +301,16 @@ export default function App() {
   const [lockedCorrect, setLockedCorrect] = useState(
     saved && Array.isArray(saved.lockedCorrect) ? saved.lockedCorrect : []
   );
+  // 이 모듈에서 이미 응시한 횟수 (0·1·2). 모듈당 최대 2번만 응시할 수 있고, 마지막 결과가 최종 점수입니다.
+  const [attemptsUsed, setAttemptsUsed] = useState(
+    saved
+      ? Number.isInteger(saved.attemptsUsed)
+        ? saved.attemptsUsed
+        : saved.hasSubmitted
+          ? 1
+          : 0
+      : 0
+  );
   // 최소 한 번 채점했는지 (이 값이 true여야 틀린 문제 아래 힌트가 보임)
   const [hasSubmitted, setHasSubmitted] = useState(saved ? !!saved.hasSubmitted : false);
   // true면: 채점 결과(정답+오답 전부) 보여주는 중. false면: 틀린 문제만 편집 가능한 상태
@@ -477,9 +487,20 @@ export default function App() {
     setMaxSection(0);
     setReturnQ(null);
     setAnswers([]);
-    setLockedCorrect([]);
-    setHasSubmitted(false);
-    setEditingRetry(false);
+    // 1차 응시 후 중간에 나갔다 돌아온 경우: 1차 결과를 이어받아 마지막(2번째) 시도부터 시작
+    const savedQuiz =
+      !review && employee && employee.quizState ? employee.quizState[MODULES[idx].id] : null;
+    if (savedQuiz && Array.isArray(savedQuiz.lockedCorrect)) {
+      setLockedCorrect(savedQuiz.lockedCorrect);
+      setAttemptsUsed(1);
+      setHasSubmitted(true);
+      setEditingRetry(true);
+    } else {
+      setLockedCorrect([]);
+      setAttemptsUsed(0);
+      setHasSubmitted(false);
+      setEditingRetry(false);
+    }
     setLastRoundIndices([]);
     setScreen("module");
     setModuleContent(null);
@@ -625,19 +646,38 @@ export default function App() {
     setEditingRetry(false); // 채점 직후에는 항상 "정답+오답 전체 보기" 모드로
     // 화면 전환 없이 같은 퀴즈 화면에서 그대로 채점 결과(맞음/틀림+힌트)를 보여줍니다.
 
+    const attemptNo = attemptsUsed + 1; // 이번이 몇 번째 응시인지 (1 또는 2)
+    setAttemptsUsed(attemptNo);
+
     const isPerfect = updatedLocked.length === total;
-    if (!isPerfect) {
-      // 틀린 문제가 남아있음 -> 저장하지 않고 이 화면에서 계속 다시 풀게 함
+    if (!isPerfect && attemptNo < 2) {
+      // 1차에서 틀린 문제가 남음 -> 1차 결과를 저장해 두고(나갔다 와도 2번째 시도로 이어짐) 마지막 시도를 기다림
+      const rec1 = {
+        ...employee,
+        quizState: {
+          ...(employee.quizState || {}),
+          [mod.id]: {
+            attempts: 1,
+            lockedCorrect: updatedLocked,
+            firstScore: updatedLocked.length,
+          },
+        },
+      };
+      setEmployee(rec1);
+      saveEmployee(rec1).catch((err) => console.error("1차 결과 저장 실패", err));
       return;
     }
 
-    // 만점 달성 -> 이번 모듈 결과를 기록하고 저장
+    // 만점이거나 2번째(마지막) 응시를 마침 -> 이번 모듈 최종 점수를 기록하고 저장
+    // 점수 = 1차에서 맞힌 문항 + 2차에서 맞힌 문항
     const result = {
       moduleId: mod.id,
       moduleNo: mod.no,
       moduleTitle: mod.title,
-      score: total,
+      score: updatedLocked.length,
       total,
+      attempts: attemptNo,
+      firstScore: attemptNo === 1 ? updatedLocked.length : lockedCorrect.length,
       answers: [...answers],
       completedAt: nowISO(),
     };
@@ -645,6 +685,9 @@ export default function App() {
     const others = rec.moduleResults.filter((r) => r.moduleId !== mod.id);
     rec.moduleResults = [...others, result].sort((a, b) => a.moduleNo - b.moduleNo);
     rec.currentModuleIdx = Math.max(rec.currentModuleIdx, moduleIdx + 1);
+    const qs = { ...(rec.quizState || {}) };
+    delete qs[mod.id];
+    rec.quizState = qs;
 
     const isLastModule = moduleIdx === TOTAL_MODULES - 1;
     if (isLastModule) {
@@ -773,6 +816,7 @@ export default function App() {
             answers,
             lastResult,
             lockedCorrect,
+            attemptsUsed,
             hasSubmitted,
             editingRetry,
             lastRoundIndices,
@@ -784,7 +828,7 @@ export default function App() {
     } catch (_) {
       /* 저장소 사용 불가 환경은 조용히 무시 */
     }
-  }, [screen, employee, moduleIdx, sectionIdx, maxSection, returnQ, phase, reviewOnly, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
+  }, [screen, employee, moduleIdx, sectionIdx, maxSection, returnQ, phase, reviewOnly, answers, lastResult, lockedCorrect, attemptsUsed, hasSubmitted, editingRetry, lastRoundIndices]);
 
   // 교육/문제 화면으로 복원된 경우: 교육 자료를 다시 불러옵니다. (대시보드는 불필요)
   useEffect(() => {
@@ -855,6 +899,7 @@ export default function App() {
           answers={answers}
           lastResult={lastResult}
           lockedCorrect={lockedCorrect}
+          attemptsUsed={attemptsUsed}
           hasSubmitted={hasSubmitted}
           editingRetry={editingRetry}
           lastRoundIndices={lastRoundIndices}
@@ -1213,6 +1258,7 @@ function ModuleScreen({
   answers,
   lastResult,
   lockedCorrect,
+  attemptsUsed,
   hasSubmitted,
   editingRetry,
   lastRoundIndices,
@@ -1243,8 +1289,10 @@ function ModuleScreen({
   const isPerfect = hasQuiz && lockedCorrect.length === quizTotal;
   // 3가지 화면 상태: ① 최초(아직 한 번도 채점 안 함) ② 결과보기(정답+오답 전부 표시)
   // ③ 편집중(틀린 문제만 남겨서 다시 답을 고르는 중)
+  // 모듈당 최대 2번만 응시: 2번 응시했으면(finalized) 더 이상 다시 풀 수 없고 그 점수가 최종 점수입니다.
+  const finalized = attemptsUsed >= 2;
   const reviewMode = hasSubmitted && !editingRetry && !isPerfect;
-  const editMode = hasSubmitted && editingRetry && !isPerfect;
+  const editMode = hasSubmitted && editingRetry && !isPerfect && !finalized;
   // 이번 라운드에 보여지는(아직 안 맞은) 문항에 전부 답을 골랐을 때만 제출 가능
   const allAnswered =
     hasQuiz &&
@@ -1474,31 +1522,47 @@ function ModuleScreen({
         {contentStatus === "ready" && phase === "quiz" && hasQuiz && (
           <div className="quiz-panel">
             <div className="learn-tag">
-              {reviewMode || isPerfect
-                ? `채점 결과 · 모듈 ${mod.no} (${lockedCorrect.length} / ${quizTotal} 맞음)`
-                : editMode
-                  ? `틀린 문제 다시 풀기 · 모듈 ${mod.no} (${activeQuizIndices.length}문항)`
-                  : `확인 문제 · 모듈 ${mod.no}`}
+              {finalized || isPerfect
+                ? `최종 점수 · 모듈 ${mod.no} (${lockedCorrect.length} / ${quizTotal})`
+                : reviewMode
+                  ? `1차 채점 결과 · 모듈 ${mod.no} (${lockedCorrect.length} / ${quizTotal} 맞음)`
+                  : editMode
+                    ? `마지막 시도 (2/2) · 모듈 ${mod.no} (${activeQuizIndices.length}문항)`
+                    : `확인 문제 · 모듈 ${mod.no}`}
             </div>
 
-            {reviewMode && (
+            {!hasSubmitted && (
               <div className="retry-notice">
-                이번에 채점한 {lastRoundIndices.length}문항 중 정답{" "}
-                {lastRoundIndices.filter((i) => lockedCorrect.includes(i)).length}개,
-                오답 {lastRoundIndices.filter((i) => !lockedCorrect.includes(i)).length}
-                개입니다. 오답 아래 힌트를 확인하신 뒤 "틀린 문제 다시 풀기" 버튼을
-                눌러 주세요.
+                문제는 모듈당 최대 2번 풀 수 있습니다. 1차에서 틀린 문제만 한 번 더 풀 수 있고,
+                마지막 결과가 최종 점수입니다.
+              </div>
+            )}
+            {reviewMode && !finalized && (
+              <div className="retry-notice">
+                1차 채점: {lastRoundIndices.length}문항 중 정답{" "}
+                {lastRoundIndices.filter((i) => lockedCorrect.includes(i)).length}개, 오답{" "}
+                {lastRoundIndices.filter((i) => !lockedCorrect.includes(i)).length}개입니다.
+                오답 아래 힌트를 확인하신 뒤 "틀린 문제 다시 풀기"로 마지막 시도(2/2)를
+                해 주세요. 2번째 결과가 최종 점수입니다.
               </div>
             )}
             {editMode && (
               <div className="retry-notice">
-                맞힌 문제는 화면에서 사라지고, 틀린 {activeQuizIndices.length}문항만
-                남았습니다. 답을 다시 고른 뒤 제출해 주세요.
+                마지막 시도입니다. 맞힌 문제는 화면에서 사라지고, 틀린{" "}
+                {activeQuizIndices.length}문항만 남았습니다. 답을 고른 뒤 제출하면 최종 점수가
+                확정됩니다.
+              </div>
+            )}
+            {finalized && !isPerfect && (
+              <div className="retry-notice">
+                2번의 응시가 모두 끝났습니다. 최종 점수는 {lockedCorrect.length} /{" "}
+                {quizTotal}점입니다. 오답 아래 힌트로 복습하신 뒤 다음으로 이동하세요.
               </div>
             )}
             {isPerfect && (
               <div className="retry-notice perfect">
-                전 문항을 맞혔습니다! 아래 버튼으로 다음으로 이동하세요.
+                전 문항을 맞혔습니다! 최종 점수 {lockedCorrect.length} / {quizTotal}점입니다.
+                아래 버튼으로 다음으로 이동하세요.
               </div>
             )}
 
@@ -1580,7 +1644,7 @@ function ModuleScreen({
                 );
               })}
 
-            {isPerfect ? (
+            {isPerfect || finalized ? (
               <button className="submit-btn" onClick={onAfterResult}>
                 {isLastModule ? "교육 완료 화면으로" : "다음 모듈로 이동"}
                 <Icon.Arrow className="icon-sm" />
@@ -1592,7 +1656,7 @@ function ModuleScreen({
               </button>
             ) : (
               <button className="submit-btn" disabled={!allAnswered} onClick={onSubmitQuiz}>
-                {editMode ? "다시 제출" : isLastModule ? "최종 제출하기" : "답안 제출"}
+                {editMode ? "최종 제출하기" : "답안 제출"}
                 <Icon.Arrow className="icon-sm" />
               </button>
             )}
@@ -1968,7 +2032,7 @@ function CompleteScreen({ employee, onClose }) {
           <p className="cert-statement">
             위 사람은 Green Oil Inc.의 안전·근무수칙 교육과정
             <br />
-            전 {totalModules}개 모듈을 모두 만점으로 이수하였음을 증명합니다.
+            전 {totalModules}개 모듈을 이수하였음을 증명합니다.
           </p>
 
           <div className="cert-modules">
@@ -2284,6 +2348,14 @@ function AdminDashboard({
                   <th>최근 로그인</th>
                   <th>완료 모듈</th>
                   <th>
+                    총점
+                    <small className="th-sub">정답 수 / 전체 문항</small>
+                  </th>
+                  <th>
+                    모듈별 점수
+                    <small className="th-sub">M1 ~ M6</small>
+                  </th>
+                  <th>
                     진행률
                     <small className="th-sub">전체 문항 기준</small>
                   </th>
@@ -2307,6 +2379,8 @@ function AdminDashboard({
                     solved !== null && totalQuestions
                       ? Math.round((solved / totalQuestions) * 100)
                       : 0;
+                  // 총점 = 각 모듈 최종 점수(정답 수)의 합계
+                  const scoreSum = r.moduleResults.reduce((a, x) => a + (x.score || 0), 0);
                   const isChecked = checkedIds.includes(r.id);
                   const statusLabel =
                     r.status === "submitted"
@@ -2340,6 +2414,29 @@ function AdminDashboard({
                       <td>{fmtDate(r.lastLoginAt)}</td>
                       <td>
                         {done} / {TOTAL_MODULES}
+                      </td>
+                      <td className="score-total">
+                        {totalQuestions
+                          ? `${scoreSum} / ${totalQuestions} (${Math.round(
+                              (scoreSum / totalQuestions) * 100
+                            )}%)`
+                          : "-"}
+                      </td>
+                      <td>
+                        <div className="score-chips">
+                          {MODULES.map((m) => {
+                            const x = r.moduleResults.find((y) => y.moduleId === m.id);
+                            return (
+                              <span
+                                key={m.id}
+                                className={`score-chip ${x ? "has" : ""}`}
+                                title={`모듈 ${m.no}`}
+                              >
+                                {x ? `${x.score}/${x.total}` : "-"}
+                              </span>
+                            );
+                          })}
+                        </div>
                       </td>
                       <td>
                         <div className="mini-cell">
@@ -2384,6 +2481,20 @@ function AdminDashboard({
                 닫기
               </button>
             </div>
+            <div className="modal-total">
+              {(() => {
+                const sum = selected.moduleResults.reduce((a, x) => a + (x.score || 0), 0);
+                return (
+                  <>
+                    <strong>
+                      총점 {sum} / {totalQuestions || "-"}
+                    </strong>
+                    {totalQuestions ? ` (${Math.round((sum / totalQuestions) * 100)}%)` : ""} ·
+                    완료 {selected.moduleResults.length} / {TOTAL_MODULES}개 모듈
+                  </>
+                );
+              })()}
+            </div>
             <div className="modal-modules">
               {MODULES.map((m) => {
                 const r = selected.moduleResults.find((x) => x.moduleId === m.id);
@@ -2400,6 +2511,13 @@ function AdminDashboard({
                     </div>
                     <div className="modal-module-score">
                       {r ? `${r.score} / ${r.total}` : "미응시"}
+                      {r && r.attempts ? (
+                        <small className="modal-module-attempt">
+                          {r.attempts === 1
+                            ? "1회 응시"
+                            : `1차 ${r.firstScore ?? "-"} → 최종 ${r.score} · 2회 응시`}
+                        </small>
+                      ) : null}
                     </div>
                     <div className="modal-module-date">
                       {r ? fmtDate(r.completedAt) : "-"}

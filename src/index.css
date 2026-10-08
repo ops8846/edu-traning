@@ -1515,6 +1515,16 @@ input {
   font-size: 13.5px;
   min-width: 1020px;
 }
+/* 열이 많아져도 값이 줄바꿈되지 않게 하고, 좁은 화면에서는 표를 가로로 스크롤 */
+.admin-table th,
+.admin-table td {
+  white-space: nowrap;
+}
+.admin-table thead th,
+.admin-table tbody td {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .admin-table thead th {
   text-align: left;
   padding: 13px 14px;
@@ -2986,3 +2996,22 @@ body {
   font-weight: 500;
   color: var(--text-dim);
 }
+
+/* ---------- 관리자: 총점·모듈별 점수 ---------- */
+.score-total { white-space: nowrap; font-weight: 600; }
+.score-chips { display: flex; gap: 3px; }
+.score-chip {
+  min-width: 40px;
+  padding: 2px 3px;
+  border: 1px solid var(--line, #CFE0D0);
+  border-radius: 2px;
+  font-size: 11px;
+  text-align: center;
+  color: #55605A;
+  background: #fff;
+  white-space: nowrap;
+}
+.score-chip.has { color: var(--brand-deep, #134626); background: #E7F3E6; font-weight: 600; }
+.modal-total { padding: 10px 0 14px; font-size: 14px; color: #55605A; }
+.modal-total strong { color: var(--brand-deep, #134626); font-size: 16px; }
+.modal-module-attempt { display: block; font-size: 11px; font-weight: 400; color: #55605A; }
