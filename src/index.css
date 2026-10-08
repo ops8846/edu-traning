@@ -2961,3 +2961,28 @@ body {
     border-bottom: none;
   }
 }
+
+/* 관리자 표: 진행률 막대 + 퍼센트 */
+.mini-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mini-cell .mini-track {
+  flex: 1;
+  min-width: 70px;
+}
+.mini-pct {
+  width: 40px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-deep);
+  font-variant-numeric: tabular-nums;
+}
+.th-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dim);
+}

@@ -2027,6 +2027,26 @@ function AdminDashboard({
   const roster = (allowList && allowList.employees) || [];
   const deptOf = (u) => u.department || "미지정";
 
+  // 모듈별 문항 수 (교육 자료 파일에서 읽어옴 → 문제를 추가/삭제해도 자동 반영)
+  const [questionCounts, setQuestionCounts] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    Promise.all(
+      MODULES.map((m) =>
+        fetch(contentUrl(m))
+          .then((res) => (res.ok ? res.json() : null))
+          .then((d) => (d && Array.isArray(d.questions) ? d.questions.length : null))
+          .catch(() => null)
+      )
+    ).then((counts) => {
+      if (alive && counts.every((n) => n !== null)) setQuestionCounts(counts);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+  const totalQuestions = questionCounts ? questionCounts.reduce((a, n) => a + n, 0) : 0;
+
   // Firestore 기록(r.id)에 해당하는 최신 접속코드를 allowed-users.json에서 실시간으로 찾아옵니다.
   const codeOf = (id) => {
     const found = roster.find((u) => u.id === id);
@@ -2261,9 +2281,12 @@ function AdminDashboard({
                   <th>ID</th>
                   <th>접속코드</th>
                   <th>최근 로그인</th>
-                  <th>진행상황</th>
-                  <th>진행률</th>
-                  <th>총점</th>
+                  <th>완료 모듈</th>
+                  <th>
+                    진행률
+                    <small className="th-sub">전체 문항 기준</small>
+                  </th>
+                  <th>푼 문항</th>
                   <th>상태</th>
                   <th>제출일시</th>
                   <th></th>
@@ -2272,8 +2295,17 @@ function AdminDashboard({
               <tbody>
                 {visible.map((r) => {
                   const done = r.moduleResults.length;
-                  const totalScore = r.moduleResults.reduce((a, x) => a + x.score, 0);
-                  const totalMax = r.moduleResults.reduce((a, x) => a + x.total, 0);
+                  // 완료한 모듈의 문항 수 합계 ÷ 전체 문항 수 (모듈은 모두 맞혀야 완료되므로 푼 문항은 모두 정답)
+                  const solved = questionCounts
+                    ? r.moduleResults.reduce(
+                        (a, x) => a + (questionCounts[x.moduleNo - 1] ?? x.total),
+                        0
+                      )
+                    : null;
+                  const pct =
+                    solved !== null && totalQuestions
+                      ? Math.round((solved / totalQuestions) * 100)
+                      : 0;
                   const isChecked = checkedIds.includes(r.id);
                   const statusLabel =
                     r.status === "submitted"
@@ -2309,14 +2341,14 @@ function AdminDashboard({
                         {done} / {TOTAL_MODULES}
                       </td>
                       <td>
-                        <div className="mini-track">
-                          <div
-                            className="mini-fill"
-                            style={{ width: `${(done / TOTAL_MODULES) * 100}%` }}
-                          />
+                        <div className="mini-cell">
+                          <div className="mini-track">
+                            <div className="mini-fill" style={{ width: `${pct}%` }} />
+                          </div>
+                          <span className="mini-pct">{solved === null ? "-" : `${pct}%`}</span>
                         </div>
                       </td>
-                      <td>{totalMax ? `${totalScore} / ${totalMax}` : "-"}</td>
+                      <td>{solved === null ? "-" : `${solved} / ${totalQuestions}`}</td>
                       <td>
                         <span className={`status-pill ${statusClass}`}>
                           {statusLabel}
