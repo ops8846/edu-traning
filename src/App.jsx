@@ -172,6 +172,50 @@ function readSavedSession() {
 
 const TOTAL_MODULES = MODULES.length;
 
+/* 글자 크기(1 보통 / 2 크게 / 3 아주 크게): 브라우저에 기억해 두었다가 다시 적용 */
+const FONT_SCALE_KEY = "goi_font_scale";
+function applyFontScale(n) {
+  document.documentElement.setAttribute("data-fs", String(n));
+}
+try {
+  const savedScale = localStorage.getItem(FONT_SCALE_KEY);
+  if (savedScale === "2" || savedScale === "3") applyFontScale(savedScale);
+} catch (_) {
+  /* 저장소를 쓸 수 없으면 기본 크기로 표시 */
+}
+
+function FontSizeToggle() {
+  const [scale, setScale] = useState(
+    () => document.documentElement.getAttribute("data-fs") || "1"
+  );
+  function choose(n) {
+    setScale(String(n));
+    applyFontScale(n);
+    try {
+      localStorage.setItem(FONT_SCALE_KEY, String(n));
+    } catch (_) {
+      /* 저장 실패는 무시 */
+    }
+  }
+  const labels = ["보통", "크게", "아주 크게"];
+  return (
+    <div className="fs-toggle" role="group" aria-label="글자 크기">
+      {labels.map((l, i) => (
+        <button
+          type="button"
+          key={l}
+          aria-pressed={scale === String(i + 1)}
+          aria-label={`글자 ${l}`}
+          title={`글자 ${l}`}
+          onClick={() => choose(i + 1)}
+        >
+          가
+        </button>
+      ))}
+    </div>
+  );
+}
+
 /* ============================================================
    유틸
    ============================================================ */
@@ -491,6 +535,16 @@ export default function App() {
       .then((data) => {
         setModuleContent(data);
         setContentStatus("ready");
+        // 이전에 읽던 페이지가 있으면 거기서 이어서 시작 (복습 모드는 처음부터)
+        if (!review) {
+          const total = (data.chapters || []).reduce((n, c) => n + c.sections.length, 0);
+          const prog = employee && employee.progress && employee.progress[MODULES[idx].id];
+          if (prog && prog.maxSection > 0 && total > 0) {
+            const resume = Math.min(prog.maxSection, total - 1);
+            setSectionIdx(resume);
+            setMaxSection(resume);
+          }
+        }
       })
       .catch((err) => {
         console.error("모듈 콘텐츠 로드 실패", err);
@@ -558,6 +612,23 @@ export default function App() {
   useEffect(() => {
     setMaxSection((m) => (sectionIdx > m ? sectionIdx : m));
   }, [sectionIdx]);
+
+  // 읽은 페이지가 늘어날 때마다 진행 상황을 기록에 저장 (복습·완료한 모듈은 제외)
+  useEffect(() => {
+    if (screen !== "module" || reviewOnly || !employee || !moduleContent) return;
+    if (phase !== "learn" || maxSection < 1) return;
+    const id = MODULES[moduleIdx].id;
+    if (employee.moduleResults.some((r) => r.moduleId === id)) return;
+    const total = flattenSections(moduleContent).length;
+    const prev = employee.progress && employee.progress[id];
+    if (prev && prev.maxSection >= maxSection && prev.total === total) return;
+    const rec = {
+      ...employee,
+      progress: { ...(employee.progress || {}), [id]: { maxSection, total } },
+    };
+    setEmployee(rec);
+    saveEmployee(rec).catch((err) => console.error("진행 저장 실패", err));
+  }, [maxSection, screen, moduleContent, phase, reviewOnly, moduleIdx, employee]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // 영상을 끝까지 재생했을 때 호출 (key: "섹션인덱스_블록인덱스")
   function markVideoWatched(key) {
@@ -924,6 +995,9 @@ function LoginScreen(props) {
 
   return (
     <div className="login-shell">
+      <div className="login-fs">
+        <FontSizeToggle />
+      </div>
       <div className="login-hero">
         <div className="hero-content">
           <div className="hero-logo-badge">
@@ -1104,6 +1178,13 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
             const isUnlocked = idx <= employee.currentModuleIdx;
             const isCurrent = isUnlocked && !isDone;
             const isLast = idx === MODULES.length - 1;
+            const prog = employee.progress && employee.progress[m.id];
+            const pct = isDone
+              ? 100
+              : prog && prog.total > 0
+                ? Math.min(99, Math.round((prog.maxSection / prog.total) * 100))
+                : 0;
+            const hasProgress = !isDone && !!prog && prog.maxSection > 0;
 
             return (
               <div
@@ -1134,7 +1215,7 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
                           isDone ? "done" : isCurrent ? "current" : "locked"
                         }`}
                       >
-                        {isDone ? "완료" : isCurrent ? "학습 가능" : "잠김"}
+                        {isDone ? "완료" : hasProgress ? "학습 중" : isCurrent ? "학습 가능" : "잠김"}
                       </span>
                     </div>
                     <div className="timeline-title">{m.title}</div>
@@ -1151,14 +1232,14 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
                     </div>
                   </div>
                   <div className="timeline-action">
-                    <div className="timeline-progress" aria-label={`진행률 ${isDone ? 100 : 0}%`}>
+                    <div className="timeline-progress" aria-label={`진행률 ${pct}%`}>
                       <div className="timeline-progress-track">
                         <div
                           className="timeline-progress-fill"
-                          style={{ width: isDone ? "100%" : "0%" }}
+                          style={{ width: `${pct}%` }}
                         />
                       </div>
-                      <span>{isDone ? 100 : 0}%</span>
+                      <span>{pct}%</span>
                     </div>
                     {isDone ? (
                       <>
@@ -1168,7 +1249,7 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
                       </>
                     ) : isUnlocked ? (
                       <button className="start-btn" onClick={() => onStartModule(idx)}>
-                        학습 시작
+                        {hasProgress ? "이어서 학습" : "학습 시작"}
                         <Icon.Arrow className="icon-sm" />
                       </button>
                     ) : (
@@ -2395,7 +2476,10 @@ function TopBar({ left, right }) {
   return (
     <div className="topbar">
       <div className="topbar-left">{left}</div>
-      <div className="topbar-right">{right}</div>
+      <div className="topbar-right">
+        <FontSizeToggle />
+        {right}
+      </div>
     </div>
   );
 }
