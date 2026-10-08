@@ -115,7 +115,8 @@ const withBase = (path) => {
   return `${cleanBase}${cleanPath}`;
 };
 
-const contentUrl = (mod) => withBase(`${mod.folder}/content_${mod.id}.json`);
+// 배포마다 달라지는 값(__BUILD_ID__)을 붙여, 브라우저/CDN에 남은 이전 문제 파일이 읽히지 않게 함
+const contentUrl = (mod) => withBase(`${mod.folder}/content_${mod.id}.json`) + `?v=${__BUILD_ID__}`;
 
 // 관리자 통계·부서별 현황표에서 제외할 부서 (테스트 계정용). 필요 없으면 [] 로 비우세요.
 const STATS_EXCLUDED_DEPARTMENTS = ["TEST"];
