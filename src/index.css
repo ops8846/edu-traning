@@ -2828,3 +2828,124 @@ html[data-fs="3"] .app-root {
     display: none;
   }
 }
+
+/* ----- 로그인 화면: 스크롤 없이 한 화면에 ----- */
+.login-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+.login-hero {
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(20px, 4.5vh, 48px) clamp(24px, 4vw, 64px) clamp(16px, 3vh, 40px);
+  gap: clamp(10px, 2.4vh, 40px);
+}
+.login-hero .hero-logo-badge {
+  margin-bottom: clamp(10px, 3vh, 40px);
+}
+.login-hero .hero-logo-badge img {
+  height: clamp(22px, 3.4vh, 32px);
+}
+.login-hero .hero-code {
+  margin-bottom: clamp(8px, 2vh, 24px);
+}
+.login-hero .hero-title {
+  font-size: clamp(30px, min(4.6vw, 7.4vh), 68px);
+  margin-bottom: clamp(8px, 2vh, 24px);
+}
+.login-hero .hero-desc {
+  font-size: clamp(14px, 2.2vh, 18px);
+  margin-bottom: clamp(10px, 2.2vh, 28px);
+}
+.login-hero .hero-rule {
+  margin-bottom: clamp(10px, 2.2vh, 28px);
+}
+.login-hero .hero-title-ko {
+  font-size: clamp(19px, 3.4vh, 28px);
+  margin-bottom: clamp(6px, 1.4vh, 12px);
+}
+.login-hero .hero-desc-ko {
+  font-size: clamp(13px, 2vh, 16px);
+  line-height: 1.6;
+}
+.login-hero .hero-art {
+  width: auto;
+  height: min(34vh, 380px);
+  min-height: 110px;
+  max-width: 100%;
+  aspect-ratio: 560 / 512;
+  flex: 0 1 auto;
+}
+.login-panel {
+  min-height: 0;
+  overflow-y: auto;
+  padding: clamp(20px, 4vh, 48px) clamp(24px, 4vw, 64px);
+}
+.login-form {
+  padding: clamp(20px, 3.4vh, 36px) 32px clamp(18px, 3vh, 32px);
+}
+.login-form .form-hint {
+  margin-bottom: clamp(10px, 2vh, 22px);
+}
+.login-form label {
+  margin-bottom: clamp(8px, 1.8vh, 16px);
+}
+@media (max-width: 860px) {
+  .login-shell {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .login-hero {
+    flex: 0 0 auto;
+    padding: 16px 20px 8px;
+    gap: 6px;
+  }
+  .login-hero .hero-art,
+  .login-hero .hero-desc-ko,
+  .login-hero .hero-desc,
+  .login-hero .hero-rule,
+  .login-hero .hero-code {
+    display: none;
+  }
+  .login-hero .hero-logo-badge {
+    margin-bottom: 10px;
+  }
+  .login-hero .hero-title {
+    font-size: clamp(26px, 7.5vw, 34px);
+    margin-bottom: 6px;
+  }
+  .login-hero .hero-title-ko {
+    font-size: 17px;
+    margin-bottom: 0;
+  }
+  .login-panel {
+    flex: 1 1 auto;
+    padding: 12px 20px 20px;
+  }
+}
+html[data-fs="2"] .login-shell,
+html[data-fs="3"] .login-shell {
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+html,
+body {
+  margin: 0;
+}
+.login-panel {
+  justify-content: flex-start;
+}
+.login-panel > :first-child {
+  margin-top: auto;
+}
+.login-panel > :last-child {
+  margin-bottom: auto;
+}
+.login-panel > * {
+  flex-shrink: 0;
+}
