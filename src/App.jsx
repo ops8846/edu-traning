@@ -505,6 +505,8 @@ export default function App() {
     setHasSubmitted(false);
     setEditingRetry(false);
     setLastRoundIndices([]);
+    setOpenedDetails({});
+    setWatchedVideos({});
     setSelectedEmp(null);
   }
 
@@ -1829,7 +1831,7 @@ function ContentBlocks({
           return (
             <details
               className="block-details"
-              key={`${i}-${openAll ? "o" : "c"}`}
+              key={`${sectionIdx}-${i}-${openAll ? "o" : "c"}`}
               open={!!openAll}
               onToggle={(e) => {
                 if (e.currentTarget.open && !openAll && onDetailOpened)
