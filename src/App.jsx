@@ -283,6 +283,10 @@ export default function App() {
   // 복습 모드: 완료한 모듈을 문제 없이 다시 읽어보기만 함 (결과/점수는 변경하지 않음)
   const [reviewOnly, setReviewOnly] = useState(saved ? !!saved.reviewOnly : false);
   const [sectionIdx, setSectionIdx] = useState(saved ? saved.sectionIdx || 0 : 0);
+  // 이 모듈에서 지금까지 도달한 가장 먼 학습 페이지 (목차에서 되돌아가기용)
+  const [maxSection, setMaxSection] = useState(
+    saved && Number.isInteger(saved.maxSection) ? saved.maxSection : 0
+  );
   // 문제 힌트에서 학습 페이지로 이동했을 때, 돌아갈 문제 번호(없으면 null)
   const [returnQ, setReturnQ] = useState(
     saved && Number.isInteger(saved.returnQ) ? saved.returnQ : null
@@ -466,6 +470,7 @@ export default function App() {
     setModuleIdx(idx);
     setPhase("learn");
     setSectionIdx(0);
+    setMaxSection(0);
     setReturnQ(null);
     setAnswers([]);
     setLockedCorrect([]);
@@ -537,12 +542,22 @@ export default function App() {
     }, 60);
   }
 
+  // 목차에서 이미 읽은 페이지로 이동
+  function goSection(i) {
+    setSectionIdx(i);
+    window.scrollTo(0, 0);
+  }
+
   function prevSection() {
     if (sectionIdx > 0) {
       setSectionIdx((i) => i - 1);
     }
     window.scrollTo(0, 0);
   }
+
+  useEffect(() => {
+    setMaxSection((m) => (sectionIdx > m ? sectionIdx : m));
+  }, [sectionIdx]);
 
   // 영상을 끝까지 재생했을 때 호출 (key: "섹션인덱스_블록인덱스")
   function markVideoWatched(key) {
@@ -720,6 +735,7 @@ export default function App() {
             employee,
             moduleIdx,
             sectionIdx,
+            maxSection,
             returnQ,
             phase,
             reviewOnly,
@@ -737,7 +753,7 @@ export default function App() {
     } catch (_) {
       /* 저장소 사용 불가 환경은 조용히 무시 */
     }
-  }, [screen, employee, moduleIdx, sectionIdx, returnQ, phase, reviewOnly, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
+  }, [screen, employee, moduleIdx, sectionIdx, maxSection, returnQ, phase, reviewOnly, answers, lastResult, lockedCorrect, hasSubmitted, editingRetry, lastRoundIndices]);
 
   // 교육/문제 화면으로 복원된 경우: 교육 자료를 다시 불러옵니다. (대시보드는 불필요)
   useEffect(() => {
@@ -800,6 +816,8 @@ export default function App() {
           phase={phase}
           reviewOnly={reviewOnly}
           sectionIdx={sectionIdx}
+          maxSection={maxSection}
+          onGoSection={goSection}
           returnQ={returnQ}
           onGoStudy={goStudy}
           onBackToQuiz={backToQuiz}
@@ -847,6 +865,45 @@ export default function App() {
 /* ============================================================
    로그인 화면
    ============================================================ */
+/* 로그인 화면 일러스트: 자라나는 나무를 받치는 두 손 (단색 벡터) */
+function HeroArt() {
+  const hand = (
+    <>
+      <path d="M0 424 L84 414 L92 500 L0 508 Z" fill="#134626" />
+      <path
+        d="M0 438 C40 404 110 396 196 414 C236 422 262 436 262 452 C262 470 236 480 196 482 C120 486 50 484 0 486 Z"
+        fill="#E4BF98"
+      />
+      <path d="M170 404 C196 392 236 398 252 420 C240 424 214 422 196 418 Z" fill="#D9AE84" />
+    </>
+  );
+  return (
+    <svg
+      className="hero-art"
+      viewBox="0 0 560 512"
+      role="img"
+      aria-label="두 손이 자라나는 나무를 받치고 있는 일러스트"
+    >
+      <circle cx="280" cy="250" r="214" fill="#E3F1E2" />
+      <path d="M268 412 L274 292 Q280 264 286 292 L292 412 Z" fill="#5E4A38" />
+      <path d="M277 342 L238 298" stroke="#5E4A38" strokeWidth="8" strokeLinecap="round" fill="none" />
+      <path d="M283 320 L326 278" stroke="#5E4A38" strokeWidth="8" strokeLinecap="round" fill="none" />
+      <path d="M279 290 L252 254" stroke="#5E4A38" strokeWidth="7" strokeLinecap="round" fill="none" />
+      <circle cx="214" cy="248" r="50" fill="#134626" />
+      <circle cx="346" cy="244" r="54" fill="#1E6637" />
+      <circle cx="280" cy="190" r="74" fill="#1E6637" />
+      <circle cx="246" cy="152" r="36" fill="#2D7C46" />
+      <ellipse cx="318" cy="150" rx="13" ry="25" transform="rotate(32 318 150)" fill="#82C341" />
+      <ellipse cx="196" cy="214" rx="11" ry="21" transform="rotate(-38 196 214)" fill="#82C341" />
+      <ellipse cx="372" cy="214" rx="11" ry="21" transform="rotate(40 372 214)" fill="#82C341" />
+      <ellipse cx="282" cy="108" rx="11" ry="21" transform="rotate(8 282 108)" fill="#82C341" />
+      <path d="M180 420 Q280 368 380 420 L380 448 Q280 464 180 448 Z" fill="#7A5C43" />
+      <g>{hand}</g>
+      <g transform="translate(560 0) scale(-1 1)">{hand}</g>
+    </svg>
+  );
+}
+
 function LoginScreen(props) {
   const {
     role,
@@ -868,33 +925,23 @@ function LoginScreen(props) {
   return (
     <div className="login-shell">
       <div className="login-hero">
-        <div className="hero-stripes" />
         <div className="hero-content">
           <div className="hero-logo-badge">
             <img src={LOGO_WHITE_BG} alt="Green Oil Inc." />
           </div>
-          <div className="hero-code">GREEN OIL INC. · FLEET SAFETY TRAINING</div>
-          <h1 className="hero-title">
-            안전 &amp; 근무수칙
-            <br />
-            <span className="hero-title-accent">교육 플랫폼</span>
-          </h1>
+          <div className="hero-code">TRAINING PORTAL</div>
+          <h1 className="hero-title">Safe Work, Responsible Growth</h1>
           <p className="hero-desc">
-            신규 입사자를 위한 안전·정비·사고대응·현장 근무수칙 교육입니다.
-            <br />
-            6개 모듈을 순서대로 학습·응시합니다.
+            Green Oil Inc. training on company policies, regulations, and workplace safety for
+            every team member.
           </p>
-          <ul className="hero-modules">
-            {MODULES.map((m) => (
-              <li key={m.id}>
-                <span className="hero-modules-no" style={{ color: m.color }}>
-                  {String(m.no).padStart(2, "0")}
-                </span>
-                <span className="hero-modules-title">{m.title}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="hero-rule" />
+          <h2 className="hero-title-ko">안전하게 일하고, 책임 있게 성장합니다</h2>
+          <p className="hero-desc-ko">
+            Green Oil 전 임직원을 위한 회사 내규, 관련 법규, 안전 수칙 교육 사이트입니다.
+          </p>
         </div>
+        <HeroArt />
       </div>
 
       <div className="login-panel">
@@ -1020,7 +1067,7 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
 
       <div className="dash-body">
         <div className="dash-header">
-          <div className="dash-eyebrow">신입사원 필수 교육 과정</div>
+          <div className="dash-eyebrow">LEARNING ROADMAP</div>
           <h1>내 교육 진행 현황</h1>
           <p>
             {isSubmitted
@@ -1031,11 +1078,22 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
             본 교육은 Green Oil Inc. 사내 안전관리규정에 근거하여 제공되며, 전 과정 이수는
             입사 필수 요건입니다.
           </div>
-          <div className="progress-track">
-            <div
-              className="progress-fill"
-              style={{ width: `${(completedCount / TOTAL_MODULES) * 100}%` }}
-            />
+          <div className="progress-head">
+            <span>전체 진행</span>
+            <strong>
+              {completedCount}
+              <em> / {TOTAL_MODULES} 모듈 완료</em>
+            </strong>
+          </div>
+          <div className="progress-segments" role="img" aria-label={`${TOTAL_MODULES}개 모듈 중 ${completedCount}개 완료`}>
+            {MODULES.map((m, i) => (
+              <span
+                key={m.id}
+                className={
+                  i < completedCount ? "seg done" : i === completedCount ? "seg current" : "seg"
+                }
+              />
+            ))}
           </div>
         </div>
 
@@ -1069,12 +1127,17 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
 
                 <div className="timeline-card">
                   <div className="timeline-main">
-                    <div className="timeline-title">
-                      {m.title}
-                      <span className="timeline-code" style={{ color: m.color }}>
-                        {m.code}
+                    <div className="timeline-badge-row">
+                      <span className="timeline-no">MODULE {String(m.no).padStart(2, "0")}</span>
+                      <span
+                        className={`timeline-pill ${
+                          isDone ? "done" : isCurrent ? "current" : "locked"
+                        }`}
+                      >
+                        {isDone ? "완료" : isCurrent ? "학습 가능" : "잠김"}
                       </span>
                     </div>
+                    <div className="timeline-title">{m.title}</div>
                     <div className="timeline-sub">{m.subtitle}</div>
                     <div className="timeline-meta">
                       학습목표 {m.objectives ? m.objectives.length : 0}개
@@ -1088,9 +1151,17 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
                     </div>
                   </div>
                   <div className="timeline-action">
+                    <div className="timeline-progress" aria-label={`진행률 ${isDone ? 100 : 0}%`}>
+                      <div className="timeline-progress-track">
+                        <div
+                          className="timeline-progress-fill"
+                          style={{ width: isDone ? "100%" : "0%" }}
+                        />
+                      </div>
+                      <span>{isDone ? 100 : 0}%</span>
+                    </div>
                     {isDone ? (
                       <>
-                        <span className="timeline-status done">완료</span>
                         <button className="review-btn" onClick={() => onReviewModule(idx)}>
                           복습하기
                         </button>
@@ -1101,7 +1172,7 @@ function EmployeeDashboard({ employee, onStartModule, onReviewModule, onLogout }
                         <Icon.Arrow className="icon-sm" />
                       </button>
                     ) : (
-                      <span className="timeline-status locked">잠김</span>
+                      <span className="timeline-status locked">이전 모듈을 완료하면 열립니다</span>
                     )}
                   </div>
                 </div>
@@ -1133,6 +1204,8 @@ function ModuleScreen({
   phase,
   reviewOnly,
   sectionIdx,
+  maxSection,
+  onGoSection,
   returnQ,
   onGoStudy,
   onBackToQuiz,
@@ -1205,6 +1278,19 @@ function ModuleScreen({
   const detailsLocked = !reviewOnly && unopenedDetails.length > 0;
   const navLocked = videoLocked || detailsLocked;
 
+  // 목차: 챕터별로 묶고, 도달한 페이지까지만 이동 가능 (복습 모드는 전체)
+  const reachedMax = reviewOnly ? flat.length - 1 : maxSection;
+  const tocGroups = [];
+  flat.forEach((f, i) => {
+    let g = tocGroups[tocGroups.length - 1];
+    if (!g || g.title !== f.chapterTitle) {
+      g = { title: f.chapterTitle, items: [] };
+      tocGroups.push(g);
+    }
+    g.items.push({ i, title: f.sectionTitle });
+  });
+  const [tocOpen, setTocOpen] = useState(false);
+
   return (
     <div className="dash-shell">
       <TopBar
@@ -1225,7 +1311,7 @@ function ModuleScreen({
         }
       />
 
-      <div className="module-body" style={{ "--accent": mod.color }}>
+      <div className="module-body">
         {contentStatus === "loading" && (
           <div className="content-loading">학습 자료를 불러오는 중입니다...</div>
         )}
@@ -1236,6 +1322,55 @@ function ModuleScreen({
         )}
 
         {contentStatus === "ready" && phase === "learn" && current && (
+          <div className={`learn-layout ${returnQ === null ? "with-toc" : ""}`}>
+            {returnQ === null && (
+              <nav className="learn-toc" aria-label={`모듈 ${mod.no} 목차`}>
+                <button
+                  type="button"
+                  className="toc-toggle"
+                  aria-expanded={tocOpen}
+                  onClick={() => setTocOpen((o) => !o)}
+                >
+                  목차 · {sectionIdx + 1} / {flat.length}
+                  <span aria-hidden="true">{tocOpen ? "▴" : "▾"}</span>
+                </button>
+                <div className={`toc-body ${tocOpen ? "open" : ""}`}>
+                  <div className="toc-label">목차 · {sectionIdx + 1} / {flat.length}</div>
+                  {tocGroups.map((g) => (
+                    <div className="toc-group" key={g.title}>
+                      <div className="toc-group-title">{g.title}</div>
+                      {g.items.map((it) => {
+                        const isCur = it.i === sectionIdx;
+                        const isDoneItem = it.i < sectionIdx || (it.i <= reachedMax && !isCur);
+                        const canGo = it.i <= reachedMax && !isCur;
+                        return (
+                          <button
+                            type="button"
+                            key={it.i}
+                            className={`toc-item ${isCur ? "current" : ""} ${
+                              isDoneItem ? "done" : ""
+                            }`}
+                            aria-current={isCur ? "page" : undefined}
+                            disabled={!canGo && !isCur}
+                            onClick={() => {
+                              if (canGo) {
+                                setTocOpen(false);
+                                onGoSection(it.i);
+                              }
+                            }}
+                          >
+                            <span className="toc-mark" aria-hidden="true">
+                              {isDoneItem && !isCur ? <Icon.Check className="icon-xs" /> : null}
+                            </span>
+                            <span>{it.title}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </nav>
+            )}
           <div className="learn-panel">
             <div className="learn-progress-bar">
               <div
@@ -1315,6 +1450,7 @@ function ModuleScreen({
             </div>
             )}
           </div>
+          </div>
         )}
 
         {contentStatus === "ready" && phase === "quiz" && !hasQuiz && (
@@ -1361,7 +1497,7 @@ function ModuleScreen({
             )}
             {isPerfect && (
               <div className="retry-notice perfect">
-                🎉 전 문항을 맞혔습니다! 아래 버튼으로 다음으로 이동하세요.
+                전 문항을 맞혔습니다! 아래 버튼으로 다음으로 이동하세요.
               </div>
             )}
 
