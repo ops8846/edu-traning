@@ -2949,3 +2949,84 @@ body {
 .login-panel > * {
   flex-shrink: 0;
 }
+
+
+/* ----- 로그인: 전체 화면 풍경 배경 (하늘 + 나무 언덕 + 호수) ----- */
+.login-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+  column-gap: clamp(24px, 5vw, 96px);
+  padding-inline: max(0px, calc((100vw - 1440px) / 2));
+  background:
+    radial-gradient(ellipse 340px 120px at 78% 12%, rgba(255, 255, 255, 0.75), transparent 70%),
+    radial-gradient(ellipse 420px 140px at 94% 36%, rgba(255, 255, 255, 0.7), transparent 70%),
+    radial-gradient(ellipse 300px 110px at 56% 24%, rgba(255, 255, 255, 0.55), transparent 70%),
+    linear-gradient(180deg, #bde5f6 0%, #d3edf4 42%, #eaf6f4 78%, #f4faf3 100%);
+}
+.login-scene {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.login-scene img {
+  display: block;
+  width: 100%;
+  min-width: 960px;
+  height: auto;
+}
+.login-hero,
+.login-panel {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border-right: none;
+}
+.login-hero {
+  padding-inline: clamp(24px, 3vw, 48px) 0;
+}
+.login-panel {
+  padding-inline: 0 clamp(24px, 3vw, 48px);
+  align-items: stretch;
+}
+.login-panel .role-toggle,
+.login-panel .login-form {
+  max-width: none;
+}
+.login-hero .hero-logo-badge {
+  background: #ffffff;
+}
+.login-form {
+  background: rgba(255, 255, 255, 0.96);
+}
+.role-toggle button {
+  color: var(--brand-deep);
+}
+.role-toggle button:not(.active) {
+  background: rgba(255, 255, 255, 0.35);
+}
+.login-fs {
+  z-index: 3;
+}
+@media (max-width: 860px) {
+  .login-shell {
+    display: flex;
+    padding-inline: 0;
+  }
+  .login-hero,
+  .login-panel {
+    padding-inline: 20px;
+  }
+  .login-scene img {
+    min-width: 700px;
+  }
+}
+@media (max-width: 860px) {
+  .login-hero {
+    border-bottom: none;
+  }
+}

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef, Fragment } from "react";
 import "./index.css";
 import { db } from "./firebase";
 import certTemplate from "./assets/cert-template.webp";
+import loginScene from "./assets/login-scene.webp";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 
 /* ============================================================
@@ -938,45 +939,6 @@ export default function App() {
 /* ============================================================
    로그인 화면
    ============================================================ */
-/* 로그인 화면 일러스트: 자라나는 나무를 받치는 두 손 (단색 벡터) */
-function HeroArt() {
-  const hand = (
-    <>
-      <path d="M0 424 L84 414 L92 500 L0 508 Z" fill="#134626" />
-      <path
-        d="M0 438 C40 404 110 396 196 414 C236 422 262 436 262 452 C262 470 236 480 196 482 C120 486 50 484 0 486 Z"
-        fill="#E4BF98"
-      />
-      <path d="M170 404 C196 392 236 398 252 420 C240 424 214 422 196 418 Z" fill="#D9AE84" />
-    </>
-  );
-  return (
-    <svg
-      className="hero-art"
-      viewBox="0 0 560 512"
-      role="img"
-      aria-label="두 손이 자라나는 나무를 받치고 있는 일러스트"
-    >
-      <circle cx="280" cy="250" r="214" fill="#E3F1E2" />
-      <path d="M268 412 L274 292 Q280 264 286 292 L292 412 Z" fill="#5E4A38" />
-      <path d="M277 342 L238 298" stroke="#5E4A38" strokeWidth="8" strokeLinecap="round" fill="none" />
-      <path d="M283 320 L326 278" stroke="#5E4A38" strokeWidth="8" strokeLinecap="round" fill="none" />
-      <path d="M279 290 L252 254" stroke="#5E4A38" strokeWidth="7" strokeLinecap="round" fill="none" />
-      <circle cx="214" cy="248" r="50" fill="#134626" />
-      <circle cx="346" cy="244" r="54" fill="#1E6637" />
-      <circle cx="280" cy="190" r="74" fill="#1E6637" />
-      <circle cx="246" cy="152" r="36" fill="#2D7C46" />
-      <ellipse cx="318" cy="150" rx="13" ry="25" transform="rotate(32 318 150)" fill="#82C341" />
-      <ellipse cx="196" cy="214" rx="11" ry="21" transform="rotate(-38 196 214)" fill="#82C341" />
-      <ellipse cx="372" cy="214" rx="11" ry="21" transform="rotate(40 372 214)" fill="#82C341" />
-      <ellipse cx="282" cy="108" rx="11" ry="21" transform="rotate(8 282 108)" fill="#82C341" />
-      <path d="M180 420 Q280 368 380 420 L380 448 Q280 464 180 448 Z" fill="#7A5C43" />
-      <g>{hand}</g>
-      <g transform="translate(560 0) scale(-1 1)">{hand}</g>
-    </svg>
-  );
-}
-
 function LoginScreen(props) {
   const {
     role,
@@ -997,6 +959,9 @@ function LoginScreen(props) {
 
   return (
     <div className="login-shell">
+      <div className="login-scene" aria-hidden="true">
+        <img src={loginScene} alt="" />
+      </div>
       <div className="login-fs">
         <FontSizeToggle />
       </div>
@@ -1017,7 +982,6 @@ function LoginScreen(props) {
             Green Oil 전 임직원을 위한 회사 내규, 관련 법규, 안전 수칙 교육 사이트입니다.
           </p>
         </div>
-        <HeroArt />
       </div>
 
       <div className="login-panel">
