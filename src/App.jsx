@@ -2341,10 +2341,14 @@ function AdminDashboard({
                   <th className="checkbox-col">
                     <input type="checkbox" checked={allChecked} onChange={toggleAll} />
                   </th>
-                  <th>이름</th>
-                  <th>부서</th>
-                  <th>ID</th>
-                  <th>접속코드</th>
+                  <th>
+                    이름
+                    <small className="th-sub">부서</small>
+                  </th>
+                  <th>
+                    ID
+                    <small className="th-sub">접속코드</small>
+                  </th>
                   <th>최근 로그인</th>
                   <th>완료 모듈</th>
                   <th>
@@ -2357,9 +2361,8 @@ function AdminDashboard({
                   </th>
                   <th>
                     진행률
-                    <small className="th-sub">전체 문항 기준</small>
+                    <small className="th-sub">푼 문항 / 전체 문항</small>
                   </th>
-                  <th>푼 문항</th>
                   <th>상태</th>
                   <th>제출일시</th>
                   <th></th>
@@ -2407,10 +2410,14 @@ function AdminDashboard({
                           onChange={() => toggleOne(r.id)}
                         />
                       </td>
-                      <td>{r.name}</td>
-                      <td className="dept-cell">{deptOf(r)}</td>
-                      <td className="id-cell">{r.id}</td>
-                      <td className="id-cell">{codeOf(r.id)}</td>
+                      <td>
+                        <div className="cell-main">{r.name}</div>
+                        <div className="cell-sub">{deptOf(r)}</div>
+                      </td>
+                      <td>
+                        <div className="cell-main id-cell">{r.id}</div>
+                        <div className="cell-sub id-cell">{codeOf(r.id)}</div>
+                      </td>
                       <td>{fmtDate(r.lastLoginAt)}</td>
                       <td>
                         {done} / {TOTAL_MODULES}
@@ -2445,8 +2452,10 @@ function AdminDashboard({
                           </div>
                           <span className="mini-pct">{solved === null ? "-" : `${pct}%`}</span>
                         </div>
+                        <div className="cell-sub">
+                          {solved === null ? "-" : `${solved} / ${totalQuestions}`}
+                        </div>
                       </td>
-                      <td>{solved === null ? "-" : `${solved} / ${totalQuestions}`}</td>
                       <td>
                         <span className={`status-pill ${statusClass}`}>
                           {statusLabel}
