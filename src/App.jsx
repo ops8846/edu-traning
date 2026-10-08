@@ -173,50 +173,6 @@ function readSavedSession() {
 
 const TOTAL_MODULES = MODULES.length;
 
-/* 글자 크기(1 보통 / 2 크게 / 3 아주 크게): 브라우저에 기억해 두었다가 다시 적용 */
-const FONT_SCALE_KEY = "goi_font_scale";
-function applyFontScale(n) {
-  document.documentElement.setAttribute("data-fs", String(n));
-}
-try {
-  const savedScale = localStorage.getItem(FONT_SCALE_KEY);
-  if (savedScale === "2" || savedScale === "3") applyFontScale(savedScale);
-} catch (_) {
-  /* 저장소를 쓸 수 없으면 기본 크기로 표시 */
-}
-
-function FontSizeToggle() {
-  const [scale, setScale] = useState(
-    () => document.documentElement.getAttribute("data-fs") || "1"
-  );
-  function choose(n) {
-    setScale(String(n));
-    applyFontScale(n);
-    try {
-      localStorage.setItem(FONT_SCALE_KEY, String(n));
-    } catch (_) {
-      /* 저장 실패는 무시 */
-    }
-  }
-  const labels = ["보통", "크게", "아주 크게"];
-  return (
-    <div className="fs-toggle" role="group" aria-label="글자 크기">
-      {labels.map((l, i) => (
-        <button
-          type="button"
-          key={l}
-          aria-pressed={scale === String(i + 1)}
-          aria-label={`글자 ${l}`}
-          title={`글자 ${l}`}
-          onClick={() => choose(i + 1)}
-        >
-          가
-        </button>
-      ))}
-    </div>
-  );
-}
-
 /* ============================================================
    유틸
    ============================================================ */
@@ -961,9 +917,6 @@ function LoginScreen(props) {
     <div className="login-shell">
       <div className="login-scene" aria-hidden="true">
         <img src={loginScene} alt="" />
-      </div>
-      <div className="login-fs">
-        <FontSizeToggle />
       </div>
       <div className="login-hero">
         <div className="hero-content">
@@ -2442,10 +2395,7 @@ function TopBar({ left, right }) {
   return (
     <div className="topbar">
       <div className="topbar-left">{left}</div>
-      <div className="topbar-right">
-        <FontSizeToggle />
-        {right}
-      </div>
+      <div className="topbar-right">{right}</div>
     </div>
   );
 }
