@@ -123,6 +123,18 @@ const STATS_EXCLUDED_DEPARTMENTS = ["TEST"];
 
 // 명단 파일 형식: 부서별 묶음("departments") 또는 기존 평면 목록("employees") 모두 지원.
 // 어느 형식이든 { id, name, code, department } 목록(employees)으로 통일해서 사용합니다.
+// 관리자 화면에서 수정한 명단은 employees 컬렉션의 _roster 문서 하나에 저장합니다. (보안 규칙은 그대로 사용)
+const ROSTER_DOC_ID = "_roster";
+function cleanRosterEmployee(e) {
+  return {
+    id: String(e.id || "").trim(),
+    name: String(e.name || "").trim(),
+    department: String(e.department || "").trim() || "미지정",
+    code: String(e.code || "").trim(),
+    active: e.active !== false,
+  };
+}
+
 function normalizeAllowList(data) {
   let employees = [];
   if (Array.isArray(data.departments)) {
@@ -341,8 +353,28 @@ export default function App() {
         if (!res.ok) throw new Error("허용목록 파일을 불러올 수 없습니다.");
         return res.json();
       })
-      .then((data) => {
-        setAllowList(normalizeAllowList(data));
+      .then(async (data) => {
+        const fromFile = normalizeAllowList(data);
+        fromFile.employees = fromFile.employees.map(cleanRosterEmployee);
+        let result = { ...fromFile, source: "file", fileEmployees: fromFile.employees };
+        // 관리자 화면에서 저장한 명단이 있으면 그것을 우선 사용 (실패하거나 비어 있으면 파일 명단 사용)
+        try {
+          const snap = await getDoc(doc(db, "employees", ROSTER_DOC_ID));
+          if (snap.exists()) {
+            const r = snap.data();
+            if (Array.isArray(r.employees) && r.employees.length > 0) {
+              result = {
+                ...result,
+                employees: r.employees.map(cleanRosterEmployee),
+                source: "database",
+                rosterUpdatedAt: r.updatedAt || null,
+              };
+            }
+          }
+        } catch (err) {
+          console.error("명단(데이터베이스) 조회 실패 - 파일 명단 사용", err);
+        }
+        setAllowList(result);
         setAllowListStatus("ready");
       })
       .catch((err) => {
@@ -350,6 +382,31 @@ export default function App() {
         setAllowListStatus("error");
       });
   }, []);
+
+  // 관리자 화면에서 수정한 명단을 데이터베이스에 저장하고 바로 적용
+  async function saveRoster(employees) {
+    const cleaned = employees.map(cleanRosterEmployee);
+    const updatedAt = nowISO();
+    await setDoc(doc(db, "employees", ROSTER_DOC_ID), { employees: cleaned, updatedAt });
+    setAllowList((prev) => ({
+      ...prev,
+      employees: cleaned,
+      source: "database",
+      rosterUpdatedAt: updatedAt,
+    }));
+    await loadAdminList(cleaned);
+  }
+
+  // 현재 명단 파일(allowed-users.json)의 내용을 데이터베이스로 옮김
+  async function importRosterFromFile() {
+    const res = await fetch(withBase("data/allowed-users.json") + `?v=${Date.now()}`);
+    if (!res.ok) throw new Error("명단 파일을 불러올 수 없습니다.");
+    const fromFile = normalizeAllowList(await res.json());
+    const list = fromFile.employees.map(cleanRosterEmployee);
+    if (list.length === 0) throw new Error("명단 파일에 임직원이 없습니다.");
+    await saveRoster(list);
+    return list.length;
+  }
 
   const saveEmployee = useCallback(async (rec) => {
     try {
@@ -383,6 +440,7 @@ export default function App() {
     const masterCode = String(allowList.masterCode || "").trim();
     const matched = (allowList.employees || []).find(
       (u) =>
+        u.active !== false &&
         String(u.name).trim() === name &&
         (String(u.code).trim() === code || (masterCode && code === masterCode))
     );
@@ -739,10 +797,12 @@ export default function App() {
   }
 
   /* ---------------- 관리자 : 목록 로드 ---------------- */
-  async function loadAdminList() {
+  async function loadAdminList(rosterArg) {
     setAdminLoading(true);
     try {
-      const roster = (allowList && allowList.employees) || [];
+      const roster = Array.isArray(rosterArg)
+        ? rosterArg
+        : (allowList && allowList.employees) || [];
       const records = [];
       for (const u of roster) {
         let rec = null;
@@ -753,12 +813,13 @@ export default function App() {
           rec = null; // 아직 한 번도 로그인하지 않음
         }
         if (rec) {
-          records.push({ ...rec, department: u.department });
+          records.push({ ...rec, department: u.department, active: u.active !== false });
         } else {
           records.push({
             id: u.id,
             name: u.name,
             department: u.department,
+            active: u.active !== false,
             loginAt: null,
             lastLoginAt: null,
             currentModuleIdx: 0,
@@ -936,6 +997,8 @@ export default function App() {
           onLogout={logout}
           allowList={allowList}
           onDelete={deleteEmployeeRecords}
+          onSaveRoster={saveRoster}
+          onImportRoster={importRosterFromFile}
         />
       )}
     </div>
@@ -2092,8 +2155,12 @@ function AdminDashboard({
   onLogout,
   allowList,
   onDelete,
+  onSaveRoster,
+  onImportRoster,
 }) {
   const roster = (allowList && allowList.employees) || [];
+  const activeRoster = roster.filter((u) => u.active !== false); // 비활성 임직원은 통계에서 제외
+  const [showRoster, setShowRoster] = useState(false);
   const deptOf = (u) => u.department || "미지정";
 
   // 모듈별 문항 수 (교육 자료 파일에서 읽어옴 → 문제를 추가/삭제해도 자동 반영)
@@ -2123,7 +2190,7 @@ function AdminDashboard({
   };
 
   // 부서 목록 (명단 파일에 나온 순서). 통계 제외 부서(TEST)는 부서별 현황표에서 뺍니다.
-  const deptOrder = [...new Set(roster.map(deptOf))];
+  const deptOrder = [...new Set(activeRoster.map(deptOf))];
   const statDepts = deptOrder.filter((d) => !STATS_EXCLUDED_DEPARTMENTS.includes(d));
 
   const [showKey, setShowKey] = useState(false); // 문제·정답 보기 창
@@ -2151,16 +2218,16 @@ function AdminDashboard({
     };
   }
   const overall = summarize(
-    roster.filter((u) => !STATS_EXCLUDED_DEPARTMENTS.includes(deptOf(u)))
+    activeRoster.filter((u) => !STATS_EXCLUDED_DEPARTMENTS.includes(deptOf(u)))
   );
   const deptRows = statDepts.map((d) => ({
     name: d,
-    ...summarize(roster.filter((u) => deptOf(u) === d)),
+    ...summarize(activeRoster.filter((u) => deptOf(u) === d)),
   }));
   const scope =
     deptFilter === "ALL"
       ? overall
-      : summarize(roster.filter((u) => deptOf(u) === deptFilter));
+      : summarize(activeRoster.filter((u) => deptOf(u) === deptFilter));
 
   // ---- 표에 보이는 인원 (선택한 부서만) ----
   const visible =
@@ -2217,6 +2284,9 @@ function AdminDashboard({
         }
         right={
           <>
+            <button className="logout-btn" onClick={() => setShowRoster(true)}>
+              임직원 관리
+            </button>
             <button className="logout-btn" onClick={() => setShowKey(true)}>
               문제·정답 보기
             </button>
@@ -2419,7 +2489,10 @@ function AdminDashboard({
                         />
                       </td>
                       <td>
-                        <div className="cell-main">{r.name}</div>
+                        <div className="cell-main">
+                          {r.name}
+                          {r.active === false && <span className="inactive-tag">비활성</span>}
+                        </div>
                         <div className="cell-sub">{deptOf(r)}</div>
                       </td>
                       <td>
@@ -2481,6 +2554,14 @@ function AdminDashboard({
       </div>
 
       {showKey && <AnswerKeyModal onClose={() => setShowKey(false)} />}
+      {showRoster && (
+        <RosterManager
+          allowList={allowList}
+          onSave={onSaveRoster}
+          onImportFile={onImportRoster}
+          onClose={() => setShowRoster(false)}
+        />
+      )}
 
       {selected && (
         <div className="modal-overlay" onClick={() => setSelected(null)}>
@@ -2548,6 +2629,261 @@ function AdminDashboard({
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+/* 관리자용: 임직원 이름·부서·접속코드 관리 (추가 / 수정 / 코드 재발급 / 비활성 / 삭제 / 일괄 등록 / CSV) */
+function RosterManager({ allowList, onSave, onImportFile, onClose }) {
+  const employees = (allowList && allowList.employees) || [];
+  const masterCode = String((allowList && allowList.masterCode) || "").trim();
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState({ type: "", text: "" });
+  const [query, setQuery] = useState("");
+  const [deptFilter, setDeptFilter] = useState("ALL");
+  const [mode, setMode] = useState(""); // "" | "add" | "bulk"
+  const [form, setForm] = useState({ name: "", department: "", code: "" });
+  const [bulkText, setBulkText] = useState("");
+  const [editId, setEditId] = useState(null);
+  const [edit, setEdit] = useState({ name: "", department: "", code: "" });
+
+  const depts = [...new Set(employees.map((u) => u.department || "미지정"))];
+
+  function genCode(list) {
+    const used = new Set(list.map((u) => String(u.code)));
+    for (let i = 0; i < 1000; i++) {
+      const c = String(Math.floor(100000 + Math.random() * 900000));
+      if (!used.has(c) && c !== masterCode) return c;
+    }
+    return String(Date.now()).slice(-6);
+  }
+  function nextId(list) {
+    const nums = list.map((u) => /^goi(\d+)$/.exec(u.id)).filter(Boolean).map((m) => Number(m[1]));
+    const n = (nums.length ? Math.max(...nums) : 0) + 1;
+    return `goi${String(n).padStart(3, "0")}`;
+  }
+  async function run(label, next, okText) {
+    setBusy(true);
+    setMsg({ type: "", text: "" });
+    try {
+      await onSave(next);
+      setMsg({ type: "ok", text: okText || `${label} 완료 · 바로 적용되었습니다.` });
+      return true;
+    } catch (e) {
+      console.error(e);
+      setMsg({ type: "err", text: `${label} 실패: 저장하지 못했습니다. 인터넷 연결을 확인하고 다시 시도해 주세요.` });
+      return false;
+    } finally {
+      setBusy(false);
+    }
+  }
+  const codeTaken = (code, exceptId) =>
+    !code ||
+    code === masterCode ||
+    employees.some((u) => u.id !== exceptId && String(u.code) === String(code));
+
+  async function addOne(e) {
+    e.preventDefault();
+    const name = form.name.trim();
+    const department = form.department.trim() || "미지정";
+    if (!name) return setMsg({ type: "err", text: "이름을 입력해 주세요." });
+    let code = form.code.trim();
+    if (code && codeTaken(code)) return setMsg({ type: "err", text: "이미 사용 중인 접속코드입니다." });
+    if (employees.some((u) => u.name === name) &&
+        !window.confirm(`같은 이름(${name})이 이미 있습니다. 동명이인으로 추가할까요?\n(마스터 키 로그인은 먼저 등록된 사람이 우선됩니다)`)) return;
+    if (!code) code = genCode(employees);
+    const ok = await run("추가", [...employees, { id: nextId(employees), name, department, code, active: true }], `${name}님을 추가했습니다 · 접속코드 ${code}`);
+    if (ok) {
+      setForm({ name: "", department: form.department, code: "" });
+    }
+  }
+  async function saveEdit(id) {
+    const name = edit.name.trim();
+    if (!name) return setMsg({ type: "err", text: "이름을 입력해 주세요." });
+    const code = edit.code.trim();
+    if (codeTaken(code, id)) return setMsg({ type: "err", text: "비어 있거나 이미 사용 중인(또는 마스터 키와 같은) 접속코드입니다." });
+    const next = employees.map((u) => (u.id === id ? { ...u, name, department: edit.department.trim() || "미지정", code } : u));
+    if (await run("수정", next)) setEditId(null);
+  }
+  function reissue(u) {
+    if (!window.confirm(`${u.name}님의 접속코드를 새로 발급할까요?\n이전 코드는 바로 사용할 수 없게 됩니다. (학습 기록은 그대로 유지)`)) return;
+    const code = genCode(employees);
+    run("코드 재발급", employees.map((x) => (x.id === u.id ? { ...x, code } : x)), `${u.name}님의 새 접속코드: ${code}`);
+  }
+  function toggleActive(u) {
+    const act = u.active === false;
+    if (!act && !window.confirm(`${u.name}님을 비활성 처리할까요?\n로그인이 막히고 통계에서 제외됩니다. (학습 기록은 보존)`)) return;
+    run(act ? "활성화" : "비활성 처리", employees.map((x) => (x.id === u.id ? { ...x, active: act } : x)));
+  }
+  function removeOne(u) {
+    if (!window.confirm(`${u.name}님을 명단에서 삭제할까요?\n(이미 저장된 학습 기록은 지워지지 않습니다. 퇴사자는 '비활성'을 권장합니다)`)) return;
+    run("삭제", employees.filter((x) => x.id !== u.id));
+  }
+  async function bulkAdd() {
+    const lines = bulkText.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+    let list = [...employees];
+    let added = 0;
+    const skipped = [];
+    lines.forEach((line, idx) => {
+      const cells = (line.includes("\t") ? line.split("\t") : line.split(",")).map((c) => c.trim());
+      if (idx === 0 && /^(이름|name)$/i.test(cells[0])) return; // 머리글 줄
+      const name = cells[0];
+      if (!name) return;
+      const department = cells[1] || "미지정";
+      let code = cells[2] || "";
+      if (code && (list.some((u) => String(u.code) === code) || code === masterCode)) {
+        skipped.push(`${name}(코드 중복)`);
+        return;
+      }
+      if (list.some((u) => u.name === name && u.department === department)) {
+        skipped.push(`${name}(이미 등록됨)`);
+        return;
+      }
+      if (!code) code = genCode(list);
+      list = [...list, { id: nextId(list), name, department, code, active: true }];
+      added += 1;
+    });
+    if (added === 0) return setMsg({ type: "err", text: `추가된 사람이 없습니다.${skipped.length ? " 건너뜀: " + skipped.join(", ") : " 형식: 이름, 부서, (접속코드) 한 줄에 한 명"}` });
+    const ok = await run("일괄 등록", list, `${added}명을 추가했습니다.${skipped.length ? " 건너뜀: " + skipped.join(", ") : ""}`);
+    if (ok) {
+      setBulkText("");
+      setMode("");
+    }
+  }
+  function downloadCsv() {
+    const esc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const rows = [["이름", "부서", "ID", "접속코드", "상태"], ...employees.map((u) => [u.name, u.department, u.id, u.code, u.active === false ? "비활성" : "사용"])];
+    const csv = "\uFEFF" + rows.map((r) => r.map(esc).join(",")).join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    a.download = `임직원_명단_${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setMsg({ type: "ok", text: "명단 CSV를 내려받았습니다. 접속코드가 들어 있으니 보관에 주의해 주세요." });
+  }
+  async function importFromFile() {
+    if (!window.confirm("명단 파일(allowed-users.json)의 내용으로 데이터베이스 명단을 덮어씁니다.\n관리자 화면에서 수정한 내용은 사라집니다. 계속할까요?")) return;
+    setBusy(true);
+    setMsg({ type: "", text: "" });
+    try {
+      const n = await onImportFile();
+      setMsg({ type: "ok", text: `파일에서 ${n}명을 가져와 적용했습니다.` });
+    } catch (e) {
+      console.error(e);
+      setMsg({ type: "err", text: "가져오기에 실패했습니다. 잠시 후 다시 시도해 주세요." });
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const q = query.trim().toLowerCase();
+  const shown = employees.filter(
+    (u) =>
+      (deptFilter === "ALL" || (u.department || "미지정") === deptFilter) &&
+      (!q || u.name.toLowerCase().includes(q) || u.id.toLowerCase().includes(q))
+  );
+  const activeCount = employees.filter((u) => u.active !== false).length;
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card key-modal roster-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-head">
+          <div>
+            <h2>임직원 관리</h2>
+            <div className="modal-sub">
+              전체 {employees.length}명 (사용 {activeCount}명) ·{" "}
+              {allowList && allowList.source === "database"
+                ? `데이터베이스 명단 사용 중${allowList.rosterUpdatedAt ? " · 마지막 저장 " + fmtDate(allowList.rosterUpdatedAt) : ""}`
+                : "지금은 명단 파일을 사용 중입니다. 아래 수정을 저장하면 데이터베이스 명단으로 전환됩니다."}
+            </div>
+          </div>
+          <button className="modal-close" onClick={onClose}>닫기</button>
+        </div>
+
+        <div className="roster-actions">
+          <button className="roster-btn primary" disabled={busy} onClick={() => setMode(mode === "add" ? "" : "add")}>+ 임직원 추가</button>
+          <button className="roster-btn" disabled={busy} onClick={() => setMode(mode === "bulk" ? "" : "bulk")}>일괄 등록</button>
+          <button className="roster-btn" disabled={busy} onClick={downloadCsv}>CSV 내려받기</button>
+          <button className="roster-btn" disabled={busy} onClick={importFromFile}>파일에서 가져오기</button>
+        </div>
+
+        {msg.text && <div className={`roster-msg ${msg.type}`}>{msg.text}</div>}
+
+        {mode === "add" && (
+          <form className="roster-form" onSubmit={addOne}>
+            <input placeholder="이름 (로그인에 쓰는 표기 그대로)" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+            <input placeholder="부서" list="roster-depts" value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })} />
+            <input placeholder="접속코드 (비우면 자동 생성)" value={form.code} onChange={(e) => setForm({ ...form, code: e.target.value })} />
+            <button className="roster-btn primary" disabled={busy} type="submit">추가</button>
+          </form>
+        )}
+        {mode === "bulk" && (
+          <div className="roster-bulk">
+            <textarea
+              rows={6}
+              placeholder={"한 줄에 한 명: 이름, 부서, (접속코드)\n엑셀에서 복사해 붙여넣어도 됩니다.\n예) 홍길동, UCO\n예) 김영희, Plant, 482913"}
+              value={bulkText}
+              onChange={(e) => setBulkText(e.target.value)}
+            />
+            <button className="roster-btn primary" disabled={busy || !bulkText.trim()} onClick={bulkAdd}>등록</button>
+          </div>
+        )}
+        <datalist id="roster-depts">{depts.map((d) => <option key={d} value={d} />)}</datalist>
+
+        <div className="roster-filter">
+          <input placeholder="이름·ID 검색" value={query} onChange={(e) => setQuery(e.target.value)} />
+          <select value={deptFilter} onChange={(e) => setDeptFilter(e.target.value)}>
+            <option value="ALL">전체 부서</option>
+            {depts.map((d) => <option key={d} value={d}>{d}</option>)}
+          </select>
+          <span>{shown.length}명 표시</span>
+        </div>
+
+        <div className="roster-table-wrap">
+          <table className="roster-table">
+            <thead>
+              <tr><th>이름</th><th>부서</th><th>ID</th><th>접속코드</th><th>상태</th><th></th></tr>
+            </thead>
+            <tbody>
+              {shown.map((u) => {
+                const isEdit = editId === u.id;
+                return (
+                  <tr key={u.id} className={u.active === false ? "off" : ""}>
+                    {isEdit ? (
+                      <>
+                        <td><input value={edit.name} onChange={(e) => setEdit({ ...edit, name: e.target.value })} /></td>
+                        <td><input list="roster-depts" value={edit.department} onChange={(e) => setEdit({ ...edit, department: e.target.value })} /></td>
+                        <td className="id-cell">{u.id}</td>
+                        <td><input value={edit.code} onChange={(e) => setEdit({ ...edit, code: e.target.value })} /></td>
+                        <td>-</td>
+                        <td className="roster-row-actions">
+                          <button disabled={busy} onClick={() => saveEdit(u.id)}>저장</button>
+                          <button disabled={busy} onClick={() => setEditId(null)}>취소</button>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="cell-main">{u.name}</td>
+                        <td>{u.department}</td>
+                        <td className="id-cell">{u.id}</td>
+                        <td className="id-cell">{u.code}</td>
+                        <td>{u.active === false ? <span className="inactive-tag">비활성</span> : "사용"}</td>
+                        <td className="roster-row-actions">
+                          <button disabled={busy} onClick={() => { setEditId(u.id); setEdit({ name: u.name, department: u.department, code: u.code }); }}>수정</button>
+                          <button disabled={busy} onClick={() => reissue(u)}>코드 재발급</button>
+                          <button disabled={busy} onClick={() => toggleActive(u)}>{u.active === false ? "활성화" : "비활성"}</button>
+                          <button disabled={busy} className="del" onClick={() => removeOne(u)}>삭제</button>
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
