@@ -379,8 +379,12 @@ export default function App() {
     }
 
     // 0) 이름+접속코드가 허용목록(public/data/allowed-users.json)에 있는지 확인
+    // (분실 대비) 마스터 키: allowed-users.json 의 masterCode 로는 이름만 맞으면 누구나 로그인됩니다. (관리자 로그인은 제외)
+    const masterCode = String(allowList.masterCode || "").trim();
     const matched = (allowList.employees || []).find(
-      (u) => String(u.name).trim() === name && String(u.code).trim() === code
+      (u) =>
+        String(u.name).trim() === name &&
+        (String(u.code).trim() === code || (masterCode && code === masterCode))
     );
     if (!matched) {
       setLoginError(
