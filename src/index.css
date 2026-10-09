@@ -3025,3 +3025,23 @@ body {
 .admin-table tbody td { padding-left: 8px; padding-right: 8px; }
 .admin-table { min-width: 0; }
 .admin-body { max-width: 1400px; }
+
+/* ---------- 관리자: 문제·정답 보기 ---------- */
+.key-modal { max-width: 860px; width: calc(100% - 32px); max-height: 88vh; overflow-y: auto; }
+.key-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 10px; }
+.key-tab {
+  padding: 7px 14px; border: 1px solid #CFE0D0; border-radius: 2px;
+  background: #fff; font: inherit; font-size: 13px; color: #134626; cursor: pointer;
+}
+.key-tab.active { background: #1E6637; border-color: #1E6637; color: #fff; font-weight: 600; }
+.key-title { font-weight: 700; color: #134626; margin-bottom: 10px; }
+.key-title span { font-weight: 400; color: #55605A; }
+.key-q { border-top: 1px solid #E3EDE3; padding: 14px 0; }
+.key-q-title { font-weight: 600; line-height: 1.5; }
+.key-ref { margin-left: 8px; font-size: 11px; font-weight: 500; color: #55605A; border: 1px solid #CFE0D0; padding: 1px 6px; border-radius: 2px; }
+.key-options { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
+.key-options li { padding: 7px 10px; border: 1px solid #E3EDE3; border-radius: 2px; font-size: 14px; line-height: 1.45; }
+.key-options li.correct { border-color: #1E6637; background: #E7F3E6; font-weight: 600; }
+.key-no { display: inline-block; width: 22px; color: #55605A; }
+.key-badge { margin-left: 8px; font-size: 11px; background: #82C341; color: #fff; padding: 1px 7px; border-radius: 2px; }
+.key-hint { margin-top: 8px; font-size: 12.5px; color: #55605A; }

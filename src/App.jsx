@@ -2122,6 +2122,7 @@ function AdminDashboard({
   const deptOrder = [...new Set(roster.map(deptOf))];
   const statDepts = deptOrder.filter((d) => !STATS_EXCLUDED_DEPARTMENTS.includes(d));
 
+  const [showKey, setShowKey] = useState(false); // 문제·정답 보기 창
   const [deptFilter, setDeptFilter] = useState("ALL"); // "ALL" 또는 부서명
   const [checkedIds, setCheckedIds] = useState([]);
   const [deleting, setDeleting] = useState(false);
@@ -2212,6 +2213,9 @@ function AdminDashboard({
         }
         right={
           <>
+            <button className="logout-btn" onClick={() => setShowKey(true)}>
+              문제·정답 보기
+            </button>
             <button className="logout-btn" onClick={onRefresh}>
               새로고침
             </button>
@@ -2472,6 +2476,8 @@ function AdminDashboard({
         )}
       </div>
 
+      {showKey && <AnswerKeyModal onClose={() => setShowKey(false)} />}
+
       {selected && (
         <div className="modal-overlay" onClick={() => setSelected(null)}>
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
@@ -2538,6 +2544,94 @@ function AdminDashboard({
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+/* 관리자용: 모듈별 문제와 정답(·보기·힌트)을 한눈에 확인하는 창 */
+function AnswerKeyModal({ onClose }) {
+  const [modIdx, setModIdx] = useState(0);
+  const [data, setData] = useState(null);
+  const [status, setStatus] = useState("loading");
+
+  useEffect(() => {
+    let alive = true;
+    setStatus("loading");
+    setData(null);
+    fetch(contentUrl(MODULES[modIdx]))
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error("load"))))
+      .then((d) => {
+        if (!alive) return;
+        setData(d);
+        setStatus("ready");
+      })
+      .catch(() => alive && setStatus("error"));
+    return () => {
+      alive = false;
+    };
+  }, [modIdx]);
+
+  const qs = (data && data.questions) || [];
+  const circled = ["①", "②", "③", "④", "⑤", "⑥"];
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card key-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-head">
+          <div>
+            <h2>문제 · 정답 보기</h2>
+            <div className="modal-sub">
+              관리자용입니다. 초록색 표시가 정답이며, 힌트는 오답일 때 임직원에게 보이는 문구입니다.
+            </div>
+          </div>
+          <button className="modal-close" onClick={onClose}>
+            닫기
+          </button>
+        </div>
+
+        <div className="key-tabs">
+          {MODULES.map((m, i) => (
+            <button
+              key={m.id}
+              className={`key-tab ${i === modIdx ? "active" : ""}`}
+              onClick={() => setModIdx(i)}
+            >
+              모듈 {m.no}
+            </button>
+          ))}
+        </div>
+        <div className="key-title">
+          모듈 {MODULES[modIdx].no} · {MODULES[modIdx].title}
+          {status === "ready" && <span> · 총 {qs.length}문항</span>}
+        </div>
+
+        {status === "loading" && <div className="admin-loading">불러오는 중...</div>}
+        {status === "error" && (
+          <div className="admin-empty">문제 자료를 불러오지 못했습니다.</div>
+        )}
+        {status === "ready" && (
+          <div className="key-list">
+            {qs.map((q, qi) => (
+              <div className="key-q" key={qi}>
+                <div className="key-q-title">
+                  Q{qi + 1}. {q.q}
+                  {q.ref && <span className="key-ref">{q.ref}</span>}
+                </div>
+                <ol className="key-options">
+                  {q.options.map((o, oi) => (
+                    <li key={oi} className={oi === q.correct ? "correct" : ""}>
+                      <span className="key-no">{circled[oi] || oi + 1}</span>
+                      {o}
+                      {oi === q.correct && <b className="key-badge">정답</b>}
+                    </li>
+                  ))}
+                </ol>
+                {q.explain && <div className="key-hint">힌트: {q.explain}</div>}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
