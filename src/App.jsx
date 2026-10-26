@@ -189,6 +189,14 @@ const TOTAL_MODULES = MODULES.length;
 /* ============================================================
    유틸
    ============================================================ */
+// 문제 구성(문항 수 + 문제 문구)을 짧은 값으로 만든 것: 문제를 추가/삭제하면 값이 달라져서,
+// 이전 문제 구성으로 저장된 1차 결과(맞힌 문제 번호)를 새 문제에 잘못 적용하지 않도록 비교합니다.
+function quizSignature(questions) {
+  let h = 0;
+  const s = questions.map((q) => q.q).join("|");
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return `${questions.length}:${h.toString(36)}`;
+}
 function nowISO() {
   return new Date().toISOString();
 }
@@ -408,13 +416,31 @@ export default function App() {
     return list.length;
   }
 
+  // 저장 실패 표시 (학습 기록이 서버에 저장되지 않았을 때 화면 위에 안내)
+  const [saveError, setSaveError] = useState(false);
+  const unsavedRef = useRef(null);
   const saveEmployee = useCallback(async (rec) => {
-    try {
-      await setDoc(doc(db, "employees", rec.id), rec);
-    } catch (e) {
-      console.error("저장 실패", e);
+    // Firestore는 undefined 값을 저장하지 못하므로(빈 칸이 있는 배열 포함) 저장 전에 모두 정리합니다.
+    const clean = JSON.parse(JSON.stringify(rec));
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        await setDoc(doc(db, "employees", rec.id), clean);
+        unsavedRef.current = null;
+        setSaveError(false);
+        return true;
+      } catch (e) {
+        console.error("저장 실패", e);
+        await new Promise((r) => setTimeout(r, 700 * (attempt + 1)));
+      }
     }
+    unsavedRef.current = rec;
+    setSaveError(true);
+    return false;
   }, []);
+  async function retrySave() {
+    const rec = unsavedRef.current || employee;
+    if (rec) await saveEmployee(rec);
+  }
 
   /* ---------------- 로그인 처리 ---------------- */
   async function handleEmployeeLogin(e) {
@@ -578,6 +604,19 @@ export default function App() {
       .then((data) => {
         setModuleContent(data);
         setContentStatus("ready");
+        // 저장해 둔 1차 결과가 지금 문제 구성과 맞지 않으면(문제가 바뀜) 버리고 처음 응시로 시작
+        if (savedQuiz) {
+          const qs = Array.isArray(data.questions) ? data.questions : [];
+          const stale =
+            (savedQuiz.sig && savedQuiz.sig !== quizSignature(qs)) ||
+            (savedQuiz.lockedCorrect || []).some((i) => !(i >= 0 && i < qs.length));
+          if (stale) {
+            setLockedCorrect([]);
+            setAttemptsUsed(0);
+            setHasSubmitted(false);
+            setEditingRetry(false);
+          }
+        }
         // 이전에 읽던 페이지가 있으면 거기서 이어서 시작 (복습 모드는 처음부터)
         if (!review) {
           const total = (data.chapters || []).reduce((n, c) => n + c.sections.length, 0);
@@ -722,6 +761,7 @@ export default function App() {
             attempts: 1,
             lockedCorrect: updatedLocked,
             firstScore: updatedLocked.length,
+            sig: quizSignature(questions),
           },
         },
       };
@@ -740,7 +780,7 @@ export default function App() {
       total,
       attempts: attemptNo,
       firstScore: attemptNo === 1 ? updatedLocked.length : lockedCorrect.length,
-      answers: [...answers],
+      answers: questions.map((_, i) => (answers[i] === undefined ? null : answers[i])),
       completedAt: nowISO(),
     };
     const rec = { ...employee };
@@ -919,6 +959,15 @@ export default function App() {
      ============================================================ */
   return (
     <div className="app-root">
+      {saveError && employee && (screen === "employee" || screen === "module" || screen === "complete") && (
+        <div className="save-error-bar" role="alert">
+          <span>
+            학습 기록을 서버에 저장하지 못했습니다. 인터넷 연결을 확인한 뒤 "다시 저장"을 눌러 주세요.
+            (이 화면을 닫거나 새로고침하지 마세요)
+          </span>
+          <button onClick={retrySave}>다시 저장</button>
+        </div>
+      )}
       {screen === "login" && (
         <LoginScreen
           role={role}
