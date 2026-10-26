@@ -780,7 +780,7 @@ export default function App() {
       total,
       attempts: attemptNo,
       firstScore: attemptNo === 1 ? updatedLocked.length : lockedCorrect.length,
-      answers: questions.map((_, i) => (answers[i] === undefined ? null : answers[i])),
+      answers: questions.map((_, i) => (answers[i] !== undefined ? answers[i] : updatedLocked.includes(i) ? questions[i].correct : null)),
       completedAt: nowISO(),
     };
     const rec = { ...employee };
