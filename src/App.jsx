@@ -2235,8 +2235,9 @@ function AdminDashboard({
   // 현재 문항 수 기준 점수. 문제를 삭제해 응시 당시보다 문항이 줄었다면 점수도 현재 문항 수를 넘지 않게 맞춥니다.
   // (예: 11문항 중 10개 정답 → 틀린 문제를 삭제하면 10/10)
   // 응시 후 문제가 줄어든 경우, 틀린/맞힌 문제 중 어느 것이 삭제됐는지는 기록에 없으므로 점수는 현재 문항 수를 넘지 않는 선까지만 인정합니다.
-  const curCount = (m) => (questionCounts ? questionCounts[m.no - 1] : 0) || 0;
-  const modScore = (m, x) => (x ? Math.min(x.score || 0, curCount(m)) : 0);
+  // (문항 수를 아직 못 불러왔으면 저장된 문항 수로 대신 표시)
+  const curCount = (m, x) => (questionCounts ? questionCounts[m.no - 1] : x ? x.total : 0) || 0;
+  const modScore = (m, x) => (x ? Math.min(x.score || 0, curCount(m, x)) : 0);
   function scoreInfo(r) {
     let sum = 0;
     let max = 0;
@@ -2245,8 +2246,8 @@ function AdminDashboard({
       const x = r.moduleResults.find((y) => y.moduleId === m.id);
       const sc = modScore(m, x);
       sum += sc;
-      max += curCount(m);
-      if (x) lost += curCount(m) - sc;
+      max += curCount(m, x);
+      if (x) lost += curCount(m, x) - sc;
     }
     const allDone = MODULES.every((m) => r.moduleResults.some((y) => y.moduleId === m.id));
     return { sum, max, lost, perfect: allDone && max > 0 && lost === 0, pct: max ? Math.floor((sum / max) * 100) : 0 };
@@ -2580,10 +2581,10 @@ function AdminDashboard({
                             return (
                               <span
                                 key={m.id}
-                                className={`score-chip ${x ? (modScore(m, x) === curCount(m) ? "has" : "miss") : ""}`}
+                                className={`score-chip ${x ? (modScore(m, x) === curCount(m, x) ? "has" : "miss") : ""}`}
                                 title={`모듈 ${m.no}`}
                               >
-                                {x ? `${modScore(m, x)}/${curCount(m)}` : "-"}
+                                {x ? `${modScore(m, x)}/${curCount(m, x)}` : "-"}
                               </span>
                             );
                           })}
@@ -2667,7 +2668,7 @@ function AdminDashboard({
                       <span>{m.subtitle}</span>
                     </div>
                     <div className="modal-module-score">
-                      {r ? `${modScore(m, r)} / ${curCount(m)}` : "미응시"}
+                      {r ? `${modScore(m, r)} / ${curCount(m, r)}` : "미응시"}
                       {r && r.attempts ? (
                         <small className="modal-module-attempt">
                           {r.attempts === 1
