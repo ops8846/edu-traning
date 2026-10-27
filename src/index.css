@@ -3075,3 +3075,9 @@ body {
 /* 저장 실패 안내 */
 .save-error-bar { position: sticky; top: 0; z-index: 60; display: flex; gap: 12px; align-items: center; justify-content: center; padding: 10px 16px; background: #F9E8E6; color: #8B2A1F; border-bottom: 2px solid #E6B3AD; font-size: 14px; font-weight: 600; }
 .save-error-bar button { flex: none; padding: 6px 14px; border: 1px solid #8B2A1F; background: #fff; color: #8B2A1F; border-radius: 2px; font: inherit; font-weight: 700; cursor: pointer; }
+
+/* 총점 배지·모듈 칸: 만점과 감점을 한눈에 구분 */
+.score-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 2px; font-size: 11px; font-weight: 700; vertical-align: 1px; }
+.score-badge.perfect { color: #fff; background: #1F7A3A; }
+.score-badge.lost { color: #fff; background: #C0392B; }
+.score-chip.miss { color: #8A2A1E; background: #FBE6E2; border-color: #E6A99F; font-weight: 700; }
