@@ -2232,17 +2232,21 @@ function AdminDashboard({
   }, []);
   const totalQuestions = questionCounts ? questionCounts.reduce((a, n) => a + n, 0) : 0;
 
-  // 점수 집계: 응시한 모듈은 "응시 당시 문항 수", 안 푼 모듈은 현재 문항 수를 분모로 해서
-  // 문제 수가 바뀐 뒤에도 만점이 아닌 사람이 만점(100%)으로 보이지 않게 합니다.
+  // 현재 문항 수 기준 점수. 문제를 삭제해 응시 당시보다 문항이 줄었다면 점수도 현재 문항 수를 넘지 않게 맞춥니다.
+  // (예: 11문항 중 10개 정답 → 틀린 문제를 삭제하면 10/10)
+  // 응시 후 문제가 줄어든 경우, 틀린/맞힌 문제 중 어느 것이 삭제됐는지는 기록에 없으므로 점수는 현재 문항 수를 넘지 않는 선까지만 인정합니다.
+  const curCount = (m) => (questionCounts ? questionCounts[m.no - 1] : 0) || 0;
+  const modScore = (m, x) => (x ? Math.min(x.score || 0, curCount(m)) : 0);
   function scoreInfo(r) {
     let sum = 0;
     let max = 0;
     let lost = 0; // 응시한 모듈에서 틀린 문항 수 (아직 안 푼 모듈은 감점으로 보지 않음)
     for (const m of MODULES) {
       const x = r.moduleResults.find((y) => y.moduleId === m.id);
-      sum += x ? x.score || 0 : 0;
-      max += x ? x.total || 0 : (questionCounts ? questionCounts[m.no - 1] : 0) || 0;
-      if (x) lost += (x.total || 0) - (x.score || 0);
+      const sc = modScore(m, x);
+      sum += sc;
+      max += curCount(m);
+      if (x) lost += curCount(m) - sc;
     }
     const allDone = MODULES.every((m) => r.moduleResults.some((y) => y.moduleId === m.id));
     return { sum, max, lost, perfect: allDone && max > 0 && lost === 0, pct: max ? Math.floor((sum / max) * 100) : 0 };
@@ -2496,7 +2500,7 @@ function AdminDashboard({
                   <th>완료 모듈</th>
                   <th>
                     총점
-                    <small className="th-sub">정답 수 / 응시 문항</small>
+                    <small className="th-sub">정답 수 / 전체 문항</small>
                   </th>
                   <th>
                     모듈별 점수
@@ -2576,14 +2580,10 @@ function AdminDashboard({
                             return (
                               <span
                                 key={m.id}
-                                className={`score-chip ${x ? (x.score === x.total ? "has" : "miss") : ""}`}
-                                title={
-                                  x && questionCounts && x.total !== questionCounts[m.no - 1]
-                                    ? `모듈 ${m.no} · 응시 당시 ${x.total}문항 (현재 ${questionCounts[m.no - 1]}문항)`
-                                    : `모듈 ${m.no}`
-                                }
+                                className={`score-chip ${x ? (modScore(m, x) === curCount(m) ? "has" : "miss") : ""}`}
+                                title={`모듈 ${m.no}`}
                               >
-                                {x ? `${x.score}/${x.total}` : "-"}
+                                {x ? `${modScore(m, x)}/${curCount(m)}` : "-"}
                               </span>
                             );
                           })}
@@ -2667,7 +2667,7 @@ function AdminDashboard({
                       <span>{m.subtitle}</span>
                     </div>
                     <div className="modal-module-score">
-                      {r ? `${r.score} / ${r.total}` : "미응시"}
+                      {r ? `${modScore(m, r)} / ${curCount(m)}` : "미응시"}
                       {r && r.attempts ? (
                         <small className="modal-module-attempt">
                           {r.attempts === 1
