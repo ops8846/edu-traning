@@ -2232,6 +2232,22 @@ function AdminDashboard({
   }, []);
   const totalQuestions = questionCounts ? questionCounts.reduce((a, n) => a + n, 0) : 0;
 
+  // 점수 집계: 응시한 모듈은 "응시 당시 문항 수", 안 푼 모듈은 현재 문항 수를 분모로 해서
+  // 문제 수가 바뀐 뒤에도 만점이 아닌 사람이 만점(100%)으로 보이지 않게 합니다.
+  function scoreInfo(r) {
+    let sum = 0;
+    let max = 0;
+    let lost = 0; // 응시한 모듈에서 틀린 문항 수 (아직 안 푼 모듈은 감점으로 보지 않음)
+    for (const m of MODULES) {
+      const x = r.moduleResults.find((y) => y.moduleId === m.id);
+      sum += x ? x.score || 0 : 0;
+      max += x ? x.total || 0 : (questionCounts ? questionCounts[m.no - 1] : 0) || 0;
+      if (x) lost += (x.total || 0) - (x.score || 0);
+    }
+    const allDone = MODULES.every((m) => r.moduleResults.some((y) => y.moduleId === m.id));
+    return { sum, max, lost, perfect: allDone && max > 0 && lost === 0, pct: max ? Math.floor((sum / max) * 100) : 0 };
+  }
+
   // Firestore 기록(r.id)에 해당하는 최신 접속코드를 allowed-users.json에서 실시간으로 찾아옵니다.
   const codeOf = (id) => {
     const found = roster.find((u) => u.id === id);
@@ -2480,15 +2496,11 @@ function AdminDashboard({
                   <th>완료 모듈</th>
                   <th>
                     총점
-                    <small className="th-sub">정답 수 / 전체 문항</small>
+                    <small className="th-sub">정답 수 / 응시 문항</small>
                   </th>
                   <th>
                     모듈별 점수
                     <small className="th-sub">M1 ~ M6</small>
-                  </th>
-                  <th>
-                    진행률
-                    <small className="th-sub">푼 문항 / 전체 문항</small>
                   </th>
                   <th>상태</th>
                   <th>제출일시</th>
@@ -2498,19 +2510,7 @@ function AdminDashboard({
               <tbody>
                 {visible.map((r) => {
                   const done = r.moduleResults.length;
-                  // 완료한 모듈의 문항 수 합계 ÷ 전체 문항 수 (모듈은 모두 맞혀야 완료되므로 푼 문항은 모두 정답)
-                  const solved = questionCounts
-                    ? r.moduleResults.reduce(
-                        (a, x) => a + (questionCounts[x.moduleNo - 1] ?? x.total),
-                        0
-                      )
-                    : null;
-                  const pct =
-                    solved !== null && totalQuestions
-                      ? Math.round((solved / totalQuestions) * 100)
-                      : 0;
-                  // 총점 = 각 모듈 최종 점수(정답 수)의 합계
-                  const scoreSum = r.moduleResults.reduce((a, x) => a + (x.score || 0), 0);
+                  const sc = scoreInfo(r);
                   const isChecked = checkedIds.includes(r.id);
                   const statusLabel =
                     r.status === "submitted"
@@ -2553,11 +2553,21 @@ function AdminDashboard({
                         {done} / {TOTAL_MODULES}
                       </td>
                       <td className="score-total">
-                        {totalQuestions
-                          ? `${scoreSum} / ${totalQuestions} (${Math.round(
-                              (scoreSum / totalQuestions) * 100
-                            )}%)`
-                          : "-"}
+                        {questionCounts ? (
+                          <>
+                            <div>
+                              {sc.sum} / {sc.max}
+                              {sc.perfect ? (
+                                <span className="score-badge perfect">만점</span>
+                              ) : sc.lost > 0 && r.moduleResults.length ? (
+                                <span className="score-badge lost">-{sc.lost}</span>
+                              ) : null}
+                            </div>
+                            <div className="cell-sub">{sc.pct}%</div>
+                          </>
+                        ) : (
+                          "-"
+                        )}
                       </td>
                       <td>
                         <div className="score-chips">
@@ -2566,24 +2576,17 @@ function AdminDashboard({
                             return (
                               <span
                                 key={m.id}
-                                className={`score-chip ${x ? "has" : ""}`}
-                                title={`모듈 ${m.no}`}
+                                className={`score-chip ${x ? (x.score === x.total ? "has" : "miss") : ""}`}
+                                title={
+                                  x && questionCounts && x.total !== questionCounts[m.no - 1]
+                                    ? `모듈 ${m.no} · 응시 당시 ${x.total}문항 (현재 ${questionCounts[m.no - 1]}문항)`
+                                    : `모듈 ${m.no}`
+                                }
                               >
                                 {x ? `${x.score}/${x.total}` : "-"}
                               </span>
                             );
                           })}
-                        </div>
-                      </td>
-                      <td>
-                        <div className="mini-cell">
-                          <div className="mini-track">
-                            <div className="mini-fill" style={{ width: `${pct}%` }} />
-                          </div>
-                          <span className="mini-pct">{solved === null ? "-" : `${pct}%`}</span>
-                        </div>
-                        <div className="cell-sub">
-                          {solved === null ? "-" : `${solved} / ${totalQuestions}`}
                         </div>
                       </td>
                       <td>
@@ -2632,14 +2635,19 @@ function AdminDashboard({
             </div>
             <div className="modal-total">
               {(() => {
-                const sum = selected.moduleResults.reduce((a, x) => a + (x.score || 0), 0);
+                const sc = scoreInfo(selected);
                 return (
                   <>
                     <strong>
-                      총점 {sum} / {totalQuestions || "-"}
+                      총점 {sc.sum} / {sc.max || "-"}
                     </strong>
-                    {totalQuestions ? ` (${Math.round((sum / totalQuestions) * 100)}%)` : ""} ·
-                    완료 {selected.moduleResults.length} / {TOTAL_MODULES}개 모듈
+                    {sc.max ? ` (${sc.pct}%)` : ""}
+                    {sc.perfect ? (
+                      <span className="score-badge perfect">만점</span>
+                    ) : sc.lost > 0 && selected.moduleResults.length ? (
+                      <span className="score-badge lost">-{sc.lost}</span>
+                    ) : null}{" "}
+                    · 완료 {selected.moduleResults.length} / {TOTAL_MODULES}개 모듈
                   </>
                 );
               })()}
