@@ -3081,3 +3081,5 @@ body {
 .score-badge.perfect { color: #fff; background: #1F7A3A; }
 .score-badge.lost { color: #fff; background: #C0392B; }
 .score-chip.miss { color: #8A2A1E; background: #FBE6E2; border-color: #E6A99F; font-weight: 700; }
+
+.key-download { margin-top: 12px; }
