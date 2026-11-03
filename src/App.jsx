@@ -2952,6 +2952,40 @@ function AnswerKeyModal({ onClose }) {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState("loading");
 
+  // 모듈 1~6 전체 정답을 한 개의 txt 파일로 내려받기 (현재 배포된 문제 파일을 그대로 읽음)
+  const [downloading, setDownloading] = useState(false);
+  async function downloadAllAnswers() {
+    setDownloading(true);
+    try {
+      const mods = await Promise.all(
+        MODULES.map((m) =>
+          fetch(contentUrl(m)).then((res) => (res.ok ? res.json() : Promise.reject(new Error("load"))))
+        )
+      );
+      const total = mods.reduce((a, d) => a + (d.questions || []).length, 0);
+      const lines = [`모듈별 정답 (총 ${total}문항)`, `내려받은 날짜: ${new Date().toLocaleDateString("ko-KR")}`, ""];
+      mods.forEach((d, mi) => {
+        const qs = d.questions || [];
+        lines.push(`■ 모듈 ${MODULES[mi].no}. ${MODULES[mi].title} (${qs.length}문항)`);
+        qs.forEach((q, qi) => {
+          lines.push(`Q${qi + 1}. ${q.q}`);
+          lines.push(`   정답 ${circled[q.correct] || q.correct + 1} ${q.options[q.correct]}`);
+        });
+        lines.push("");
+      });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob(["\uFEFF" + lines.join("\r\n")], { type: "text/plain;charset=utf-8" }));
+      a.download = `answer_key_all_modules_${new Date().toISOString().slice(0, 10)}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (e) {
+      alert("정답 파일을 만들지 못했습니다. 잠시 후 다시 시도해 주세요.");
+    } finally {
+      setDownloading(false);
+    }
+  }
+
   useEffect(() => {
     let alive = true;
     setStatus("loading");
@@ -2986,6 +3020,9 @@ function AnswerKeyModal({ onClose }) {
             닫기
           </button>
         </div>
+        <button className="roster-btn primary key-download" disabled={downloading} onClick={downloadAllAnswers}>
+          {downloading ? "만드는 중..." : "전체 모듈 정답 다운로드 (TXT)"}
+        </button>
 
         <div className="key-tabs">
           {MODULES.map((m, i) => (
