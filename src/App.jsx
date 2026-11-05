@@ -2264,7 +2264,7 @@ function AdminDashboard({
   const statDepts = deptOrder.filter((d) => !STATS_EXCLUDED_DEPARTMENTS.includes(d));
 
   const [showKey, setShowKey] = useState(false); // 문제·정답 보기 창
-  const [deptFilter, setDeptFilter] = useState("ALL"); // "ALL" 또는 부서명
+  const [deptSel, setDeptSel] = useState([]); // 선택한 부서들 (비어 있으면 전체)
   const [checkedIds, setCheckedIds] = useState([]);
   const [deleting, setDeleting] = useState(false);
 
@@ -2294,14 +2294,21 @@ function AdminDashboard({
     name: d,
     ...summarize(activeRoster.filter((u) => deptOf(u) === d)),
   }));
-  const scope =
-    deptFilter === "ALL"
-      ? overall
-      : summarize(activeRoster.filter((u) => deptOf(u) === deptFilter));
+  const isAll = deptSel.length === 0;
+  const scopeMembers = isAll
+    ? activeRoster.filter((u) => !STATS_EXCLUDED_DEPARTMENTS.includes(deptOf(u)))
+    : activeRoster.filter((u) => deptSel.includes(deptOf(u)));
+  const scope = isAll ? overall : summarize(scopeMembers);
+  const scopeLabel = isAll ? "전체" : deptSel.join(", ");
+  // 만점자 수 (모든 모듈 완료 + 틀린 문항 없음)
+  const recById = new Map(list.map((r) => [r.id, r]));
+  const perfectCount = scopeMembers.filter((u) => {
+    const r = recById.get(u.id);
+    return r && scoreInfo(r).perfect;
+  }).length;
 
   // ---- 표에 보이는 인원 (선택한 부서만) ----
-  const visible =
-    deptFilter === "ALL" ? list : list.filter((r) => deptOf(r) === deptFilter);
+  const visible = isAll ? list : list.filter((r) => deptSel.includes(deptOf(r)));
   const visibleIds = visible.map((r) => r.id);
   const allChecked =
     visible.length > 0 && visibleIds.every((id) => checkedIds.includes(id));
@@ -2309,7 +2316,12 @@ function AdminDashboard({
 
   // 부서를 바꾸면 선택을 비웁니다 (안 보이는 부서 사람이 실수로 삭제되는 것을 방지)
   function selectDept(d) {
-    setDeptFilter(d);
+    setDeptSel(d === "ALL" ? [] : [d]);
+    setCheckedIds([]);
+  }
+  // 부서를 여러 개 중복 선택/해제
+  function toggleDept(d) {
+    setDeptSel((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
     setCheckedIds([]);
   }
   function toggleOne(id) {
@@ -2377,8 +2389,8 @@ function AdminDashboard({
             <div className="dept-panel-head">
               <h3>부서별 현황</h3>
               <span className="dept-panel-note">
-                실시율 = 완료 인원 ÷ 부서 인원 · 부서를 누르면 아래 명단이 그 부서만
-                표시됩니다
+                실시율 = 완료 인원 ÷ 부서 인원 · 부서를 여러 개 눌러 함께 볼 수 있고,
+                아래 명단도 선택한 부서만 표시됩니다
                 {STATS_EXCLUDED_DEPARTMENTS.length > 0 &&
                   ` · ${STATS_EXCLUDED_DEPARTMENTS.join(", ")} 계정은 통계에서 제외`}
               </span>
@@ -2398,14 +2410,14 @@ function AdminDashboard({
                 <tbody>
                   {[{ name: "전체", key: "ALL", ...overall }, ...deptRows].map((row) => {
                     const key = row.key || row.name;
-                    const isSel = deptFilter === key;
+                    const isSel = key === "ALL" ? isAll : deptSel.includes(key);
                     return (
                       <tr
                         key={key}
                         className={`dept-row ${key === "ALL" ? "total" : ""} ${
                           isSel ? "selected" : ""
                         }`}
-                        onClick={() => selectDept(isSel ? "ALL" : key)}
+                        onClick={() => (key === "ALL" ? selectDept("ALL") : toggleDept(key))}
                       >
                         <td>{row.name}</td>
                         <td className="num">{row.total}</td>
@@ -2433,8 +2445,8 @@ function AdminDashboard({
         )}
 
         <p className="scope-note">
-          <strong>{deptFilter === "ALL" ? "전체" : deptFilter}</strong> 기준
-          {deptFilter === "ALL" &&
+          <strong>{scopeLabel}</strong> 기준
+          {isAll &&
             STATS_EXCLUDED_DEPARTMENTS.length > 0 &&
             ` (${STATS_EXCLUDED_DEPARTMENTS.join(", ")} 계정 제외)`}
         </p>
@@ -2443,16 +2455,22 @@ function AdminDashboard({
           <StatCard label="완료" value={scope.done} />
           <StatCard label="미완료" value={scope.total - scope.done} />
           <StatCard label="완료율" value={`${scope.rate}%`} />
+          <StatCard label="만점자" value={perfectCount} />
         </div>
 
         <div className="admin-toolbar">
           <div className="admin-toolbar-left">
             <select
               className="dept-select"
-              value={deptFilter}
+              value={deptSel.length === 0 ? "ALL" : deptSel.length === 1 ? deptSel[0] : "MULTI"}
               onChange={(e) => selectDept(e.target.value)}
             >
               <option value="ALL">전체 부서</option>
+              {deptSel.length > 1 && (
+                <option value="MULTI" disabled>
+                  {deptSel.length}개 부서 선택
+                </option>
+              )}
               {deptOrder.map((d) => (
                 <option key={d} value={d}>
                   {d}
@@ -2462,7 +2480,7 @@ function AdminDashboard({
             <div className="admin-toolbar-info">
               {someChecked
                 ? `${checkedIds.length}명 선택됨`
-                : `${deptFilter === "ALL" ? "전체 부서" : deptFilter} · 표시 ${
+                : `${isAll ? "전체 부서" : deptSel.join(", ")} · 표시 ${
                     visible.length
                   }명`}
             </div>
