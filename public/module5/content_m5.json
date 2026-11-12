@@ -473,16 +473,16 @@
               "type": "bullets",
               "items": [
                 {
-                  "text": "✔ 사전 점검(Pre-Trip Inspection): 운행 전 Schedule 1(온타리오 상용차 검사 규정 O. Reg. 199/07의 일일 점검 기준표) 항목을 모두 확인하고, 차량이 안전하게 운행 가능한지 확인한다."
+                  "text": "사전 점검(Pre-Trip Inspection): 운행 전 Schedule 1(온타리오 상용차 검사 규정 O. Reg. 199/07의 일일 점검 기준표) 항목을 모두 확인하고, 차량이 안전하게 운행 가능한지 확인한다."
                 },
                 {
-                  "text": "✔ 사후 점검(Post-Trip Inspection): 근무 종료 시점에 차량의 결함 여부를 확인한다."
+                  "text": "사후 점검(Post-Trip Inspection): 근무 종료 시점에 차량의 결함 여부를 확인한다."
                 },
                 {
-                  "text": "✔ 결함 발견 시 DVIR 제출: 결함이 발견되면 반드시 Samsara 앱에서 DVIR을 작성하여 제출한다. 결함이 Major인 경우, 차량은 수리 완료 전까지 운행할 수 없다."
+                  "text": "결함 발견 시 DVIR 제출: 결함이 발견되면 반드시 Samsara 앱에서 DVIR을 작성하여 제출한다. 결함이 Major인 경우, 차량은 수리 완료 전까지 운행할 수 없다."
                 },
                 {
-                  "text": "✔ Samsara DVIR 사용: HOS가 비활성화된 면제 모드에서도 DVIR은 제출 및 공유 가능하다."
+                  "text": "Samsara DVIR 사용: HOS가 비활성화된 면제 모드에서도 DVIR은 제출 및 공유 가능하다."
                 }
               ]
             },
