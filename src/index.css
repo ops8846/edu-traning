@@ -3083,3 +3083,25 @@ body {
 .score-chip.miss { color: #8A2A1E; background: #FBE6E2; border-color: #E6A99F; font-weight: 700; }
 
 .key-download { margin-top: 12px; }
+
+/* ---------- 회사 로고 (배경 투명 PNG): 배지 틀 없이 그대로 표시 ---------- */
+.hero-logo-badge,
+.login-hero .hero-logo-badge {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.login-hero .hero-logo-badge img,
+.hero-logo-badge img {
+  height: clamp(44px, 8vh, 72px);
+}
+.topbar-logo-badge {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.topbar-logo-badge img {
+  height: 36px;
+}
